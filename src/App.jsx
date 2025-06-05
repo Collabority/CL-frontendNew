@@ -1,9 +1,13 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/home";
 
 function App() {
   return (
     <>
-      <h1 className="flex items-center justify-center h-screen">CL_Frontend</h1>
+    <Routes>
+      <Route path = "/" element={<Home/>} />
+    </Routes>
     </>
   );
 }
