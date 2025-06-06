@@ -1,14 +1,25 @@
 import "./App.css";
 import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <h1 className="flex items-center justify-center h-screen">CL_Frontend</h1>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
