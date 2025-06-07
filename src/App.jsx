@@ -1,11 +1,10 @@
-import "./App.css";
+// src/App.jsx
+import React from "react";
+import Services from "./pages/services";
 
 function App() {
-  return (
-    <>
-      <h1 className="flex items-center justify-center h-screen">CL_Frontend</h1>
-    </>
-  );
+  return <Services />;
 }
 
 export default App;
+
