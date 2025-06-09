@@ -104,13 +104,13 @@ export default function Services() {
 
           <p className="items-center justify-center text-center text-xl max-w-3xl mx-auto text-gray-600">Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum</p>
         
-        <div className="p-8 max-w-7xl mx-auto">
-        <div className="border border rounded-lg p-8 mt-8">
+        <div className="p-8 max-w-7xl mx-auto ">
+        <div className="border border rounded-lg p-8 mt-8 bg-primary">
         <div className="flex flex-row space-x-8 max-w-6xl mx-auto mt-8 text-gray-900 text-xl">
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore wisi enim ad minim veniam.</p>
           <p>Mirum est notare quam littera gothica, quam nunc putamus parum, anteposuerit litterarum formas duis dolore te feugait nulla facilisi.</p>
         </div>
-        <button className="bg-secondary font-semibold p-3 text-md rounded-lg items-center justify-center text-center mt-6 text-white hover:bg-primary hover:text-secondary hover:border">Request a free quote</button>
+        <button className="bg-secondary font-semibold p-3 text-md rounded-lg items-center justify-center text-center mt-6 text-white hover:bg-white hover:text-secondary hover:border">Request a free quote</button>
         </div>
         </div>
         </section>
