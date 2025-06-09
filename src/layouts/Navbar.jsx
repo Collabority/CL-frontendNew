@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CollaboryLogo from '../assets/collabory-logo.png'; 
-import ActionButton from '../components/ActionButton'; 
+import ActionButton from '../components/Button'; 
 
 const Navbar = () => {
   const linkClass = ({ isActive }) =>
