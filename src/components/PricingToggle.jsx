@@ -1,6 +1,6 @@
 export default function PricingToggle({ activeTab, setActiveTab }) {
   return (
-    <div className="flex space-x-4 bg-white p-3 rounded-md shadow-sm">
+    <div className="flex space-x-4 bg-white p-3 rounded-md shadow-sm font-poppins">
       <button
         className={`px-6 py-3 font-semibold rounded-md ${
           activeTab === "monthly"

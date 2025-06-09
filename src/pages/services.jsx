@@ -57,7 +57,7 @@ export default function Services() {
   const [activeTab, setActiveTab] = useState("monthly");
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
+    <main className="bg-white min-h-screen flex flex-col font-poppins">
     
     <Herosection/>
 
@@ -82,7 +82,7 @@ export default function Services() {
               <span className="text-gray-900 font-semibold text-sm">
                 PLANS ______
               </span>
-              <h2 className="text-4xl font-extrabold mt-2 mb-4 text-black">
+              <h2 className="text-4xl font-extrabold mt-2 mb-4 text-gray-900">
                 Here are our plans
               </h2>
             </div>
@@ -97,11 +97,29 @@ export default function Services() {
         </div>
       </section>
 
+      <section className="py-12">
+        <div className="max-w-xl mx-auto text-center mb-8">
+          <h1 className="text-gray-900 text-4xl font-extrabold mt-6 mb-12">Our Product Based Services</h1>
+        </div>
+
+          <p className="items-center justify-center text-center text-xl max-w-3xl mx-auto text-gray-600">Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum</p>
+        
+        <div className="p-8 max-w-7xl mx-auto">
+        <div className="border border rounded-lg p-8 mt-8">
+        <div className="flex flex-row space-x-8 max-w-6xl mx-auto mt-8 text-gray-900 text-2xl">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore wisi enim ad minim veniam.</p>
+          <p>Mirum est notare quam littera gothica, quam nunc putamus parum, anteposuerit litterarum formas duis dolore te feugait nulla facilisi.</p>
+        </div>
+        <button className="bg-secondary font-semibold p-3 text-md rounded-lg items-center justify-center text-center mt-6 text-white hover:bg-primary hover:text-secondary hover:border">Request a free quote</button>
+        </div>
+        </div>
+        </section>
+
       {/* News Feed Section */}
       <section className="bg-gray-900 py-12">
-        <div className="container mx-auto px-4 text-center max-w-xl mx-auto mb-12">
+        <div className="container mx-auto px-4 text-center max-w-xl mx-auto mb-12 mt-8">
           <h2 className="text-white text-4xl font-bold mb-4">News Feeds</h2>
-          <p className="text-gray-400 text-base">
+          <p className="text-gray-400 text-base mt-4">
             Does any industry face a more complex audience journey and marketing
             sales process than B2B technology.
           </p>
@@ -113,6 +131,8 @@ export default function Services() {
           ))}
         </div>
       </section>
-    </div>
+
+      
+    </main>
   );
 }

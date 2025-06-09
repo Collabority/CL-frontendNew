@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ServiceCard({ service }) {
   return (
-    <div className="relative overflow-hidden shadow-lg group ">
+    <div className="relative overflow-hidden shadow-lg group font-poppins">
       <div className="h-74 relative">
         <img
           src={service.image}

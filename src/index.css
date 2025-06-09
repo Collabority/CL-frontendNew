@@ -1,6 +1,13 @@
-@import "tailwindcss";
+@import "tailwindcss"; 
 
-@theme{
-    --color-primary:#FFFCF2;
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@theme{ 
+    --color-primary:#F8F6F3;
     --color-secondary:#008080;
 }

@@ -1,10 +1,10 @@
 export default function PricingCard({ plan }) {
   return (
-    <div className="group bg-white bg-opacity-60 p-6 sm:p-8 md:p-10 lg:p-12 h-full flex flex-col justify-between items-center text-center text-black hover:bg-secondary hover:text-white transition-colors duration-300 rounded-lg shadow-md hover:shadow-lg">
+    <div className="group bg-white bg-opacity-60 p-6 sm:p-8 md:p-10 lg:p-12 h-full flex flex-col justify-between items-center text-center text-black hover:bg-secondary hover:text-white transition-colors duration-300 rounded-lg shadow-md hover:shadow-lg font-poppins">
       <h3 className="font-semibold text-lg mb-4 text-gray-900 group-hover:text-white">{plan.name}</h3>
       <h4 className="text-xl sm:text-2xl font-bold group-hover:text-white">
                 ${" "}
-                <span className="text-5xl sm:text-6xl group-hover:text-white">
+                <span className="text-5xl sm:text-6xl group-hover:text-white text-gray-900">
                   {plan.price}
                 </span>
               </h4>
@@ -13,7 +13,7 @@ export default function PricingCard({ plan }) {
         _____
       </span>
       
-      <p className="text-xs sm:text-sm mb-6 text-gray-400 group-hover:text-white flex-grow">
+      <p className="text-xs sm:text-sm mb-6 text-gray-400 group-hover:text-white flex-grow font-poppins">
         The functional goal of technical content is to help people use
         a product successfully.
       </p>

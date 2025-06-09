@@ -3,7 +3,11 @@ import React from "react";
 import Services from "./pages/services";
 
 function App() {
-  return <Services />;
+  return (
+    <div className="font-sans">
+    <Services />
+  </div>
+  )
 }
 
 export default App;
