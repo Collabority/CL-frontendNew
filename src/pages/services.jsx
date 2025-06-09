@@ -97,23 +97,35 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="max-w-xl mx-auto text-center mb-8">
-          <h1 className="text-gray-900 text-4xl font-extrabold mt-6 mb-12">Our Product Based Services</h1>
-        </div>
+      <section className="py-12 px-4">
+      <div className="max-w-xl mx-auto text-center mb-8">
+        <h1 className="text-gray-900 text-3xl md:text-4xl font-extrabold mt-6 mb-6">Our Product Based Services</h1>
+      </div>
 
-          <p className="items-center justify-center text-center text-xl max-w-3xl mx-auto text-gray-600">Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum</p>
-        
-        <div className="p-8 max-w-7xl mx-auto ">
-        <div className="border border rounded-lg p-8 mt-8 bg-primary">
-        <div className="flex flex-row space-x-8 max-w-6xl mx-auto mt-8 text-gray-900 text-xl">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore wisi enim ad minim veniam.</p>
-          <p>Mirum est notare quam littera gothica, quam nunc putamus parum, anteposuerit litterarum formas duis dolore te feugait nulla facilisi.</p>
+      <p className="text-center text-lg md:text-xl max-w-3xl mx-auto text-gray-600 mb-6">
+        Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
+      </p>
+
+      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="border border-black rounded-lg p-6 sm:p-8 mt-8 bg-primary text-white">
+          <div className="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 max-w-6xl mx-auto text-base md:text-lg text-white">
+            <p className="flex-1 text-gray-900">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore wisi enim ad minim veniam.
+            </p>
+            <p className="flex-1 text-gray-900">
+              Mirum est notare quam littera gothica, quam nunc putamus parum, anteposuerit litterarum formas duis dolore te feugait nulla facilisi.
+            </p>
+          </div>
+
+          <div className="flex justify-center mt-6">
+            <button className="bg-secondary font-semibold px-6 py-3 text-md rounded-lg text-white hover:bg-white hover:text-secondary hover:border hover:border-secondary transition">
+              Request a free quote
+            </button>
+          </div>
         </div>
-        <button className="bg-secondary font-semibold p-3 text-md rounded-lg items-center justify-center text-center mt-6 text-white hover:bg-white hover:text-secondary hover:border">Request a free quote</button>
-        </div>
-        </div>
-        </section>
+      </div>
+    </section>
+
 
       {/* News Feed Section */}
       <section className="bg-gray-900 py-12">
