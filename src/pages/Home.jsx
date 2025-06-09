@@ -509,9 +509,9 @@ const Home = () => {
           </div>
           <div className="flex-shrink-0">
             <Link>
-              <button className="flex items-center p-4 gap-3 bg-[#008080] rounded hover:bg-gray-100 transition-colors">
-                <FaComment className="text-white" />
-                <span className="text-white font-medium">Contact Us</span>
+              <button className="flex items-center p-4 gap-3 bg-[#008080] text-white rounded hover:bg-gray-100 transition-colors hover:text-[#008080]">
+                <FaComment />
+                <span className="font-medium">Contact Us</span>
               </button>
             </Link>
           </div>
