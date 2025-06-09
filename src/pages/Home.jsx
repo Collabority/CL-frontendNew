@@ -5,11 +5,15 @@ import { ArrowLeft, ArrowRight, Video } from "../components/Icons";
 import { Link } from "react-router-dom";
 import {
   bgColorMap,
+  clients,
   colorMap,
   hoverTextColors,
+  infoData,
   latestServices,
+  newsSection,
   portfolioImages,
   services,
+  teamMembers,
 } from "../constants/Data";
 import dottedImage from "../assets/dotted_image.webp";
 import {
@@ -18,7 +22,13 @@ import {
 } from "../utils/useScrollAnimation";
 import tileGallery01 from "../assets/tileGallery01.webp";
 import tileGallery02 from "../assets/tileGallery02.webp";
-
+import {
+  FaComment,
+  FaCommentDots,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 
 const Home = () => {
   const [animate, setAnimate] = useState(false);
@@ -35,10 +45,25 @@ const Home = () => {
   useAnimateElementsByClass("animate-on-scroll");
 
   // for slider buttons -->
+  const [startIndex, setStartIndex] = useState(0);
 
+  const handleNext = () => {
+    if (startIndex + 3 < portfolioImages.length) {
+      setStartIndex(startIndex + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex - 1);
+    }
+  };
+
+  // for video playing -->
+  const [showVideo, setShowVideo] = useState(false);
 
   return (
-    <main className="min-h-screen bg-white font-sans">
+    <main className="min-h-screen bg-white font-poppins">
       {/* Hero-Section */}
       <div
         className="h-screen bg-cover bg-center"
@@ -203,9 +228,39 @@ const Home = () => {
             <button className="bg-blue-700 rounded text-white font-serif py-3 px-6 hover:bg-blue-950 transition-colors w-full sm:w-auto">
               Learn More
             </button>
-            <button className="bg-gray-400 rounded text-white font-serif py-3 px-6 hover:bg-blue-950 flex gap-2 items-center justify-center transition-colors w-full sm:w-auto">
+
+            <button
+              onClick={() => setShowVideo(true)}
+              className="bg-gray-400 rounded text-white font-serif py-3 px-6 hover:bg-blue-950 flex gap-2 items-center justify-center transition-colors w-full sm:w-auto"
+            >
               <Video /> Intro Video
             </button>
+
+            {/* Popup Video (No dark overlay) */}
+            {showVideo && (
+              <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
+                <div className="relative bg-white rounded-lg max-w-2xl w-full p-1 pointer-events-auto">
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setShowVideo(false)}
+                    className="absolute top-2 right-2 text-gray-700 hover:text-red-500 text-2xl font-bold text-red-300"
+                  >
+                    ✕
+                  </button>
+
+                  {/* Video Player */}
+                  <div className="aspect-video w-full">
+                    <iframe
+                      className="w-full h-full rounded"
+                      src = "https://youtube.com/embed/9xwazD5SyVg?"
+                      title="Intro Video"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -266,24 +321,35 @@ const Home = () => {
 
             {/* Right Arrow Buttons */}
             <div className="flex gap-4 shrink-0">
-              <button className="w-12 h-12 rounded-full bg-blue-900 text-white flex items-center justify-center hover:bg-blue-800 transition-colors">
+              <button
+                onClick={handlePrev}
+                className="w-12 h-12 rounded-full bg-blue-900 text-white flex px-4 py-2 rounded items-center justify-center hover:bg-blue-800 transition-colors"
+                disabled={startIndex === 0}
+              >
                 <ArrowLeft className="w-5 h-5" />
               </button>
-              <button className="w-12 h-12 rounded-full bg-white text-blue-900 flex items-center justify-center hover:bg-gray-100 transition-colors">
+              <button
+                onClick={handleNext}
+                className="w-12 h-12 rounded-full bg-white text-blue-900 flex px-4 py-2 bg-blue-600 rounded items-center justify-center hover:bg-blue-900 hover:text-white transition-colors"
+                disabled={startIndex + 3 >= portfolioImages.length}
+              >
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto gap-6 sm:gap-7">
-          {portfolioImages.map((src, idx) => (
+        <div
+          className="flex flex-col transition-transform duration-500 ease-in-out sm:flex-row px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto gap-6 sm:gap-7"
+          style={{ transform: `translateX` }}
+        >
+          {portfolioImages.slice(startIndex, startIndex + 3).map((src, idx) => (
             <div
               key={idx}
               className="relative group overflow-hidden rounded-lg shadow-lg flex-1"
             >
               <img
-                src={src}
-                alt={`Portfolio ${idx}`}
+                src={src.image}
+                alt={src.title}
                 className="w-full object-cover"
               />
 
@@ -293,10 +359,10 @@ const Home = () => {
                       opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-4"
               >
                 <h6 className="text-white text-base sm:text-lg font-semibold">
-                  IT / Solutions
+                  {src.title}
                 </h6>
                 <h4 className="text-white text-lg sm:text-2xl font-bold">
-                  How To Improve <br /> IT Knowledge
+                  {src.des}
                 </h4>
 
                 {/* Arrow Button */}
@@ -309,6 +375,192 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Info */}
+      <section className="bg-blue-950">
+        <div className="flex flex-col sm:flex-row p-6 sm:p-8 gap-6 sm:gap-12 justify-center flex-wrap">
+          {infoData.map((item, idx) => (
+            <div
+              key={idx}
+              className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-700 ease-out 
+                flex flex-col border-2 border-gray-700 p-6 sm:p-8 gap-4 justify-center items-center w-full sm:w-60
+                ${idx % 2 !== 0 ? "sm:mt-16 sm:mb-10" : ""}`}
+            >
+              <div
+                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${item.color} flex items-center justify-center`}
+              >
+                <FaCommentDots className="text-white w-4 h-4 sm:w-5 sm:h-5" />
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white">
+                {item.number}
+              </h1>
+              <h6 className="text-xs sm:text-sm font-semibold text-white">
+                {item.label}
+              </h6>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Team Members */}
+      <section>
+        <div className="flex flex-col">
+          <div className="flex flex-col justify-center items-center mt-10 sm:mt-16 px-4">
+            <h4 className="text-blue-700 font-medium text-xl sm:text-2xl text-center">
+              Our Team Member
+            </h4>
+            <h1 className="text-blue-950 font-extrabold text-3xl sm:text-4xl lg:text-6xl text-center">
+              Meet Our Exclusive
+            </h1>
+            <h1 className="text-blue-950 font-extrabold text-3xl sm:text-4xl lg:text-6xl text-center">
+              Leadership
+            </h1>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 sm:mt-20 px-4 sm:px-6 max-w-7xl mx-auto">
+            {teamMembers.map((member, idx) => (
+              <div
+                key={idx}
+                className="relative group w-full border border-gray-200 rounded overflow-hidden shadow-md mx-auto max-w-sm"
+              >
+                <img
+                  src={member.image}
+                  alt={member.title}
+                  className="w-full h-auto"
+                />
+
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-center p-12 sm:p-20 gap-2">
+                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                    <FaFacebook className="w-4 h-4" />
+                  </button>
+                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                    <FaInstagram className="w-4 h-4" />
+                  </button>
+                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                    <FaTwitter className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Text below image */}
+                <div className="flex flex-col items-center py-6 bg-white">
+                  <h2 className="font-bold text-xl sm:text-2xl">
+                    {member.title}
+                  </h2>
+                  <h5 className="text-sm text-gray-600">{member.prof}</h5>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Client testimonial */}
+      <section className="bg-sky-100 mt-12 sm:mt-16">
+        <div className="flex flex-col">
+          <div className="flex flex-col justify-center items-center py-12 sm:py-16 px-4">
+            <h4 className="text-blue-700 font-medium text-xl sm:text-2xl text-center">
+              Client Testimonials
+            </h4>
+            <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
+              What our clients say
+            </h1>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-start mb-12 sm:mb-16 px-4 sm:px-6 max-w-7xl mx-auto">
+            {clients.map((items, idx) => (
+              <div key={idx} className="w-full">
+                <div
+                  className={`bg-white w-full h-auto p-8 border-t-4 border-${items.borderColor}-700 text-sm sm:text-base`}
+                >
+                  {items.text}
+                </div>
+                <div className="flex gap-3 mt-5">
+                  <img
+                    src={items.img}
+                    alt={items.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div className="flex flex-col gap-1 sm:gap-3">
+                    <h4 className="font-bold text-sm sm:text-base">
+                      {items.name}
+                    </h4>
+                    <h6 className="text-gray-500 text-xs sm:text-sm">
+                      {items.post}
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to action */}
+      <section className="bg-blue-700">
+        <div className="flex flex-col lg:flex-row px-4 sm:px-12 py-12 w-full max-w-screen-xl mx-auto gap-6 lg:gap-7 items-center">
+          <div className="flex flex-col justify-start lg:mr-64 mt-8 lg:mt-16 mb-8 lg:mb-16 text-center lg:text-left flex-1">
+            <h4 className="font-medium text-xs sm:text-sm text-white">
+              CALL TO ACTION
+            </h4>
+            <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
+              Let's Discuss With Us
+            </h1>
+            <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
+              Your Estimate.
+            </h1>
+          </div>
+          <div className="flex-shrink-0">
+            <Link>
+              <button className="flex items-center p-4 gap-3 bg-white rounded hover:bg-gray-100 transition-colors">
+                <FaComment className="text-blue-700" />
+                <span className="text-blue-700 font-medium">Contact Us</span>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest News */}
+      <section className="flex flex-col">
+        <div className="flex flex-col justify-center items-center pt-12 sm:pt-20 px-4">
+          <h4 className="text-blue-700 font-semibold text-xl sm:text-2xl text-center">
+            Latest News
+          </h4>
+          <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
+            Read Our Latest
+          </h1>
+          <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
+            News & Blog
+          </h1>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-12 sm:pt-16 mb-12 sm:mb-16 px-4 sm:px-6 max-w-7xl mx-auto">
+          {newsSection.map((key, idx) => (
+            <div
+              key={idx}
+              className="flex flex-col justify-start border-2 border-gray-200 rounded-lg overflow-hidden transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+            >
+              <img
+                src={key.img}
+                alt={`news-${idx}`}
+                className="w-full h-48 sm:h-56 object-cover"
+              />
+              <div className="p-4 flex flex-col gap-4">
+                <h6 className="text-blue-700 font-bold font-serif text-sm">
+                  {key.date}
+                </h6>
+                <h4 className="font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight">
+                  {key.des}
+                </h4>
+                <div className="flex gap-2 items-center">
+                  <Link className="flex items-center text-gray-600 gap-2 text-sm sm:text-base">
+                    Read More
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 };
