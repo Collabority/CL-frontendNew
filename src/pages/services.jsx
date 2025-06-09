@@ -106,7 +106,7 @@ export default function Services() {
         
         <div className="p-8 max-w-7xl mx-auto">
         <div className="border border rounded-lg p-8 mt-8">
-        <div className="flex flex-row space-x-8 max-w-6xl mx-auto mt-8 text-gray-900 text-2xl">
+        <div className="flex flex-row space-x-8 max-w-6xl mx-auto mt-8 text-gray-900 text-xl">
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore wisi enim ad minim veniam.</p>
           <p>Mirum est notare quam littera gothica, quam nunc putamus parum, anteposuerit litterarum formas duis dolore te feugait nulla facilisi.</p>
         </div>
