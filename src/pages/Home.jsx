@@ -61,7 +61,6 @@ const Home = () => {
 
   // for video playing -->
   const [showVideo, setShowVideo] = useState(false);
-
   return (
     <main className="min-h-screen bg-white font-poppins">
       {/* Hero-Section */}
@@ -84,7 +83,7 @@ const Home = () => {
                 }
               `}
               >
-                <span className="text-2xl font-semibold text-blue-950 tracking-widest">
+                <span className="text-2xl font-semibold text-[#008080] tracking-widest">
                   IT Business Consulting
                 </span>
                 <h1 className="text-8xl font-extrabold text-blue-950">
@@ -97,7 +96,7 @@ const Home = () => {
                   quae ab illo inventore veritatis
                 </p>
                 <Link to="/" className="w-full sm:w-auto">
-                  <button className="group inline-flex items-center gap-2 mt-4 justify-center px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-blue-800 hover:bg-blue-950 text-white text-sm sm:text-base md:text-base rounded font-medium w-full sm:w-auto max-w-xs sm:max-w-none transition-colors duration-300 ease-in-out">
+                  <button className="group inline-flex items-center gap-2 mt-4 justify-center px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-[#008080] hover:bg-gray-900 text-white text-sm sm:text-base md:text-base rounded font-medium w-full sm:w-auto max-w-xs sm:max-w-none transition-colors duration-300 ease-in-out">
                     Our Services
                     <ArrowRight className="ml-2 narrow-icon" />
                   </button>
@@ -130,7 +129,7 @@ const Home = () => {
       {/* What we do */}
       <section className="py-12 sm:py-16 bg-white">
         <div className="text-center mb-8 sm:mb-12 px-4 max-w-3xl mx-auto">
-          <h6 className="text-base sm:text-base font-semibold text-blue-700 tracking-wider">
+          <h6 className="text-base sm:text-base font-semibold text-[#008080] tracking-wider">
             SERVICES
           </h6>
           <h1 className="text-4xl sm:text-4xl lg:text-6xl font-bold text-blue-950">
@@ -150,7 +149,7 @@ const Home = () => {
             return (
               <div
                 key={idx}
-                className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-lg shadow-lg cursor-pointer group bg-white text-black transition-all duration-500 ease-in-out hover:bg-blue-600 hover:text-white hover:shadow-xl hover:scale-105 transform"
+                className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-lg shadow-lg cursor-pointer group bg-white text-black transition-all duration-500 ease-in-out hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105 transform"
               >
                 {/* Hover Dotted Background */}
                 <div
@@ -183,7 +182,7 @@ const Home = () => {
       </section>
 
       {/* core-features */}
-      <section className="bg-blue-50 py-12 sm:py-20 px-4 sm:px-8 lg:px-20 flex flex-col lg:flex-row gap-5 lg:gap-5">
+      <section className="bg-[#F8F6F3] py-12 sm:py-20 px-4 sm:px-8 lg:px-20 flex flex-col lg:flex-row gap-5 lg:gap-5">
         {/* Left Images */}
         <div className="flex flex-col pl-10 sm:flex-row lg:flex-col sm:gap-8 w-full lg:w-1/2">
           <div className="mt-0 lg:mt-10 flex-shrink-0 relative z-10">
@@ -207,17 +206,17 @@ const Home = () => {
 
         {/* Right Text */}
         <div className="mt-10 lg:mt-28 px-0 flex flex-col text-center lg:text-left w-full lg:w-1/2">
-          <h4 className="text-blue-800 font-semibold text-sm sm:text-base tracking-widest">
+          <h4 className="text-[#008080] font-semibold text-sm sm:text-base tracking-widest">
             CORE FEATURES
           </h4>
           <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left break-words">
             Get More Good Experience.
           </h1>
 
-          <h2 className="text-blue-400 mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
+          <h2 className="text-[#008080] mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
             Our knowledge of computers will help us
           </h2>
-          <p className="text-sm sm:text-base text-sky-500 mt-6 sm:mt-10 font-medium leading-relaxed">
+          <p className="text-sm sm:text-base text-[#008080] mt-6 sm:mt-10 font-medium leading-relaxed">
             Does any industry face a more complex audience journey and marketing
             sales process than B2B technology? Consider the number of people who
             influence a sale, the length of the decision-making cycle, the
@@ -225,13 +224,13 @@ const Home = () => {
             and use the technology. It's a lot meaningful content here.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mt-6 sm:mt-10 justify-center lg:justify-start">
-            <button className="bg-blue-700 rounded text-white font-serif py-3 px-6 hover:bg-blue-950 transition-colors w-full sm:w-auto">
+            <button className="bg-[#008080] rounded text-white py-3 px-6 hover:bg-gray-900 transition-colors w-full sm:w-auto">
               Learn More
             </button>
 
             <button
               onClick={() => setShowVideo(true)}
-              className="bg-gray-400 rounded text-white font-serif py-3 px-6 hover:bg-blue-950 flex gap-2 items-center justify-center transition-colors w-full sm:w-auto"
+              className="bg-gray-500 rounded text-white py-3 px-6 hover:bg-gray-900 flex gap-2 items-center justify-center transition-colors w-full sm:w-auto"
             >
               <Video /> Intro Video
             </button>
@@ -239,7 +238,7 @@ const Home = () => {
             {/* Popup Video (No dark overlay) */}
             {showVideo && (
               <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-                <div className="relative bg-white rounded-lg max-w-2xl w-full p-1 pointer-events-auto">
+                <div className="relative bg-[#008080] rounded-lg max-w-4xl w-full p-1 pointer-events-auto">
                   {/* Close Button */}
                   <button
                     onClick={() => setShowVideo(false)}
@@ -268,13 +267,13 @@ const Home = () => {
       {/* Our Latest Services */}
       <section className="flex flex-col mt-12 sm:mt-20 justify-center items-center px-4 py-4">
         <div className="flex flex-col mb-12 sm:mb-20 text-center">
-          <h3 className="font-semibold tracking-widest text-blue-700 text-base sm:text-lg">
+          <h3 className="font-semibold tracking-widest text-[#008080] text-base sm:text-lg">
             OUR LATEST SERVICES
           </h3>
-          <h1 className="font-bold text-4xl sm:text-5xl lg:text-7xl">
+          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
             We Offer Better Solution
           </h1>
-          <h1 className="font-bold text-4xl sm:text-5xl lg:text-7xl">
+          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
             For Your IT Business
           </h1>
         </div>
@@ -282,7 +281,7 @@ const Home = () => {
           {latestServices.map((key, index) => (
             <div
               key={index}
-              className="flex flex-col p-10 cursor-pointer text-black bg-blue-50 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+              className="flex flex-col p-10 cursor-pointer text-black bg-[#F8F6F3] transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
             >
               <div
                 className={`${
@@ -307,9 +306,9 @@ const Home = () => {
       </section>
 
       {/* Latest Case Study */}
-      <section className="flex flex-col bg-blue-600 mt-12 sm:mt-20">
+      <section className="flex flex-col bg-gray-900 mt-12 sm:mt-20">
         <div className="px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto">
-          <h3 className="text-white font-medium text-lg sm:text-xl mb-4 text-center lg:text-left">
+          <h3 className="text-[#008080] font-medium text-lg sm:text-xl mb-4 text-center lg:text-left">
             Latest Case Studies
           </h3>
 
@@ -323,14 +322,14 @@ const Home = () => {
             <div className="flex gap-4 shrink-0">
               <button
                 onClick={handlePrev}
-                className="w-12 h-12 rounded-full bg-blue-900 text-white flex px-4 py-2 rounded items-center justify-center hover:bg-blue-800 transition-colors"
+                className="w-12 h-12 rounded-full bg-[#008080] text-white flex px-4 py-2 rounded items-center justify-center hover:bg-blue-900 transition-colors"
                 disabled={startIndex === 0}
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-12 h-12 rounded-full bg-white text-blue-900 flex px-4 py-2 bg-blue-600 rounded items-center justify-center hover:bg-blue-900 hover:text-white transition-colors"
+                className="w-12 h-12 rounded-full bg-white text-blue-900 flex px-4 py-2 bg-blue-600 rounded items-center justify-center hover:bg-[#008080] hover:text-white transition-colors"
                 disabled={startIndex + 3 >= portfolioImages.length}
               >
                 <ArrowRight className="w-5 h-5" />
@@ -366,7 +365,7 @@ const Home = () => {
                 </h4>
 
                 {/* Arrow Button */}
-                <button className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                <button className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -393,7 +392,7 @@ const Home = () => {
               <h1 className="text-2xl sm:text-3xl font-bold text-white">
                 {item.number}
               </h1>
-              <h6 className="text-xs sm:text-sm font-semibold text-white">
+              <h6 className="text-xs sm:text-sm font-semibold text-[#008080]">
                 {item.label}
               </h6>
             </div>
@@ -405,7 +404,7 @@ const Home = () => {
       <section>
         <div className="flex flex-col">
           <div className="flex flex-col justify-center items-center mt-10 sm:mt-16 px-4">
-            <h4 className="text-blue-700 font-medium text-xl sm:text-2xl text-center">
+            <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
               Our Team Member
             </h4>
             <h1 className="text-blue-950 font-extrabold text-3xl sm:text-4xl lg:text-6xl text-center">
@@ -430,19 +429,19 @@ const Home = () => {
 
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-center p-12 sm:p-20 gap-2">
-                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
                     <FaFacebook className="w-4 h-4" />
                   </button>
-                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
                     <FaInstagram className="w-4 h-4" />
                   </button>
-                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-blue-700 hover:text-white transition">
+                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
                     <FaTwitter className="w-4 h-4" />
                   </button>
                 </div>
 
                 {/* Text below image */}
-                <div className="flex flex-col items-center py-6 bg-white">
+                <div className="flex flex-col items-center py-6 bg-[#F8F6F3]">
                   <h2 className="font-bold text-xl sm:text-2xl">
                     {member.title}
                   </h2>
@@ -458,7 +457,7 @@ const Home = () => {
       <section className="bg-sky-100 mt-12 sm:mt-16">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center items-center py-12 sm:py-16 px-4">
-            <h4 className="text-blue-700 font-medium text-xl sm:text-2xl text-center">
+            <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
               Client Testimonials
             </h4>
             <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
@@ -469,7 +468,7 @@ const Home = () => {
             {clients.map((items, idx) => (
               <div key={idx} className="w-full">
                 <div
-                  className={`bg-white w-full h-auto p-8 border-t-4 border-${items.borderColor}-700 text-sm sm:text-base`}
+                  className={`bg-[#F8F6F3] w-full h-auto p-8 border-t-4 border-red-700 text-sm sm:text-base`}
                 >
                   {items.text}
                 </div>
@@ -495,10 +494,10 @@ const Home = () => {
       </section>
 
       {/* Call to action */}
-      <section className="bg-blue-700">
+      <section className="bg-gray-900">
         <div className="flex flex-col lg:flex-row px-4 sm:px-12 py-12 w-full max-w-screen-xl mx-auto gap-6 lg:gap-7 items-center">
           <div className="flex flex-col justify-start lg:mr-64 mt-8 lg:mt-16 mb-8 lg:mb-16 text-center lg:text-left flex-1">
-            <h4 className="font-medium text-xs sm:text-sm text-white">
+            <h4 className="font-semibold text-xs sm:text-sm text-[#008080]">
               CALL TO ACTION
             </h4>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
@@ -510,9 +509,9 @@ const Home = () => {
           </div>
           <div className="flex-shrink-0">
             <Link>
-              <button className="flex items-center p-4 gap-3 bg-white rounded hover:bg-gray-100 transition-colors">
-                <FaComment className="text-blue-700" />
-                <span className="text-blue-700 font-medium">Contact Us</span>
+              <button className="flex items-center p-4 gap-3 bg-[#008080] rounded hover:bg-gray-100 transition-colors">
+                <FaComment className="text-white" />
+                <span className="text-white font-medium">Contact Us</span>
               </button>
             </Link>
           </div>
@@ -522,7 +521,7 @@ const Home = () => {
       {/* Latest News */}
       <section className="flex flex-col">
         <div className="flex flex-col justify-center items-center pt-12 sm:pt-20 px-4">
-          <h4 className="text-blue-700 font-semibold text-xl sm:text-2xl text-center">
+          <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
             Latest News
           </h4>
           <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
@@ -536,7 +535,7 @@ const Home = () => {
           {newsSection.map((key, idx) => (
             <div
               key={idx}
-              className="flex flex-col justify-start border-2 border-gray-200 rounded-lg overflow-hidden transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+              className="bg-[#F8F6F3] flex flex-col justify-start border-2 border-gray-200 rounded-lg overflow-hidden transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
             >
               <img
                 src={key.img}
@@ -544,7 +543,7 @@ const Home = () => {
                 className="w-full h-48 sm:h-56 object-cover"
               />
               <div className="p-4 flex flex-col gap-4">
-                <h6 className="text-blue-700 font-bold font-serif text-sm">
+                <h6 className="text-blue-700 font-bold text-sm">
                   {key.date}
                 </h6>
                 <h4 className="font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight">

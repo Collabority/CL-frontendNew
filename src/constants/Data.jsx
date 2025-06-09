@@ -114,11 +114,11 @@ export const testimonialData = [
 ];
 
 export const clients = [
-  {img: "https://html.webtend.net/omnivus/assets/img/testimonials/03.png", text: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed amet fuga tempora quis error explicabo.", name: "Philip Mendez", post: " Consectetur", borderColor: "red"},
+  {img: "https://html.webtend.net/omnivus/assets/img/testimonials/03.png", text: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed amet fuga tempora quis error explicabo.", name: "Philip Mendez", post: " Consectetur"},
 
-  {img: "https://html.webtend.net/omnivus/assets/img/testimonials/01.png", text: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed amet fuga tempora quis error explicabo.", name: " Eugene Freeman", post: "Tincidunt", borderColor: "blue"},
+  {img: "https://html.webtend.net/omnivus/assets/img/testimonials/01.png", text: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed amet fuga tempora quis error explicabo.", name: " Eugene Freeman", post: "Tincidunt"},
 
-  {img: "https://html.webtend.net/omnivus/assets/img/testimonials/02.png", text: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed amet fuga tempora quis error explicabo.", name: " Kelly Coleman", post: "Nulla nec", borderColor: "green"},
+  {img: "https://html.webtend.net/omnivus/assets/img/testimonials/02.png", text: " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed amet fuga tempora quis error explicabo.", name: " Kelly Coleman", post: "Nulla nec"},
 ]
 
 export const newsSection = [
