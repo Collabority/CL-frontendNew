@@ -68,7 +68,7 @@ const FaqSection = () => {
             const isOpen = openIdx === idx;
             return (
               <div key={idx} className="w-full flex justify-start">
-                <div className={`w-full max-w-xl ml-0 mr-auto bg-white shadow-lg overflow-hidden transition-[border-radius] duration-100 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] rounded-full`}
+                <div className={`w-full max-w-xl ml-0 mr-auto bg-[#fdf6f0] shadow-lg overflow-hidden transition-[border-radius] duration-100 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] rounded-full`}
                   style={{
                     borderRadius: '2rem',
                   }}

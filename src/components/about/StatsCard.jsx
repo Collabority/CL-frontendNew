@@ -16,8 +16,8 @@ const iconMap = {
 
 const StatsCard = ({ icon, number, label }) => {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-      <div className="bg-primary-100 w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+    <div className="bg-beige rounded-lg shadow-lg p-8 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+      <div className="w-16 h-16 flex items-center justify-center rounded-full bg-teal text-white text-2xl mb-4">
         <FontAwesomeIcon
           icon={iconMap[icon]}
           className="text-primary-600 text-2xl"

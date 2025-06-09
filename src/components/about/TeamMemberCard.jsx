@@ -4,8 +4,8 @@ import { faLinkedin, faTwitter, faFacebook } from '@fortawesome/free-brands-svg-
 
 const TeamMemberCard = ({ name, position, image, social }) => {
   return (
-    <div className="group relative overflow-hidden rounded-lg shadow-lg">
-      <div className="aspect-w-3 aspect-h-4">
+    <div className="bg-beige p-6 rounded-lg shadow-lg flex flex-col items-center text-center transition-transform duration-300 hover:scale-105">
+      <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-teal mb-4">
         <img
           src={image}
           alt={name}

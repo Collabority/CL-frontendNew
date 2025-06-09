@@ -4,7 +4,7 @@ import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
 const TestimonialCard = ({ name, position, content, image }) => {
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative">
+    <div className="bg-beige p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 relative">
       <FontAwesomeIcon
         icon={faQuoteLeft}
         className="text-primary-500/20 text-4xl absolute top-6 left-6"

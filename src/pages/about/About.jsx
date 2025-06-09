@@ -75,9 +75,9 @@ export default function About() {
   const [openFAQ, setOpenFAQ] = useState(0);
 
   return (
-    <div className="bg-[#f8fafd]">
+    <div className="bg-beige">
       {/* Hero/Breadcrumb Section */}
-      <section className="bg-gradient-to-b from-[#eaf1fb] to-white pt-12 pb-20 text-center">
+      <section className="bg-[#F8F6F3] pt-12 pb-20 text-center">
         <div className="container mx-auto">
           <h1 className="text-6xl font-extrabold text-[#0a2256] mb-4">About Us</h1>
           <div className="text-xl text-[#7b8ca0] font-semibold mb-2">Home | About</div>
@@ -123,12 +123,12 @@ export default function About() {
       </section>
 
       {/* Video/Intro Section */}
-      <section className="bg-[#eaf1fb] py-16">
+      <section className="bg-[#f3ede6] py-16">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
           <div className="relative w-full md:w-1/2 aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Intro Video" className="w-full h-full object-cover rounded-xl" />
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Intro Video" className="w-full h-full object-cover rounded-xl border-4 border-[#008080]" />
             <button className="absolute inset-0 flex items-center justify-center">
-              <span className="bg-[#2563eb] text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl shadow-lg border-4 border-white">
+              <span className="bg-teal text-white rounded-full w-20 h-20 flex items-center justify-center text-3xl shadow-lg border-4 border-white">
                 <FontAwesomeIcon icon={faPlay} />
               </span>
             </button>
@@ -138,41 +138,43 @@ export default function About() {
             <h2 className="text-5xl font-extrabold text-[#0a2256] mb-4">How we growth our business.</h2>
             <p className="text-[#7b8ca0] text-lg mb-6">The introduction of cloud and mobile technologies into enterprise software.</p>
             <p className="text-[#7b8ca0] mb-8">Whether you are building an enterprise web portal or a state-of-the-art website, you always need the right modern tools. Well-built and maintained PHP frameworks provide those tools in abundance, allowing developers to save time, re-use code, and streamline the back end. As software development tools continuously.</p>
-            <Link to="#" className="bg-[#2563eb] text-white px-8 py-3 rounded-md font-semibold hover:bg-[#174ea6] transition-colors">Learn More</Link>
+            <Link to="#" className="bg-teal text-white px-8 py-3 rounded-md font-semibold hover:bg-teal/80 transition-colors">Learn More</Link>
           </div>
         </div>
       </section>
 
       {/* History Timeline Section */}
-      <section className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-5xl font-extrabold text-[#0a2256] mb-2">Our History</h2>
-          <p className="text-[#7b8ca0] text-lg">Does any industry face a more complex audience journey and marketing sales process than B2B technology.</p>
-        </div>
-        <div className="relative">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-[#eaf1fb] -translate-x-1/2 z-0" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-8 relative z-10">
-            {timeline.map((item, idx) => (
-              <div key={idx} className={`flex flex-col items-center ${idx % 2 === 0 ? "md:col-start-1" : "md:col-start-2"}`}>
-                <div className="w-full flex flex-col items-center">
-                  <img src={item.img} alt={item.title} className="w-full h-64 object-cover rounded-xl mb-4" />
-                  <div className="flex items-center mb-2">
-                    <span className="w-12 h-12 rounded-full border-4 border-[#2563eb] flex items-center justify-center text-[#2563eb] font-bold text-xl bg-white shadow">{String(idx + 1).padStart(2, '0')}</span>
-                  </div>
-                  <div className="bg-white rounded-xl shadow p-6 w-full">
-                    <div className="text-[#2563eb] font-bold mb-1">{item.year}</div>
-                    <h3 className="text-2xl font-bold text-[#0a2256] mb-2">{item.title}</h3>
-                    <p className="text-[#7b8ca0]">{item.desc}</p>
+      <section className="bg-[#F8F6F3] py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-5xl font-extrabold text-[#0a2256] mb-2">Our History</h2>
+            <p className="text-[#7b8ca0] text-lg">Does any industry face a more complex audience journey and marketing sales process than B2B technology.</p>
+          </div>
+          <div className="relative">
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-[#eaf1fb] -translate-x-1/2 z-0" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-8 relative z-10">
+              {timeline.map((item, idx) => (
+                <div key={idx} className={`flex flex-col items-center ${idx % 2 === 0 ? "md:col-start-1" : "md:col-start-2"}`}>
+                  <div className="w-full flex flex-col items-center">
+                    <img src={item.img} alt={item.title} className="w-full h-64 object-cover rounded-xl mb-4" />
+                    <div className="flex items-center mb-2">
+                      <span className="w-12 h-12 rounded-full border-4 border-[#2563eb] flex items-center justify-center text-[#2563eb] font-bold text-xl bg-white shadow">{String(idx + 1).padStart(2, '0')}</span>
+                    </div>
+                    <div className="bg-white rounded-xl shadow p-6 w-full">
+                      <div className="text-[#2563eb] font-bold mb-1">{item.year}</div>
+                      <h3 className="text-2xl font-bold text-[#0a2256] mb-2">{item.title}</h3>
+                      <p className="text-[#7b8ca0]">{item.desc}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="relative py-20 bg-[#eaf1fb]">
+      <section className="relative py-20 bg-beige/80">
         <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1600&q=80" alt="FAQ BG" className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="mb-12">
@@ -183,14 +185,14 @@ export default function About() {
             {faqs.map((faq, idx) => (
               <div key={idx} className="bg-white rounded-2xl shadow p-6 flex flex-col">
                 <button
-                  className="flex items-center justify-between w-full text-left text-[#0a2256] font-semibold text-lg focus:outline-none"
+                  className={`flex items-center justify-between w-full text-left text-[#0a2256] font-semibold text-lg focus:outline-none px-6 py-4 rounded-full bg-teal text-white transition-colors duration-200 ${openFAQ === idx ? 'shadow-lg' : ''}`}
                   onClick={() => setOpenFAQ(openFAQ === idx ? -1 : idx)}
                 >
                   <span>{faq.question}</span>
-                  <FontAwesomeIcon icon={openFAQ === idx ? faMinus : faPlus} className="text-[#2563eb] text-xl" />
+                  <FontAwesomeIcon icon={openFAQ === idx ? faMinus : faPlus} className="text-white text-xl" />
                 </button>
                 {openFAQ === idx && (
-                  <div className="mt-4 text-[#7b8ca0] text-base">{faq.answer}</div>
+                  <div className="mt-4 text-[#7b8ca0] text-base bg-white rounded-2xl p-4 shadow-inner">{faq.answer}</div>
                 )}
               </div>
             ))}
@@ -199,7 +201,7 @@ export default function About() {
       </section>
 
       {/* Footer Section */}
-      <footer className="bg-[#0a2256] text-white py-16 relative overflow-hidden">
+      <footer className="bg-darkblue text-white py-16 relative overflow-hidden">
         <div className="absolute left-0 bottom-0 w-1/2 h-1/2 bg-[#2563eb] rounded-tr-full opacity-30" />
         <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
