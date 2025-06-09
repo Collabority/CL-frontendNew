@@ -375,13 +375,13 @@ const Home = () => {
       </section>
 
       {/* Info */}
-      <section className="bg-blue-950">
+      <section className="bg-[#F8F6F3]">
         <div className="flex flex-col sm:flex-row p-6 sm:p-8 gap-6 sm:gap-12 justify-center flex-wrap">
           {infoData.map((item, idx) => (
             <div
               key={idx}
               className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-700 ease-out 
-                flex flex-col border-2 border-gray-700 p-6 sm:p-8 gap-4 justify-center items-center w-full sm:w-60
+                flex flex-col border-2 border-gray-400 p-6 sm:p-8 gap-4 justify-center items-center w-full sm:w-60
                 ${idx % 2 !== 0 ? "sm:mt-16 sm:mb-10" : ""}`}
             >
               <div
@@ -389,7 +389,7 @@ const Home = () => {
               >
                 <FaCommentDots className="text-white w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-white">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#008080]">
                 {item.number}
               </h1>
               <h6 className="text-xs sm:text-sm font-semibold text-[#008080]">
@@ -454,7 +454,7 @@ const Home = () => {
       </section>
 
       {/* Client testimonial */}
-      <section className="bg-sky-100 mt-12 sm:mt-16">
+      <section className="bg-[#F8F6F3] mt-12 sm:mt-16">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center items-center py-12 sm:py-16 px-4">
             <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
@@ -468,7 +468,7 @@ const Home = () => {
             {clients.map((items, idx) => (
               <div key={idx} className="w-full">
                 <div
-                  className={`bg-[#F8F6F3] w-full h-auto p-8 border-t-4 border-red-700 text-sm sm:text-base`}
+                  className={`bg-white w-full h-auto p-8 border-t-4 border-red-700 text-sm sm:text-base`}
                 >
                   {items.text}
                 </div>
