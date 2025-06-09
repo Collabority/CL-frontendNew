@@ -1,10 +1,19 @@
+import React from 'react';
 import "./App.css";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AboutProvider } from './context/AboutContext';
+import AboutUs from './pages/about/AboutUs';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <>
-      <h1 className="flex items-center justify-center h-screen">CL_Frontend</h1>
-    </>
+    <AboutProvider>
+    <Routes>
+        <Route path="/" element={<Navigate to="/about" replace />} />
+      <Route path="/about" element={<AboutUs />} />
+    </Routes>
+      <ScrollToTop />
+    </AboutProvider>
   );
 }
 
