@@ -16,11 +16,13 @@ const Navbar = () => {
           <img src={CollaboryLogo} alt="Collabory Logo" className="h-12" /> {/* Adjust height as needed */}
         </div>
 
-        <div className="flex items-center space-x-9">
+        <div className="flex items-center space-x-7">
           <div className="flex space-x-9">
             <NavLink to="/" className={linkClass}>Home</NavLink>
             <NavLink to="/about" className={linkClass}>About</NavLink>
             <NavLink to="/services" className={linkClass}>Services</NavLink>
+            <NavLink to="/blog" className={linkClass}>Blog</NavLink>
+            <NavLink to="/contact" className={linkClass}>Contact</NavLink>
           </div>
 
           <ActionButton text="Free Consulting" onClick={() => console.log('Free Consulting clicked')} />
