@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAbout } from '../../context/AboutContext';
 import Navbar from '../../layouts/navbar/Navbar';
-import Footer from '../../layouts/footer/Footer';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import HistoryTimeline from '../../components/about/HistoryTimeline';
@@ -201,45 +200,6 @@ const AboutUs = () => {
       <div>
         <FaqSection />
       </div>
-      <footer className="relative bg-darkblue text-white py-16 overflow-hidden">
-        {/* Blue circle bottom left */}
-        <div className="absolute left-0 bottom-0 w-1/2 h-1/2 bg-[#2563eb] rounded-tr-full opacity-30 pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">OmniVus.</h3>
-            <p className="mb-4">The web has changed a lot since Vitaly posted his first article back in 2006. The team at Smashing has changed too, as have the things that we bring to our community conferences, books, and our membership added to the online magazine.</p>
-            <p>One thing that hasn't changed is that we're a small team — with most of us not working</p>
-          </div>
-          {/* Pages/Links */}
-          <div>
-            <h4 className="text-xl font-bold mb-4">Pages</h4>
-            <ul className="space-y-2">
-              <li>Home</li>
-              <li>Services</li>
-              <li>About</li>
-              <li>Career</li>
-              <li>Refund</li>
-              <li>Terms</li>
-              <li>Details</li>
-              <li>Contact</li>
-              <li>Business</li>
-              <li>Affiliate</li>
-            </ul>
-          </div>
-          {/* Working Hours */}
-          <div>
-            <h4 className="text-xl font-bold mb-4">Working Hours</h4>
-            <ul className="space-y-2">
-              <li>Monday - Friday: 7:00 - 17:00</li>
-              <li>Saturday: 7:00 - 12:00</li>
-              <li>Sunday and holidays: 8:00 - 10:00</li>
-            </ul>
-            <p className="mt-4"><span className="font-bold">For more then 30 years</span>, IT Service has been a reliable partner in the field of logistics and cargo forwarding.<br /><a href="#" className="text-[#4fd1c5] underline">Discover More</a></p>
-          </div>
-        </div>
-        <div className="text-center mt-12 text-white/70">Copyright By@ WebTend - 2021</div>
-      </footer>
       {/* Modal for About Us page */}
       {isVideoModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">

@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AboutProvider } from './context/AboutContext';
 import AboutUs from './pages/about/AboutUs';
 import ScrollToTop from './components/ScrollToTop';
+import Footer from './layouts/footer/Footer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/about" element={<AboutUs />} />
     </Routes>
       <ScrollToTop />
+      <Footer />
     </div>
     </AboutProvider>
   );

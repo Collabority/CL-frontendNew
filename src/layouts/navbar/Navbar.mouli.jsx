@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import CollaboryLogo from '../../assets/collabory-logo.png'; 
-import PrimaryButton from '../../components/buttons/PrimaryButton';
+import CollaboryLogo from '../assets/collabory-logo.png'; 
+import ActionButton from '../components/Button'; 
 
 const Navbar = () => {
   const linkClass = ({ isActive }) =>
@@ -25,13 +25,11 @@ const Navbar = () => {
             <NavLink to="/contact" className={linkClass}>Contact</NavLink>
           </div>
 
-          <PrimaryButton onClick={() => console.log('Free Consulting clicked')}>
-            Free Consulting
-          </PrimaryButton>
+          <ActionButton text="Free Consulting" onClick={() => console.log('Free Consulting clicked')} />
         </div>
       </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default Navbar; 
