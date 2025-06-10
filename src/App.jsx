@@ -2,7 +2,6 @@ import "./App.css";
 import Navbar from "./layouts/Navbar";
 import Footer from "./layouts/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -11,6 +10,7 @@ import Contact from "./pages/Contact";
 import ServicesDetails from "./pages/ServicesDetails";
 import BlogGrid from "./pages/BlogGrid";
 import BlogDetails from "./pages/BlogDetails";
+import Career from "./pages/Career";
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
             <Route path="/services-details" element={<ServicesDetails />} />
             <Route path="/blog-grid" element={<BlogGrid />} />
             <Route path="/blog-details" element={<BlogDetails />} />
+            <Route path="/career" element={<Career />} />
           </Routes>
         </main>
         <Footer />

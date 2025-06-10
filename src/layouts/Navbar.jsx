@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import CollaboryLogo from '../assets/collabory-logo.png'; 
-import ActionButton from '../components/Button'; 
 
 const Navbar = () => {
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
@@ -42,7 +41,7 @@ const Navbar = () => {
             >
               <span className={`cursor-pointer ${servicesActiveClass}`}>Services <span className="text-sm pl-1">+</span></span>
               {isServicesDropdownOpen && (
-                <div className="absolute left-0 top-full w-40 bg-white shadow-lg z-10 py-0.5 border-t-4 border-[#008080]">
+                <div className="absolute left-0 top-full w-25 bg-white shadow-lg z-10 py-0.5 border-t-4 border-[#008080]">
                   <NavLink
                     to="/services"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -69,7 +68,7 @@ const Navbar = () => {
             >
               <span className={`cursor-pointer ${blogActiveClass}`}>Blog <span className="text-sm pl-1">+</span></span>
               {isBlogDropdownOpen && (
-                <div className="absolute left-0 top-full w-40 bg-white shadow-lg z-10 py-0.5 border-t-4 border-[#008080]">
+                <div className="absolute left-0 top-full w-25 bg-white shadow-lg z-10 py-0.5 border-t-4 border-[#008080]">
                   <NavLink
                     to="/blog-grid"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -87,11 +86,9 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
+            <NavLink to="/career" className={linkClass}>Career</NavLink>
             <NavLink to="/contact" className={linkClass}>Contact</NavLink>
           </div>
-
-          <ActionButton text="Free Consulting" onClick={() => console.log('Free Consulting clicked')} />
         </div>
       </div>
     </nav>

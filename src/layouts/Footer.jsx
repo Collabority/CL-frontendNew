@@ -18,17 +18,22 @@ const Footer = () => {
           </div>
 
           {/* pages links*/}
-          <div className="col-span-1 md:ml-24">
+          <div className="col-span-1 md:ml-12">
             <h4 className="text-lg font-semibold mb-4">Pages</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/" className="hover:text-blue-300">Home</Link></li>
-              <li><Link to="/about" className="hover:text-blue-300">About</Link></li>
-              <li><Link to="/services" className="hover:text-blue-300">Services</Link></li>
-              <li><Link to="/services-details" className="hover:text-blue-300">Services Details</Link></li>
-              <li><Link to="/blog-grid" className="hover:text-blue-300">Blog Grid</Link></li>
-              <li><Link to="/blog-details" className="hover:text-blue-300">Blog Details</Link></li>
-              <li><Link to="/contact" className="hover:text-blue-300">Contact</Link></li>
-            </ul>
+            <div className="flex flex-wrap text-sm">
+              <ul className="w-1/2 space-y-2">
+                <li><Link to="/" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Home</Link></li>
+                <li><Link to="/services" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Services</Link></li>
+                <li><Link to="/about" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>About</Link></li>
+                <li><Link to="/career" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Career</Link></li>
+              </ul>
+              <ul className="w-1/2 space-y-2">
+                <li><Link to="/services-details" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Services Details</Link></li>
+                <li><Link to="/blog-grid" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Blog Grid</Link></li>
+                <li><Link to="/blog-details" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Blog Details</Link></li>
+                <li><Link to="/contact" className="hover:text-blue-300 flex items-center"><span className="mr-2 text-blue-400">›</span>Contact</Link></li>
+              </ul>
+            </div>
           </div>
 
           {/* working hours */}
