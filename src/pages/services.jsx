@@ -59,7 +59,7 @@ export default function Services() {
   return (
     <main className="bg-white min-h-screen flex flex-col font-poppins">
     
-    <Herosection/>
+    <Herosection title="Services" breadcrumb="Home | Services"/>
 
       {/* Services Section */}
       <section className="py-16 lg:px-40 flex-grow">
