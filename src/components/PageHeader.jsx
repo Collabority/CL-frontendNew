@@ -2,7 +2,7 @@ import React from 'react'
 
 function PageHeader({ title, breadcrumb }) {
   return (
-    <div className="bg-[#E8E7E3] py-24 md:py-32 lg:py-48 flex items-center justify-center min-h-[50vh] font-poppins">
+    <div className="bg-[#F8F6F3] py-24 md:py-32 lg:py-48 flex items-center justify-center min-h-[50vh] font-poppins">
       <div className="text-center px-4 pt-14">
         <h1 className="text-gray-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2">
           {title}
