@@ -9,11 +9,9 @@ import {
   colorMap,
   hoverTextColors,
   infoData,
-  latestServices,
   newsSection,
   portfolioImages,
   services,
-  teamMembers,
 } from "../constants/Data";
 import dottedImage from "../assets/dotted_image.webp";
 import {
@@ -22,13 +20,9 @@ import {
 } from "../utils/useScrollAnimation";
 import tileGallery01 from "../assets/tileGallery01.webp";
 import tileGallery02 from "../assets/tileGallery02.webp";
-import {
-  FaComment,
-  FaCommentDots,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
+import { FaComment, FaCommentDots, FaLaptop } from "react-icons/fa";
+import Footer from "../layouts/Footer";
+import Navbar from "../layouts/Navbar";
 
 const Home = () => {
   const [animate, setAnimate] = useState(false);
@@ -63,6 +57,10 @@ const Home = () => {
   const [showVideo, setShowVideo] = useState(false);
   return (
     <main className="min-h-screen bg-white font-poppins">
+      {/* Navbar */}
+
+      <Navbar />
+
       {/* Hero-Section */}
       <div
         className="h-screen bg-cover bg-center"
@@ -206,17 +204,17 @@ const Home = () => {
 
         {/* Right Text */}
         <div className="mt-10 lg:mt-28 px-0 flex flex-col text-center lg:text-left w-full lg:w-1/2">
-          <h4 className="text-[#008080] font-semibold text-sm sm:text-base tracking-widest">
+          <h4 className="text-gray-900 font-semibold text-sm sm:text-base tracking-widest">
             CORE FEATURES
           </h4>
           <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left break-words">
             Get More Good Experience.
           </h1>
 
-          <h2 className="text-[#008080] mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
+          <h2 className="text-gray-600 mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
             Our knowledge of computers will help us
           </h2>
-          <p className="text-sm sm:text-base text-[#008080] mt-6 sm:mt-10 font-medium leading-relaxed">
+          <p className="text-sm sm:text-base text-gray-600 mt-6 sm:mt-10 font-medium leading-relaxed">
             Does any industry face a more complex audience journey and marketing
             sales process than B2B technology? Consider the number of people who
             influence a sale, the length of the decision-making cycle, the
@@ -251,7 +249,7 @@ const Home = () => {
                   <div className="aspect-video w-full">
                     <iframe
                       className="w-full h-full rounded"
-                      src = "https://youtube.com/embed/9xwazD5SyVg?"
+                      src="https://youtube.com/embed/9xwazD5SyVg?"
                       title="Intro Video"
                       allow="autoplay; encrypted-media"
                       allowFullScreen
@@ -277,31 +275,91 @@ const Home = () => {
             For Your IT Business
           </h1>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 max-w-7xl">
-          {latestServices.map((key, index) => (
-            <div
-              key={index}
-              className="flex flex-col p-10 cursor-pointer text-black bg-[#F8F6F3] transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
-            >
-              <div
-                className={`${
-                  colorMap[key.color]
-                } text-3xl sm:text-5xl mb-2 group-hover:text-${
-                  colorMap[key.color]
-                }-500`}
-              >
-                {key.icon}
-              </div>
+        <div className="flex flex-col">
+          <div className="flex gap-10 justify-center items-center">
+            {/* Image */}
+            <img
+              src="https://img.freepik.com/free-vector/ui-ux-designers-isometric-composition-with-small-people-creating-custom-design-web-site-3d-vector-illustration_1284-68939.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740"
+              alt="Web Development"
+              className="h-[400px]"
+            />
 
-              <h2 className="font-semibold text-xl sm:text-2xl mb-2">
-                {key.title}
-              </h2>
-              <p className="text-gray-500 text-sm sm:text-base">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantiutotam
+            {/* Bold Vertical Line */}
+            <div className="w-[4px] h-[300px] bg-black"></div>
+
+            {/* Text Content */}
+            <div className="px-32 flex flex-col">
+              <FaLaptop className="mb-10 text-4xl" />
+              <h1 className="text-4xl font-bold text-black">Web Development</h1>
+              <p className="mt-8 text-gray-400">
+                Web development is the process of creating websites and web
+                applications that run on the internet. It covers everything from
+                building simple static pages to complex web-based applications,
+                social networks, and e-commerce platforms.
               </p>
             </div>
-          ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="flex gap-10 justify-center items-center">
+            <div className="px-32 flex flex-col">
+              <FaLaptop className="mb-10 text-4xl" />
+              <h1 className="text-4xl font-bold">Security System</h1>
+              <p className="mt-8 text-gray-400">
+                A security system is a collection of devices, software, and
+                protocols designed to protect people, property, data, or systems
+                from unauthorized access, damage, theft, or harm.
+              </p>
+            </div>
+            {/* Bold Vertical Line */}
+            <div className="w-[4px] h-[300px] bg-black"></div>
+            <img
+              src="https://img.freepik.com/free-photo/computer-security-with-login-password-padlock_107791-16191.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740"
+              className="h-[400px]"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="flex gap-10 justify-center items-center">
+            <img src="https://img.freepik.com/free-vector/abstract-creative-website-hosting-illustration_23-2149227348.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740" className="h-[400px]"/>
+            {/* Bold Vertical Line */}
+            <div className="w-[4px] h-[300px] bg-black"></div>
+            <div className="px-32 flex flex-col">
+              <FaLaptop className="mb-10 text-4xl" />
+              <h1 className="text-4xl font-bold text-black">Database Security</h1>
+              <p className="mt-8 text-gray-400">
+                Database security refers to the collection of tools, controls,
+                and measures designed to establish and preserve the
+                confidentiality, integrity, and availability (CIA triad) of data
+                stored in a database. It protects databases from internal and
+                external threats such as unauthorized access, data leaks,
+                misuse, or corruption.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <div className="flex gap-10 justify-center items-center ">
+            <div className="px-32 flex flex-col">
+              <FaLaptop className="mb-10 text-4xl" />
+              <h1 className="text-4xl font-bold">IT Solutions</h1>
+              <p className="mt-8 text-gray-400">
+                IT security refers to the protection of digital information and
+                IT systems from unauthorized access, damage, theft, disruption,
+                or manipulation. It covers everything from networks, computers,
+                and databases to software, data, and the internet.
+              </p>
+            </div>
+            {/* Bold Vertical Line */}
+            <div className="w-[4px] h-[300px] bg-black"></div>
+            <img
+              src="https://img.freepik.com/free-psd/3d-nft-icon-developer-male-illustration_629802-6.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740"
+              className="h-[400px]"
+            />
+          </div>
         </div>
       </section>
 
@@ -375,24 +433,30 @@ const Home = () => {
       </section>
 
       {/* Info */}
-      <section className="bg-[#F8F6F3]">
-        <div className="flex flex-col sm:flex-row p-6 sm:p-8 gap-6 sm:gap-12 justify-center flex-wrap">
+      <section className="bg-gray-800 px-6 py-16 sm:py-20">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row flex-wrap justify-center gap-8 sm:gap-12">
           {infoData.map((item, idx) => (
             <div
               key={idx}
-              className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-700 ease-out 
-                flex flex-col border-2 border-gray-400 p-6 sm:p-8 gap-4 justify-center items-center w-full sm:w-60
-                ${idx % 2 !== 0 ? "sm:mt-16 sm:mb-10" : ""}`}
+              className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-700 ease-out
+        flex flex-col items-center justify-center w-full sm:w-64 p-6 sm:p-8 gap-4 
+        rounded-2xl border border-gray-600 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:scale-105 
+        bg-gradient-to-br from-gray-900 to-gray-800 transition-transform duration-300 box-border group`}
             >
+              {/* Icon Container */}
               <div
-                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${item.color} flex items-center justify-center`}
+                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${item.color} flex items-center justify-center shadow-inner group-hover:rotate-6 transition-transform duration-300`}
               >
-                <FaCommentDots className="text-white w-4 h-4 sm:w-5 sm:h-5" />
+                <FaCommentDots className="text-white w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-[#008080]">
+
+              {/* Number Text */}
+              <h1 className="text-white text-3xl sm:text-4xl font-extrabold tracking-wide drop-shadow-sm">
                 {item.number}
               </h1>
-              <h6 className="text-xs sm:text-sm font-semibold text-[#008080]">
+
+              {/* Label Text */}
+              <h6 className="text-sm sm:text-base text-gray-300 font-medium text-center px-2">
                 {item.label}
               </h6>
             </div>
@@ -400,61 +464,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Team Members */}
-      <section>
-        <div className="flex flex-col">
-          <div className="flex flex-col justify-center items-center mt-10 sm:mt-16 px-4">
-            <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
-              Our Team Member
-            </h4>
-            <h1 className="text-blue-950 font-extrabold text-3xl sm:text-4xl lg:text-6xl text-center">
-              Meet Our Exclusive
-            </h1>
-            <h1 className="text-blue-950 font-extrabold text-3xl sm:text-4xl lg:text-6xl text-center">
-              Leadership
-            </h1>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 sm:mt-20 px-4 sm:px-6 max-w-7xl mx-auto">
-            {teamMembers.map((member, idx) => (
-              <div
-                key={idx}
-                className="relative group w-full border border-gray-200 rounded overflow-hidden shadow-md mx-auto max-w-sm"
-              >
-                <img
-                  src={member.image}
-                  alt={member.title}
-                  className="w-full h-auto"
-                />
-
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end justify-center p-12 sm:p-20 gap-2">
-                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
-                    <FaFacebook className="w-4 h-4" />
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
-                    <FaInstagram className="w-4 h-4" />
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
-                    <FaTwitter className="w-4 h-4" />
-                  </button>
-                </div>
-
-                {/* Text below image */}
-                <div className="flex flex-col items-center py-6 bg-[#F8F6F3]">
-                  <h2 className="font-bold text-xl sm:text-2xl">
-                    {member.title}
-                  </h2>
-                  <h5 className="text-sm text-gray-600">{member.prof}</h5>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Client testimonial */}
-      <section className="bg-[#F8F6F3] mt-12 sm:mt-16">
+      <section className="bg-[#F8F6F3]">
         <div className="flex flex-col">
           <div className="flex flex-col justify-center items-center py-12 sm:py-16 px-4">
             <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
@@ -543,9 +554,7 @@ const Home = () => {
                 className="w-full h-48 sm:h-56 object-cover"
               />
               <div className="p-4 flex flex-col gap-4">
-                <h6 className="text-blue-700 font-bold text-sm">
-                  {key.date}
-                </h6>
+                <h6 className="text-blue-700 font-bold text-sm">{key.date}</h6>
                 <h4 className="font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight">
                   {key.des}
                 </h4>
@@ -560,6 +569,9 @@ const Home = () => {
           ))}
         </div>
       </section>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 };

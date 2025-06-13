@@ -29,14 +29,6 @@ export const hoverTextColors = {
   purple: "group-hover:text-purple-600",
 };
 
-export const latestServices = [
-    { icon: <FaLaptopCode />, title: "Desktop Computing", color: "red" },
-    { icon: <FaLaptopCode />, title: "Desktop Computing", color: "orange" },
-    { icon: <FaLaptopCode />, title: "Desktop Computing", color: "blue" },
-    { icon: <FaLaptopCode />, title: "Desktop Computing", color: "blue" },
-    { icon: <FaLaptopCode />, title: "Desktop Computing", color: "red" },
-    { icon: <FaLaptopCode />, title: "Desktop Computing", color: "green" },
-];
 
 export const portfolioImages = [
   {image : "https://html.webtend.net/omnivus/assets/img/portfolio/01.jpg", title : "IT / Solutions", des: (<>
@@ -67,45 +59,6 @@ export const infoData = [
   { number: "100", label: "Awards...", color: "bg-blue-600" },
 ];
 
-export const teamMembers = [
-  {
-    image:
-      "https://html.webtend.net/omnivus/assets/img/team/team-01.jpg",
-    title: "Harry Garrett",
-    prof: "Design Expert",
-  },
-  {
-    image:
-      "https://html.webtend.net/omnivus/assets/img/team/team-02.jpg",
-    title: "Doris Jordan",
-    prof: "Design Expert",
-  },
-  {
-    image:
-      "https://html.webtend.net/omnivus/assets/img/team/team-05.jpg",
-    title: "Dianna Wagner",
-    prof: "Design Expert",
-  },
-  {
-    image:
-      "https://html.webtend.net/omnivus/assets/img/team/team-03.jpg",
-    title: "Harry Garrett",
-    prof: "Design Expert",
-  },
-  {
-    image:
-      "https://html.webtend.net/omnivus/assets/img/team/team-04.jpg",
-    title: "Johnny Ramirez",
-    prof: "Design Expert",
-  },
-  {
-    image:
-      "https://html.webtend.net/omnivus/assets/img/team/team-01.jpg",
-    title: "Harry Garrett",
-    prof: "Design Expert",
-  },
-];
-
 
 export const testimonialData = [
   {des: <>Lorem ipsum dolor sit amet consectetur, <br/> adipisicing elit. Sed amet fuga tempora quis <br/> error explicabo.</> , profilePhoto : "https://html.webtend.net/omnivus/assets/img/testimonials/01.png", name: "Philip Mendez", position: "Consectetur"},
@@ -126,3 +79,76 @@ export const newsSection = [
   {img: "https://html.webtend.net/omnivus/assets/img/latest-news/02.jpg", date: "By Admin, 05 Aug 2019", des: "Design System: What It And How To Create One Using Indigo Design Sence"},
   {img: "https://html.webtend.net/omnivus/assets/img/latest-news/03.jpg", date: "By Admin, 05 Aug 2019", des: "How We Used WebAssembly To Speed Up Our Web App By Omnivus"}
 ]
+
+export const pricingData = {
+  Monthly: [
+    {
+      title: "Early Birds",
+      price: "9",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+    {
+      title: "Team",
+      price: "32",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+    {
+      title: "Personal",
+      price: "69",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+    {
+      title: "Platinum",
+      price: "99",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+  ],
+  Yearly: [
+    {
+      title: "Early Birds",
+      price: "56",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+    {
+      title: "Team",
+      price: "99",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+    {
+      title: "Personal",
+      price: "133",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+    {
+      title: "Platinum",
+      price: "599",
+      description:
+        "The functional goal of technical content is to help people use a product successfully.",
+    },
+  ],
+};
+
+export const newsfeed = [
+  {
+    image: "https://html.webtend.net/omnivus/assets/img/latest-news/04.jpg",
+    post: "ImageDesign/SEO",
+    des: "A series of iOS 7 inspired vector icons.",
+  },
+  {
+    image: "https://html.webtend.net/omnivus/assets/img/latest-news/05.jpg",
+    post: "ImageDesign/SEO",
+    des: "A series of iOS 7 inspired vector icons.",
+  },
+  {
+    image: "https://html.webtend.net/omnivus/assets/img/latest-news/06.jpg",
+    post: "ImageDesign/SEO",
+    des: "A series of iOS 7 inspired vector icons.",
+  },
+];
