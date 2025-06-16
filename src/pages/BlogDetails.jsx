@@ -149,7 +149,7 @@ const BlogDetails = () => {
                       <p className="font-bold text-lg text-gray-900">Rosalina Kelian</p>
                       <p className="text-gray-500 text-sm flex items-center"><FaCalendarAlt className="h-4 w-4 mr-1 text-[#008080]" /> 24th March 2020</p>
                     </div>
-                    <button className="mt-0.5 px-4 py-2 border border-[#008080] text-[#008080] rounded-md font-semibold flex items-center transition duration-300 hover:bg-[#008080] hover:text-white">
+                    <button className="mt-0.5 px-4 py-2 border border-[#008080] text-[#008080] font-semibold flex items-center transition duration-300 hover:bg-[#008080] hover:text-white">
                       <FaReply className="h-4 w-4 mr-1" /> Reply
                     </button>
                   </div>
@@ -165,7 +165,7 @@ const BlogDetails = () => {
                       <p className="font-bold text-lg text-gray-900">Rosalina Kelian</p>
                       <p className="text-gray-500 text-sm flex items-center"><FaCalendarAlt className="h-4 w-4 mr-1 text-[#008080]" /> 24th March 2020</p>
                     </div>
-                    <button className="mt-0.5 px-4 py-2 border border-[#008080] text-[#008080] rounded-md font-semibold flex items-center transition duration-300 hover:bg-[#008080] hover:text-white">
+                    <button className="mt-0.5 px-4 py-2 border border-[#008080] text-[#008080] font-semibold flex items-center transition duration-300 hover:bg-[#008080] hover:text-white">
                       <FaReply className="h-4 w-4 mr-1" /> Reply
                     </button>
                   </div>
@@ -182,7 +182,7 @@ const BlogDetails = () => {
                       <p className="font-bold text-lg text-gray-900">Rosalina Kelian</p>
                       <p className="text-gray-500 text-sm flex items-center"><FaCalendarAlt className="h-4 w-4 mr-1 text-[#008080]" /> 24th March 2020</p>
                     </div>
-                    <button className="mt-0.5 px-4 py-2 border border-[#008080] text-[#008080] rounded-md font-semibold flex items-center transition duration-300 hover:bg-[#008080] hover:text-white">
+                    <button className="mt-0.5 px-4 py-2 border border-[#008080] text-[#008080] font-semibold flex items-center transition duration-300 hover:bg-[#008080] hover:text-white">
                       <FaReply className="h-4 w-4 mr-1" /> Reply
                     </button>
                   </div>

@@ -69,7 +69,7 @@ const BlogSidebar = () => {
   return (
     <div className="space-y-12">
 
-      {/*About Me section */}
+      {/*About me */}
       <div className="bg-[#F8F6F3] border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -124,7 +124,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/*Search Objects section */}
+      {/*Search objects */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -144,7 +144,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/* Popular Feeds */}
+      {/* Popular feeds */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -176,7 +176,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/* Categories */}
+      {/* categories */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -195,7 +195,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/*Never Miss News section */}
+      {/*Never miss news */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -220,7 +220,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/* Twitter Feeds */}
+      {/* Twitter feeds */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -242,7 +242,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/* Instagram Feeds */}
+      {/* Instagram feeds */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -261,7 +261,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/* Popular Tags */}
+      {/* Popular tags */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
@@ -279,7 +279,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/* Ad. Banner section*/}
+      {/* Ad banner*/}
       <div className="relative aspect-[3/5] rounded-none border-2 border-[#e2e8f0] overflow-hidden group cursor-pointer">
         <img
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
