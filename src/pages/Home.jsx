@@ -11,6 +11,7 @@ import {
   infoData,
   newsSection,
   portfolioImages,
+  serviceCarousel,
   services,
 } from "../constants/Data";
 import dottedImage from "../assets/dotted_image.webp";
@@ -276,90 +277,46 @@ const Home = () => {
           </h1>
         </div>
         <div className="flex flex-col">
-          <div className="flex gap-10 justify-center items-center">
-            {/* Image */}
-            <img
-              src="https://img.freepik.com/free-vector/ui-ux-designers-isometric-composition-with-small-people-creating-custom-design-web-site-3d-vector-illustration_1284-68939.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740"
-              alt="Web Development"
-              className="h-[400px]"
-            />
+          {serviceCarousel.map((item, idx) =>
+            idx % 2 == 0 ? (
+              <div
+                key={idx}
+                className="flex gap-10 justify-center items-center"
+              >
+                {/* Image */}
+                <img src={item.image} alt={item.title} className="h-[400px]" />
 
-            {/* Bold Vertical Line */}
-            <div className="w-[4px] h-[300px] bg-black"></div>
+                {/* Bold Vertical Line */}
+                <div className="w-[4px] h-[300px] bg-black"></div>
 
-            {/* Text Content */}
-            <div className="px-32 flex flex-col">
-              <FaLaptop className="mb-10 text-4xl" />
-              <h1 className="text-4xl font-bold text-black">Web Development</h1>
-              <p className="mt-8 text-gray-400">
-                Web development is the process of creating websites and web
-                applications that run on the internet. It covers everything from
-                building simple static pages to complex web-based applications,
-                social networks, and e-commerce platforms.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="flex gap-10 justify-center items-center">
-            <div className="px-32 flex flex-col">
-              <FaLaptop className="mb-10 text-4xl" />
-              <h1 className="text-4xl font-bold">Security System</h1>
-              <p className="mt-8 text-gray-400">
-                A security system is a collection of devices, software, and
-                protocols designed to protect people, property, data, or systems
-                from unauthorized access, damage, theft, or harm.
-              </p>
-            </div>
-            {/* Bold Vertical Line */}
-            <div className="w-[4px] h-[300px] bg-black"></div>
-            <img
-              src="https://img.freepik.com/free-photo/computer-security-with-login-password-padlock_107791-16191.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740"
-              className="h-[400px]"
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="flex gap-10 justify-center items-center">
-            <img src="https://img.freepik.com/free-vector/abstract-creative-website-hosting-illustration_23-2149227348.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740" className="h-[400px]"/>
-            {/* Bold Vertical Line */}
-            <div className="w-[4px] h-[300px] bg-black"></div>
-            <div className="px-32 flex flex-col">
-              <FaLaptop className="mb-10 text-4xl" />
-              <h1 className="text-4xl font-bold text-black">Database Security</h1>
-              <p className="mt-8 text-gray-400">
-                Database security refers to the collection of tools, controls,
-                and measures designed to establish and preserve the
-                confidentiality, integrity, and availability (CIA triad) of data
-                stored in a database. It protects databases from internal and
-                external threats such as unauthorized access, data leaks,
-                misuse, or corruption.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col">
-          <div className="flex gap-10 justify-center items-center ">
-            <div className="px-32 flex flex-col">
-              <FaLaptop className="mb-10 text-4xl" />
-              <h1 className="text-4xl font-bold">IT Solutions</h1>
-              <p className="mt-8 text-gray-400">
-                IT security refers to the protection of digital information and
-                IT systems from unauthorized access, damage, theft, disruption,
-                or manipulation. It covers everything from networks, computers,
-                and databases to software, data, and the internet.
-              </p>
-            </div>
-            {/* Bold Vertical Line */}
-            <div className="w-[4px] h-[300px] bg-black"></div>
-            <img
-              src="https://img.freepik.com/free-psd/3d-nft-icon-developer-male-illustration_629802-6.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740"
-              className="h-[400px]"
-            />
-          </div>
+                {/* Text Content */}
+                <div className="px-32 flex flex-col">
+                  <FaLaptop className="mb-10 text-4xl" />
+                  <h1 className="text-4xl font-bold text-black">
+                    {item.title}
+                  </h1>
+                  <p className="mt-8 text-gray-400">{item.para}</p>
+                </div>
+              </div>
+            ) : (
+              <div className="flex gap-10 justify-center items-center">
+                <div className="px-32 flex flex-col">
+                  <FaLaptop className="mb-10 text-4xl" />
+                  <h1 className="text-4xl font-bold">{item.title}</h1>
+                  <p className="mt-8 text-gray-400">
+                    {item.para}
+                  </p>
+                </div>
+                {/* Bold Vertical Line */}
+                <div className="w-[4px] h-[300px] bg-black"></div>
+                <img
+                  src={item.image}
+                  alt = {item.title}
+                  className="h-[400px]"
+                />
+              </div>
+            )
+          )}
         </div>
       </section>
 
