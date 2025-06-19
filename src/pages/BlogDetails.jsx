@@ -21,7 +21,7 @@ const BlogDetails = () => {
               <p className="mt-6 text-sm text-gray-900 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
               </p>
-              <p className="mt-4 text-gray-900 leading-relaxed">
+              <p className="mt-4 text-sm text-gray-900 leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             </div>
@@ -29,7 +29,7 @@ const BlogDetails = () => {
             <div className="my-8">
               <img src="src/assets/images/blog-image-1.jpg" alt="Blog Post Image" className="w-full h-auto rounded-lg" />
               <h2 className="text-3xl font-bold mt-8 mb-4 text-gray-900">A cleansing hot shower or bath</h2>
-              <p className="text-gray-900 leading-relaxed">
+              <p className="text-gray-900 text-sm leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             </div>
@@ -38,11 +38,11 @@ const BlogDetails = () => {
               <h2 className="text-3xl font-bold mt-8 mb-4 text-gray-900">Setting the mood with incense</h2>
               <div className="flex flex-col md:flex-row items-start md:items-center mb-8">
                 <img src="src/assets/images/blog-image-2.jpg" alt="Incense Image" className="w-full md:w-1/3 h-auto rounded-lg mr-6 mb-4 md:mb-0" />
-                <p className="text-gray-900 leading-relaxed">
+                <p className="text-gray-900 text-sm leading-relaxed">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 </p>
               </div>
-              <ul className="list-none space-y-2 mt-4">
+              <ul className="list-none text-sm space-y-2 mt-4">
                 <li className="flex items-center text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#008080] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg> Lorem ipsum dolor sit amet, consectetur</li>
                 <li className="flex items-center text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#008080] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg> Lorem ipsum dolor sit amet, consectetur</li>
                 <li className="flex items-center text-gray-900"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-[#008080] mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg> Lorem ipsum dolor sit amet, consectetur</li>
@@ -59,13 +59,13 @@ const BlogDetails = () => {
               </p>
             </div>
 
-            <p className="mt-8 text-gray-900 leading-relaxed">
+            <p className="mt-8 text-gray-900 text-sm leading-relaxed">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
 
             <div className="flex flex-col md:flex-row items-start md:items-center mt-8 mb-8">
               <img src="src/assets/images/blog-image-3.jpg" alt="Consulting Image" className="w-full md:w-1/3 h-auto rounded-lg mr-6 mb-4 md:mb-0" />
-              <p className="text-gray-900 leading-relaxed">
+              <p className="text-gray-900 text-sm leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
               </p>
             </div>
@@ -153,7 +153,7 @@ const BlogDetails = () => {
                       <FaReply className="h-4 w-4 mr-1" /> Reply
                     </button>
                   </div>
-                  <p className="text-gray-900 leading-normal mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p className="text-gray-900 text-sm leading-normal mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
               </div>
               {/* Comment 2 */}
@@ -169,7 +169,7 @@ const BlogDetails = () => {
                       <FaReply className="h-4 w-4 mr-1" /> Reply
                     </button>
                   </div>
-                  <p className="text-gray-900 leading-normal mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <p className="text-gray-900 text-sm leading-normal mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   </p>
                 </div>
               </div>
@@ -186,7 +186,7 @@ const BlogDetails = () => {
                       <FaReply className="h-4 w-4 mr-1" /> Reply
                     </button>
                   </div>
-                  <p className="text-gray-900 leading-normal mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  <p className="text-gray-900 text-sm leading-normal mt-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   </p>
                 </div>
               </div>
@@ -195,21 +195,21 @@ const BlogDetails = () => {
             <h2 className="text-2xl font-bold mb-6 text-gray-900">Post Comment</h2>
             <form className="space-y-4 p-8 bg-[#F8F6F3]">
               <div className="relative">
-                <textarea className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-base" rows="6" placeholder="Type your comments...."></textarea>
+                <textarea className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-sm text-base" rows="6" placeholder="Type your comments...."></textarea>
                 <FaRegEdit className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-900" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
-                  <input type="text" className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-base" placeholder="Type your name...." />
+                  <input type="text" className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-sm text-base" placeholder="Type your name...." />
                   <FaRegUser className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-900" />
                 </div>
                 <div className="relative">
-                  <input type="email" className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-base" placeholder="Type your email...." />
+                  <input type="email" className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-sm text-base" placeholder="Type your email...." />
                   <FaRegEnvelope className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-900" />
                 </div>
               </div>
               <div className="relative">
-                <input type="text" className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-base" placeholder="Type your website...." />
+                <input type="text" className="w-full p-4 border border-gray-100 bg-white focus:outline-none focus:ring-2 focus:ring-[#008080] pr-10 placeholder-gray-900 text-sm text-base" placeholder="Type your website...." />
                 <FaGlobe className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-900" />
               </div>
               <button type="submit" className="bg-[#008080] text-white font-bold py-3 px-6 hover:bg-[#006666] transition duration-300 flex items-center">

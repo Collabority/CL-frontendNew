@@ -67,10 +67,10 @@ const BlogSidebar = () => {
   ]
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-11">
 
       {/*About me */}
-      <div className="bg-[#F8F6F3] border-2 border-gray-200 p-8">
+      <div className="bg-[#F8F6F3] border-2 border-gray-200 p-6">
         <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
           About Me
@@ -86,7 +86,7 @@ const BlogSidebar = () => {
           <h4 className="text-xl font-bold text-gray-900 mb-4">
             Rosalina D. Willaimson
           </h4>
-          <p className="text-gray-600 mb-6 max-w-md mx-auto">
+          <p className="text-gray-600 text-sm mb-6 max-w-md mx-auto">
             Lorem ipsum dolor sit amet, consecte-tur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
           </p>
           <div className="flex justify-center space-x-6">
@@ -134,7 +134,7 @@ const BlogSidebar = () => {
           <input
             type="text"
             placeholder="Search your keyword..."
-            className="w-full pl-4 pr-12 py-3 bg-gray-50 text-gray-600 rounded-none focus:outline-none focus:ring-2 focus:ring-[#008080] transition-all"
+            className="w-full pl-4 pr-12 py-3 bg-gray-50 text-sm text-gray-600 rounded-none focus:outline-none focus:ring-2 focus:ring-[#008080] transition-all"
           />
           <button className="absolute right-0 top-0 h-full btn-primary rounded-none border-0">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +161,7 @@ const BlogSidebar = () => {
                 />
               </div>
               <div>
-                <h4 className="text-gray-900 font-medium mb-1 group-hover:text-[#008080] transition-colors">
+                <h4 className="text-gray-900 text-base mb-1 group-hover:text-[#008080] transition-colors">
                   {post.title}
                 </h4>
                 <div className="flex items-center text-gray-500 text-sm">
