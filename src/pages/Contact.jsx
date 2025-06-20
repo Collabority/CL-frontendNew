@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../layouts/navbar/Navbar';
 import Footer from '../layouts/footer/Footer';
 import ScrollToTop from '../components/ScrollToTop';
+import PageHeader from '../components/PageHeader';
 import { COLORS, TEXTS } from '../constants/data';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -45,16 +46,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-white font-poppins">
       <Navbar />
+      <PageHeader title="Contact Us" breadcrumb="Home | Contact" />
       <div className="bg-[#F8F6F3]">
-        {/* Hero Section */}
-        <section className="relative w-full pt-16 pb-20 flex flex-col items-center justify-center text-center mb-12">
-          <h1 className="text-6xl md:text-7xl font-extrabold text-[#002248] mb-4 tracking-tight">Contact Us</h1>
-          <div className="text-base md:text-lg font-semibold text-[#7b8ca0] flex items-center justify-center gap-2">
-            <Link to="/" className="hover:text-blue-700 transition-colors">Home</Link>
-            <span className="mx-1">|</span>
-            <span className="text-[#7b8ca0]">Contact</span>
-          </div>
-        </section>
         {/* Contact Info & Map */}
         <div className="w-full py-12 mb-12">
           <section className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">

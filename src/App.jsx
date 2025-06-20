@@ -13,7 +13,7 @@ function App() {
     <div className="App min-h-screen bg-beige">
     <Routes>
         <Route path="/" element={<Navigate to="/about" replace />} />
-        <Route path="/about" element={<AboutUs />} />
+      <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
     </Routes>
       <ScrollToTop />

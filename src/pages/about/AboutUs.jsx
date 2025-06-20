@@ -5,20 +5,21 @@ import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import HistoryTimeline from '../../components/about/HistoryTimeline';
 import FaqSection from '../../components/about/FaqSection';
+import PageHeader from '../../components/PageHeader';
 
 // Restore serviceCards array for the animated tiles (with images)
 const serviceCards = [
-  {
+      {
     title: "Design & Development",
     desc: "The functional goal of technical content is to help people use a product.",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
-  },
-  {
+      },
+      {
     title: "Technical Support",
     desc: "The functional goal of technical content is to help people use a product.",
     img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80",
-  },
-  {
+      },
+      {
     title: "Digital Marketing",
     desc: "The functional goal of technical content is to help people use a product.",
     img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
@@ -58,7 +59,7 @@ const AboutUs = () => {
               });
             }, idx * 180); // stagger delay
           }
-        },
+      },
         { threshold: 0.2 }
       );
     });
@@ -75,16 +76,7 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-beige font-poppins">
       <Navbar />
-
-      {/* Hero/Breadcrumb Section */}
-      <section className="relative w-full bg-[#F8F6F3] pt-16 pb-20 flex flex-col items-center justify-center text-center">
-        <h1 className="text-6xl md:text-7xl font-extrabold text-[#002248] mb-4 tracking-tight">About Us</h1>
-        <div className="text-base md:text-lg font-semibold text-[#7b8ca0] flex items-center justify-center gap-2">
-          <Link to="/" className="hover:text-blue-700 transition-colors">Home</Link>
-          <span className="mx-1">|</span>
-          <span className="text-[#7b8ca0]">About</span>
-        </div>
-      </section>
+      <PageHeader title="About Us" breadcrumb="Home | About" />
 
       {/* Experience/Intro Section */}
       <section className="container mx-auto px-4 py-12">
@@ -128,7 +120,7 @@ const AboutUs = () => {
                   <p className="text-white drop-shadow-md">
                     {card.desc}
                   </p>
-                </div>
+                    </div>
                 <a
                   href="#"
                   className="mt-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
