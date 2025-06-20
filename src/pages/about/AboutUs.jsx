@@ -9,19 +9,19 @@ import PageHeader from '../../components/PageHeader';
 
 // Restore serviceCards array for the animated tiles (with images)
 const serviceCards = [
-      {
-    title: "Design & Development",
-    desc: "The functional goal of technical content is to help people use a product.",
+  {
+    title: "IT Solutions",
+    desc: "Cutting-edge software, cloud integration, and secure infrastructure for modern businesses.",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
-      },
-      {
-    title: "Technical Support",
-    desc: "The functional goal of technical content is to help people use a product.",
+  },
+  {
+    title: "Marketing Strategies",
+    desc: "Result-driven digital marketing to boost your brand's reach and engagement.",
     img: "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80",
-      },
-      {
-    title: "Digital Marketing",
-    desc: "The functional goal of technical content is to help people use a product.",
+  },
+  {
+    title: "Design & Video Production",
+    desc: "Creative design and professional video content to help your business thrive in the digital era.",
     img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
   },
 ];
@@ -59,7 +59,7 @@ const AboutUs = () => {
               });
             }, idx * 180); // stagger delay
           }
-      },
+        },
         { threshold: 0.2 }
       );
     });
@@ -76,20 +76,28 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen bg-beige font-poppins">
       <Navbar />
+
+      {/* Hero/Breadcrumb Section */}
       <PageHeader title="About Us" breadcrumb="Home | About" />
 
       {/* Experience/Intro Section */}
       <section className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between">
           <div className="mb-8 md:mb-0 md:w-1/2">
-            <div className="text-[#2563eb] font-bold text-lg mb-2">25 Years Of Experience</div>
+            <div className="text-[#2563eb] font-bold text-lg mb-2">Years of Digital Excellence</div>
             <h2 className="text-6xl font-extrabold text-[#002248] leading-tight mb-4">
-              Not only explore<br />
-              for job done.
+              Collabority: Empowering<br />
+              Digital Transformation
             </h2>
-              </div>
+          </div>
           <div className="md:w-1/2 md:pl-8">
-            <p className="text-base text-[#7b8ca0] mb-4">Does any industry face a more complex audience journey and marketing sales process than B2B technology? Consider the number of people who influence a sale, the length of the decision-making cycle, the competing interests of the people who purchase, implement, manage, and use the technology. It's a lot meaningful content here.</p>
+            <p className="text-base text-[#7b8ca0] mb-4">
+              At Collabority, we specialize in IT solutions, marketing, creative design, and video production. Our expertise ensures seamless digital transformation and brand growth for businesses in the digital era. 
+              <br /><br />
+              We deliver custom software, cloud integration, and secure infrastructure to empower your operations. Our marketing team crafts result-driven strategies to boost your brand's reach and engagement. With a passion for creativity, our designers and video producers create compelling visuals and stories that set you apart from the competition. 
+              <br /><br />
+              Whether you're a startup or an established enterprise, Collabority is your trusted partner for innovation, growth, and digital excellence. Let us help you thrive in a rapidly evolving digital landscape.
+            </p>
             <Link to="#" className="text-[#2563eb] font-semibold text-base">Read More</Link>
           </div>
         </div>
@@ -120,7 +128,7 @@ const AboutUs = () => {
                   <p className="text-white drop-shadow-md">
                     {card.desc}
                   </p>
-                    </div>
+                </div>
                 <a
                   href="#"
                   className="mt-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -176,13 +184,13 @@ const AboutUs = () => {
               </div>
           {/* Text Content */}
           <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
-            <span className="text-[#2563eb] font-semibold text-lg mb-2">Intro Video</span>
-            <h1 className="text-6xl font-extrabold text-[#002248] mb-8" style={{ lineHeight: '1.3' }}>How we growth our<br />business.</h1>
+            <span className="text-[#2563eb] font-semibold text-lg mb-2">Our Story</span>
+            <h1 className="text-6xl font-extrabold text-[#002248] mb-8" style={{ lineHeight: '1.3' }}>Helping Businesses<br />Thrive Digitally</h1>
             <h2 className="text-2xl text-[#68A1BB] font-light mb-8" style={{ lineHeight: '2.6rem' }}>
-              The introduction of cloud and mobile<br />technologies into enterprise software.
+              Collabority delivers IT, marketing, design, and video expertise for your brand's success.
             </h2>
             <p className="text-[#68A1BB] text-base font-light mb-10 max-w-xl" style={{ lineHeight: '2.1rem' }}>
-              hether you are building an enterprise web portal or a state-of-the-art website, you always need the right modern tools. Well-built and maintained PHP frameworks provide those tools in abundance, allowing maintained PHP frameworks provide those tools in abundance, allowing developers to save time, re-use code, and streamline the back end. As software development tools continuously.
+              We partner with you to create innovative solutions, drive engagement, and ensure your business stands out in the digital landscape. Our team's passion and experience make us your trusted digital growth partner.
             </p>
             <button className="bg-teal text-white text-lg font-semibold px-8 py-4 rounded-none shadow hover:bg-teal/80 transition-colors">Learn More</button>
           </div>

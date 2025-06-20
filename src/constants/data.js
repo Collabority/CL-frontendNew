@@ -22,8 +22,8 @@ export const TEXTS = {
   },
   SECTIONS: {
     HERO: {
-      TITLE: 'About Us',
-      DESCRIPTION: 'Discover our journey and how we help businesses succeed'
+      TITLE: 'About Collabority',
+      DESCRIPTION: 'Empowering Digital Transformation & Brand Growth'
     },
     TIMELINE: {
       TITLE: 'Our Journey',
@@ -36,13 +36,13 @@ export const TEXTS = {
   },
   FOOTER: {
     COMPANY: {
-      NAME: 'OmniVus.',
-      SUBTITLE: 'IT Service & Technology',
-      DESCRIPTION: 'We provide innovative IT solutions to help businesses grow and succeed in the digital age.'
+      NAME: 'Collabority',
+      SUBTITLE: 'IT Solutions, Marketing, Design & Video',
+      DESCRIPTION: 'At Collabority, we specialize in cutting-edge IT solutions, result-driven marketing strategies, creative design services, and professional video production to help businesses thrive in the digital era.'
     },
     CONTACT: {
-      PHONE: '+1 234 567 890',
-      EMAIL: 'info@omnivus.com'
+      PHONE: '+1 800 555 2024',
+      EMAIL: 'hello@collabority.com'
     },
     HOURS: {
       MON_FRI: 'Monday - Friday: 9:00 AM - 6:00 PM',

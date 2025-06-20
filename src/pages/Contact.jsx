@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Navbar from '../layouts/navbar/Navbar';
 import Footer from '../layouts/footer/Footer';
 import ScrollToTop from '../components/ScrollToTop';
-import PageHeader from '../components/PageHeader';
 import { COLORS, TEXTS } from '../constants/data';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import PageHeader from '../components/PageHeader';
 
 const contactTiles = [
   {
@@ -46,8 +46,9 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-white font-poppins">
       <Navbar />
-      <PageHeader title="Contact Us" breadcrumb="Home | Contact" />
       <div className="bg-[#F8F6F3]">
+        {/* Hero Section */}
+        <PageHeader title="Contact Us" breadcrumb="Home | Contact" />
         {/* Contact Info & Map */}
         <div className="w-full py-12 mb-12">
           <section className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
