@@ -1,55 +1,75 @@
 import React, { useState } from "react";
 import Herosection from "../components/Herosection";
 import ServiceCard from "../components/ServiceCard";
-import PricingToggle from "../components/PricingToggle";
-import PricingCard from "../components/PricingCard";
 import NewsFeedCard from "../components/NewsFeedCard";
-
-import { pricingData } from "../constants/pricingData";
-import { Eye, Gavel, MapPin, Globe, Laptop2, Umbrella } from "lucide-react";
+import { Eye, Film, PenTool, Globe, Laptop2, Rocket } from "lucide-react";
 
 const services = [
   {
-    title: "UI/UX Design",
-    icon: <Eye className="w-8 h-8" />,
+    title: "Custom IT Solutions",
+    icon: <Laptop2 className="w-8 h-8" />,
     image: "/s1.jpeg",
     description:
-      "The functional goal of technical content is to help people use a product successfully. The business goal must tie the content.",
+      "Secure, scalable, and future-ready IT infrastructures — from cloud deployments to system integrations — customized for your business needs.",
   },
   {
-    title: "Consulting",
-    icon: <Gavel className="w-8 h-8" />,
+    title: "Digital Marketing Strategy",
+    icon: <Globe className="w-8 h-8" />,
     image: "/s2.jpeg",
     description:
-      "A product manager is responsible for product planning and execution throughout the product lifecycle.",
+      "Performance-driven campaigns built on research, creative targeting, and analytics — designed to maximize your ROI.",
   },
   {
-    title: "Location Strategy",
-    icon: <MapPin className="w-8 h-8" />,
+    title: "UI/UX & Visual Design",
+    icon: <Eye className="w-8 h-8" />,
     image: "/s3.jpeg",
     description:
-      "Planning is the process of thinking about the activities required to achieve a desired goal.",
+      "We craft human-centered designs that are beautiful, functional, and conversion-optimized across web and mobile platforms.",
   },
   {
-    title: "Marketing Strategy",
-    icon: <Globe className="w-8 h-8" />,
+    title: "Video Production & Editing",
+    icon: <Film className="w-8 h-8" />,
     image: "/s4.jpeg",
     description:
-      "Understanding your audience and customers is essential for creating marketing strategies.",
+      "Bring your brand to life with high-quality videos — from concept to editing — perfect for digital campaigns, product demos, or storytelling.",
   },
   {
-    title: "App Development",
-    icon: <Laptop2 className="w-8 h-8" />,
+    title: "Brand Identity Development",
+    icon: <PenTool className="w-8 h-8" />,
     image: "/s5.jpeg",
     description:
-      "Developing apps requires coding, testing, and maintenance throughout the app lifecycle.",
+      "Define your brand’s voice, tone, and visual identity to create memorable, consistent experiences across every channel.",
   },
   {
-    title: "Risk Management",
-    icon: <Umbrella className="w-8 h-8" />,
+    title: "Tech-Driven Campaigns",
+    icon: <Rocket className="w-8 h-8" />,
     image: "/s6.jpeg",
     description:
-      "Identifying and managing risks is crucial to ensure project success.",
+      "We merge technology and creativity to launch automated, multi-channel campaigns that drive measurable business growth.",
+  },
+];
+
+const newsFeeds = [
+  {
+    title: "5 Trends Shaping the Future of Enterprise IT in 2025",
+    description:
+      "From AI-driven automation to zero-trust security models, explore what's defining the next wave of enterprise IT solutions.",
+    image: "/h1.jpeg",
+    date: "June 15, 2025",
+  },
+  {
+    title: "Why SMBs Are Moving to Managed IT Services",
+    description:
+      "More small and mid-size businesses are outsourcing their IT to cut costs and boost efficiency. Here's what to consider before making the move.",
+    image: "/h2.jpeg",
+    date: "June 12, 2025",
+  },
+  {
+    title: "Building Scalable Cloud Infrastructure: Our DevOps Playbook",
+    description:
+      "Learn how we helped a logistics company scale its operations 3x using AWS, Kubernetes, and an automated CI/CD pipeline.",
+    image: "/h3.jpeg",
+    date: "June 5, 2025",
   },
 ];
 
@@ -58,8 +78,7 @@ export default function Services() {
 
   return (
     <main className="bg-white min-h-screen flex flex-col font-poppins">
-    
-    <Herosection title="Services" breadcrumb="Home | Services"/>
+      <Herosection title="Services" breadcrumb="Home | Services" />
 
       {/* Services Section */}
       <section className="py-16 lg:px-40 flex-grow">
@@ -74,57 +93,75 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-12 bg-primary">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-            <div className="max-w-xl">
-              <span className="text-gray-900 font-semibold text-sm">
-                PLANS ______
-              </span>
-              <h2 className="text-4xl font-extrabold mt-2 mb-4 text-gray-900">
-                Here are our plans
-              </h2>
-            </div>
-            <PricingToggle activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* Product-Based Services */}
+      <section className="relative py-20 px-6 sm:px-10 bg-gradient-to-b from-white via-gray-50 to-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Our Product-Based Services
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            From validating ideas to launching products, Collabority empowers businesses with
+            end-to-end tech, creative, and marketing solutions — built for scale, speed, and success.
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-left text-gray-800">
+          <div className="bg-primary rounded-xl shadow-md p-6 border hover:shadow-xl transition-all duration-300">
+            <h3 className="text-xl font-semibold text-secondary mb-3">
+              🚀 MVP to Market Fast
+            </h3>
+            <p className="mb-4">
+              We prototype and develop Minimum Viable Products (MVPs) using agile workflows to get your product in front of real users quickly.
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+              <li>Wireframing & UX strategy</li>
+              <li>Frontend & backend development</li>
+              <li>Launch support & iteration</li>
+            </ul>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {pricingData[activeTab].map((plan, i) => (
-              <PricingCard key={i} plan={plan} />
-            ))}
+          <div className="bg-primary rounded-xl shadow-md p-6 border hover:shadow-xl transition-all duration-300">
+            <h3 className="text-xl font-semibold text-secondary mb-3">
+              🎨 Full-Stack Creative Studio
+            </h3>
+            <p className="mb-4">
+              Our in-house design team builds immersive interfaces and visual systems that are on-brand and user-first.
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+              <li>UI/UX design systems</li>
+              <li>Branding & motion graphics</li>
+              <li>Interactive web & mobile design</li>
+            </ul>
           </div>
+
+          <div className="bg-primary rounded-xl shadow-md p-6 border hover:shadow-xl transition-all duration-300">
+            <h3 className="text-xl font-semibold text-secondary mb-3">
+              📊 Smart Marketing & Analytics
+            </h3>
+            <p className="mb-4">
+              Our digital campaigns are performance-oriented — combining content, automation, and tracking to maximize growth.
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+              <li>SEO & inbound funnels</li>
+              <li>Social & paid ad strategy</li>
+              <li>Performance dashboards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-gray-700 text-lg mb-4">
+            Whether you're a startup building from scratch or a growing brand scaling up — we’ve got you covered.
+          </p>
+          <button className="inline-flex items-center gap-2 bg-secondary text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-secondary border border-secondary transition">
+            Request a Free Quote
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
         </div>
       </section>
 
-      <section className="py-12 px-4">
-      <div className="max-w-xl mx-auto text-center mb-8">
-        <h1 className="text-gray-900 text-3xl md:text-4xl font-extrabold mt-6 mb-6">Our Product Based Services</h1>
-      </div>
-
-      <p className="text-center text-lg md:text-xl max-w-3xl mx-auto text-gray-600 mb-6">
-        Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
-      </p>
-
-      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="border border-black rounded-lg p-6 sm:p-8 mt-8 bg-primary text-white">
-          <div className="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0 max-w-6xl mx-auto text-base md:text-lg text-white">
-            <p className="flex-1 text-gray-900">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore wisi enim ad minim veniam.
-            </p>
-            <p className="flex-1 text-gray-900">
-              Mirum est notare quam littera gothica, quam nunc putamus parum, anteposuerit litterarum formas duis dolore te feugait nulla facilisi.
-            </p>
-          </div>
-
-          <div className="flex justify-center mt-6">
-            <button className="bg-secondary font-semibold px-6 py-3 text-md rounded-lg text-white hover:bg-white hover:text-secondary hover:border hover:border-secondary transition">
-              Request a free quote
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
 
 
       {/* News Feed Section */}
@@ -132,19 +169,16 @@ export default function Services() {
         <div className="container mx-auto px-4 text-center max-w-xl mx-auto mb-12 mt-8">
           <h2 className="text-white text-4xl font-bold mb-4">News Feeds</h2>
           <p className="text-gray-400 text-base mt-4">
-            Does any industry face a more complex audience journey and marketing
-            sales process than B2B technology.
+            Stay up to date with the latest trends, insights, and innovations shaping IT, digital marketing, and creative technology.
           </p>
         </div>
 
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((num) => (
-            <NewsFeedCard key={num} imageNum={num} />
+          {newsFeeds.map((news, index) => (
+            <NewsFeedCard key={index} news={news} />
           ))}
         </div>
       </section>
-
-      
     </main>
   );
 }

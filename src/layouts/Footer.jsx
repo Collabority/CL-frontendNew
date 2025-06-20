@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-gray-700 pb-8 mb-8">
           {/* logo and text */}
           <div className="col-span-1">
-            <div className="text-white text-2xl font-bold mb-4">OmniVus.</div>
+            <div className="text-white text-2xl font-bold mb-4">Collabority</div>
             <p className="text-sm leading-relaxed mb-4">
               The web has changed a lot since Vitaly posted his first article back in 2006. The team at Smashing has changed too, as have the things that we bring to our community onferences, books, and our membership added to the online magazine.
             </p>
