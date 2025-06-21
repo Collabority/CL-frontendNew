@@ -5,65 +5,72 @@ import { FaFacebookF, FaTwitter, FaBehance, FaLinkedinIn, FaYoutube } from 'reac
 const BlogSidebar = () => {
   const popularPosts = [
     {
-      title: "Lorem ipsum dolor sit cing elit, sed do.",
-      date: "24th March 2019",
-      image: "https://images.unsplash.com/photo-1517841905240-472988babdf9"
+      title: "Emerging Trends in Information Technology",
+      date: "10th June 2024",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
     },
     {
-      title: "Lorem ipsum dolor sit cing elit, sed do.",
-      date: "24th March 2019",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+      title: "Mastering Digital Marketing in 2024",
+      date: "5th June 2024",
+      image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2"
     },
     {
-      title: "Lorem ipsum dolor sit cing elit, sed do.",
-      date: "24th March 2019",
-      image: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61"
+      title: "UI/UX Design Principles for Modern Products",
+      date: "1st June 2024",
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
     },
-    { 
-      title: "Lorem ipsum dolor sit cing elit, sed do.",
-      date: "24th March 2019",
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6"
+    {
+      title: "Financial Modelling: Skills for Bankers & Analysts",
+      date: "28th May 2024",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
     }
   ]
 
   const categories = [
-    { name: "Business", count: 26 },
-    { name: "Consultant", count: 30 },
-    { name: "Creative", count: 71 },
-    { name: "UI/UX", count: 56 },
-    { name: "Technology", count: 60 }
+    { name: "Information Technology", count: 42 },
+    { name: "Digital Marketing", count: 27 },
+    { name: "Banking Sales", count: 18 },
+    { name: "UI/UX Design", count: 22 },
+    { name: "Product Management", count: 24 },
+    { name: "Financial Modelling", count: 16 },
+    { name: "Full Stack Development", count: 30 },
+    { name: "Data Science", count: 28 },
+    { name: "Business", count: 31 },
   ]
 
   const twitterFeeds = [
     {
-      content: "Rescue - #Gutenberg ready @ wordpress Theme for Creative Bloggers available on @ ThemeForest https://t.co/2r1POjOjgV C… https://t.co/rDAnPyClu1",
-      date: "November 25, 2018"
+      content: "Just launched a new Full Stack Development bootcamp! #FullStack #WebDev https://t.co/fullstack2024",
+      date: "June 10, 2024"
     },
     {
-      content: "Rescue - #Gutenberg ready @ wordpress Theme for Creative Bloggers available on @ ThemeForest https://t.co/2r1POjOjgV C… https://t.co/rDAnPyClu1",
-      date: "November 25, 2018"
+      content: "Digital marketing strategies are evolving with AI. Stay ahead! #DigitalMarketing #AI https://t.co/digimktg",
+      date: "June 7, 2024"
     },
     {
-      content: "Rescue - #Gutenberg ready @ wordpress Theme for Creative Bloggers available on @ ThemeForest https://t.co/2r1POjOjgV C… https://t.co/rDAnPyClu1",
-      date: "November 25, 2018"
+      content: "UI/UX design is at the heart of great product experiences. #UIUX #Design https://t.co/uiuxdesign",
+      date: "June 3, 2024"
+    },
+    {
+      content: "Financial modelling is a must-have skill for banking professionals. #Finance #Modelling https://t.co/finmodelling",
+      date: "May 29, 2024"
     }
   ]
 
   const instagramImages = [
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
-    "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4",
-    "https://images.unsplash.com/photo-1552664730-d307ca884978",
-    "https://images.unsplash.com/photo-1543269865-cbf427effbad",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    "https://images.unsplash.com/photo-1503676382389-4809596d5290",
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b",
     "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902",
-    "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
-    "https://images.unsplash.com/photo-1497215728101-856f4ea42174",
-    "https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+    "https://images.unsplash.com/photo-1519125323398-675f0ddb6308",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
   ]
 
   const tags = [
-    "Popular", "desgin", "ux", "usability", "develop", "icon", 
-    "business", "consult", "kit", "keyboard", "mouse", "tech"
+    "IT", "Management", "Digital Marketing", "UI/UX Design", "Human Resource Management", "Product Management", "Financial Modelling", "Data Science", "Business", "Innovation", "AI"
   ]
 
   return (
@@ -78,16 +85,16 @@ const BlogSidebar = () => {
         <div className="text-center">
           <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1747734786792-317d1d8e8690?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDI2fHRvd0paRnNrcEdnfHxlbnwwfHx8fHw%3D"
-              alt="Rosalina D. Willaimson"
+              src="https://randomuser.me/api/portraits/men/43.jpg"
+              alt="Alex Morgan"
               className="w-full h-full object-cover"
             />
           </div>
           <h4 className="text-xl font-bold text-gray-900 mb-4">
-            Rosalina D. Willaimson
+            Alex Morgan
           </h4>
           <p className="text-gray-600 text-sm mb-6 max-w-md mx-auto">
-            Lorem ipsum dolor sit amet, consecte-tur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+            Blogger, educator, and tech enthusiast. I write about IT, management, digital marketing, UI/UX design, financial modelling, and more. Join me as I explore the latest trends and share insights from the world of professional education and innovation!
           </p>
           <div className="flex justify-center space-x-6">
             <a
@@ -161,7 +168,7 @@ const BlogSidebar = () => {
                 />
               </div>
               <div>
-                <h4 className="text-gray-900 text-base mb-1 group-hover:text-[#008080] transition-colors">
+                <h4 className="text-gray-900 text-sm mb-1 group-hover:text-[#008080] transition-colors">
                   {post.title}
                 </h4>
                 <div className="flex items-center text-gray-500 text-sm">
@@ -250,7 +257,7 @@ const BlogSidebar = () => {
         </h3>
         <div className="grid grid-cols-3 gap-2">
           {instagramImages.map((image, index) => (
-            <div key={index} className="w-24 h-24 overflow-hidden rounded-none cursor-pointer group">
+            <div key={index} className="w-21 h-21 overflow-hidden rounded-none cursor-pointer group">
               <img 
                 src={image} 
                 alt={`Instagram ${index + 1}`}
