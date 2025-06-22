@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import BlogSidebar from '../components/BlogSidebar';
-import BlogModal from '../components/BlogModal';
 import BlogPost from '../components/BlogPost';
 import { blogsData } from '../constants/blogs';
 
@@ -115,18 +115,9 @@ const authorInfo = {
 };
 
 const BlogDetails = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedBlog, setSelectedBlog] = useState(null);
-
+  const navigate = useNavigate();
   const handleRelatedClick = (key) => {
-    const blog = relatedBlogsData.find(b => b.key === key);
-    setSelectedBlog(blog);
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    setSelectedBlog(null);
+    navigate(`/blog-details/${key}`);
   };
 
   return (
@@ -202,13 +193,6 @@ const BlogDetails = () => {
           </div>
         </div>
       </div>
-      <BlogModal
-        isOpen={modalOpen}
-        onClose={handleCloseModal}
-        blog={selectedBlog || {}}
-        comments={selectedBlog ? relatedComments[selectedBlog.key] : []}
-        author={authorInfo}
-      />
     </div>
   );
 };

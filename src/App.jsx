@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import ServicesDetails from "./pages/ServicesDetails";
 import BlogGrid from "./pages/BlogGrid";
 import BlogDetails from "./pages/BlogDetails";
+import RelatedBlogDetails from "./pages/RelatedBlogDetails";
 import Career from "./pages/Career";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/services-details" element={<ServicesDetails />} />
             <Route path="/blog-grid" element={<BlogGrid />} />
             <Route path="/blog-details" element={<BlogDetails />} />
+            <Route path="/blog-details/:key" element={<RelatedBlogDetails />} />
             <Route path="/career" element={<Career />} />
           </Routes>
         </main>

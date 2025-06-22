@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaFacebookF, FaTwitter, FaBehance, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
+import { FaXTwitter, FaFacebookF as FaFacebookF6, FaLinkedinIn as FaLinkedinIn6, FaYoutube as FaYoutube6, FaInstagram, FaEnvelope } from 'react-icons/fa6';
 
 
 const BlogSidebar = () => {
@@ -208,23 +209,14 @@ const BlogSidebar = () => {
           <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
           Never Miss News
         </h3>
-        <div className="flex justify-center space-x-4 mb-8">
-          <a href="#" className="text-gray-500 hover:text-[#008080] transition-colors">
-            <FaFacebookF className="w-6 h-6" />
-          </a>
-          <a href="#" className="text-gray-500 hover:text-[#008080] transition-colors">
-            <FaTwitter className="w-6 h-6" />
-          </a>
-          <a href="#" className="text-gray-500 hover:text-[#008080] transition-colors">
-            <FaBehance className="w-6 h-6" />
-          </a>
-          <a href="#" className="text-gray-500 hover:text-[#008080] transition-colors">
-            <FaLinkedinIn className="w-6 h-6" />
-          </a>
-          <a href="#" className="text-gray-500 hover:text-[#008080] transition-colors">
-            <FaYoutube className="w-6 h-6" />
-          </a>
+        <div className="flex justify-center space-x-4 mb-4 mt-4">
+          <a href="https://x.com/Collabority" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-gray-500 hover:text-black text-xl"><FaXTwitter /></a>
+          <a href="https://facebook.com/collaborityofficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-500 hover:text-[#1877F3] text-xl"><FaFacebookF6 /></a>
+          <a href="https://www.linkedin.com/company/collaborityofficial/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-500 hover:text-[#0A66C2] text-xl"><FaLinkedinIn6 /></a>
+          <a href="https://youtube.com/@collaborityofficial" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-gray-500 hover:text-[#FF0000] text-xl"><FaYoutube6 /></a>
+          <a href="https://www.instagram.com/collaborityofficial" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-gray-500 hover:text-[#E4405F] text-xl"><FaInstagram /></a>
         </div>
+        
       </div>
 
       {/* Twitter feeds */}
