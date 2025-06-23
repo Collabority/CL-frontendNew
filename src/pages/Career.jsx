@@ -1,99 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react'; // Import the ExternalLink icon from lucide-react
+import { allJobs, allDomains } from '../constants/jobData';
+import { Link } from 'react-router-dom';
 
-// Mock Data for Domains and Jobs
-const allDomains = [
-  { id: 'all', name: 'All Domains' },
-  { id: 'cloud', name: 'Cloud & DevOps' },
-  { id: 'dev', name: 'Software Development' },
-  { id: 'data', name: 'Data & Analytics' },
-  { id: 'cyber', name: 'Cybersecurity' },
-  { id: 'consult', name: 'Consulting & Strategy' },
-  { id: 'infra', name: 'Infrastructure & Ops' },
-];
-
-const allJobs = [
-  {
-    id: 'job1',
-    title: 'Senior Cloud Architect',
-    location: 'Remote',
-    domainId: 'cloud',
-    description: 'Design and implement scalable cloud solutions on AWS/Azure. Requires strong expertise in cloud infrastructure and security.',
-    applyLink: '#apply-cloud-arch',
-  },
-  {
-    id: 'job2',
-    title: 'DevOps Engineer',
-    location: 'Pune, India',
-    domainId: 'cloud',
-    description: 'Automate deployment pipelines and manage infrastructure as code. Experience with CI/CD tools (Jenkins, GitLab CI) is a plus.',
-    applyLink: '#apply-devops',
-  },
-  {
-    id: 'job3',
-    title: 'Full Stack Developer (React/Node.js)',
-    location: 'Bangalore, India',
-    domainId: 'dev',
-    description: 'Develop robust web applications using modern JavaScript frameworks and Node.js backend. Strong problem-solving skills required.',
-    applyLink: '#apply-fs-dev',
-  },
-  {
-    id: 'job4',
-    title: 'Data Scientist',
-    location: 'Hyderabad, India',
-    domainId: 'data',
-    description: 'Analyze complex datasets, build predictive models, and extract actionable insights. Proficiency in Python/R and ML libraries.',
-    applyLink: '#apply-data-sci',
-  },
-  {
-    id: 'job5',
-    title: 'Cybersecurity Consultant',
-    location: 'London, UK',
-    domainId: 'cyber',
-    description: 'Provide expert advice on security policies, risk assessment, and compliance. Experience with security frameworks is essential.',
-    applyLink: '#apply-cyber-consult',
-  },
-  {
-    id: 'job6',
-    title: 'IT Strategy Consultant',
-    location: 'New York, USA',
-    domainId: 'consult',
-    description: 'Advise clients on digital transformation and technology roadmap development. Strong analytical and communication skills.',
-    applyLink: '#apply-it-strategy',
-  },
-  {
-    id: 'job7',
-    title: 'Systems Administrator',
-    location: 'Frankfurt, Germany',
-    domainId: 'infra',
-    description: 'Manage and maintain server infrastructure, ensuring high availability and performance. Familiarity with Linux/Windows servers.',
-    applyLink: '#apply-sys-admin',
-  },
-  {
-    id: 'job8',
-    title: 'Junior Cloud Engineer',
-    location: 'Remote',
-    domainId: 'cloud',
-    description: 'Assist in cloud environment setup and maintenance. Great opportunity for freshers with basic cloud knowledge.',
-    applyLink: '#apply-junior-cloud',
-  },
-  {
-    id: 'job9',
-    title: 'Backend Developer (Python/Django)',
-    location: 'Delhi, India',
-    domainId: 'dev',
-    description: 'Develop robust backend services and APIs. Experience with Django/Flask and database management.',
-    applyLink: '#apply-backend',
-  },
-  {
-    id: 'job10',
-    title: 'Business Intelligence Analyst',
-    location: 'Mumbai, India',
-    domainId: 'data',
-    description: 'Create dashboards and reports, providing insights to drive business decisions. Proficiency in SQL and BI tools (e.g., Tableau, Power BI).',
-    applyLink: '#apply-bi-analyst',
-  },
-];
 
 // Main App Component for the Careers Page UI
 const Career = () => {
@@ -180,24 +89,27 @@ const Career = () => {
             {filteredJobs.map((job) => (
               <div
                 key={job.id}
-                className="bg-white rounded-xl shadow-md p-6 border border-gray-100 transform hover:scale-105 transition-transform duration-200 ease-in-out"
+                className="bg-white border border-gray-200 rounded-xl shadow hover:shadow-lg transition duration-200 overflow-hidden group"
               >
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{job.title}</h3>
-                <p className="text-sm text-secondary font-medium mb-3">{job.location}</p>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{job.description}</p>
-                <a
-                  href={job.applyLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm
-                             text-white bg-secondary hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-                             transition duration-150 ease-in-out"
-                >
-                  Apply Now
-                  {/* Lucide React ExternalLink icon */}
-                  <ExternalLink className="h-4 w-4 ml-2" />
-                </a>
+                <div className="h-1 bg-gradient-to-r from-secondary to-gray-900" />
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-secondary transition">{job.title}</h3>
+                    <span className="text-xs px-2 py-1 rounded-full bg-primary text-secondary font-medium capitalize">
+                      {allDomains.find(d => d.id === job.domainId)?.name || 'General'}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-500 mb-1">{job.location}</p>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{job.description}</p>
+                  <Link
+                    to={`/job/${job.id}`}
+                    className="inline-block mt-2 text-sm font-medium text-white bg-gray-900 hover:bg-primary hover:text-secondary hover:border transition px-4 py-2 rounded-md"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
+
             ))}
           </div>
         ) : (

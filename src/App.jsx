@@ -10,7 +10,8 @@ import ServicesDetails from "./pages/ServicesDetails";
 import BlogGrid from "./pages/BlogGrid";
 import BlogDetails from "./pages/BlogDetails";
 import Career from "./pages/Career";
-import Services from "./pages/services";
+import Services from "./pages/Services";
+import JobDetails from './pages/JobDetails';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
             <Route path="/blog-grid" element={<BlogGrid />} />
             <Route path="/blog-details" element={<BlogDetails />} />
             <Route path="/career" element={<Career />} />
+            <Route path="/job/:id" element={<JobDetails />} />
+
+            
           </Routes>
         </main>
         <Footer />
