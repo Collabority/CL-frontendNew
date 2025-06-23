@@ -11,10 +11,10 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md z-50 relative"> 
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="container mx-auto  py-3 flex justify-between items-center">
 
         {/* logo */}
-        <div className="flex items-center">
+        <div className="flex items-center pl-0">
           <img src={CollaboryLogo} alt="Collabory Logo" className="h-12" />
         </div>
 
@@ -45,6 +45,7 @@ const Navbar = () => {
                 : 'text-gray-700 hover:text-[#008080]'}>Blog</NavLink>
             <NavLink to="/about" className={desktopLinkClass}>About</NavLink>
             <NavLink to="/career" className={desktopLinkClass}>Career</NavLink>
+            <NavLink to="/portfolio" className={desktopLinkClass}>Portfolio</NavLink>
             <NavLink to="/contact" className={desktopLinkClass}>Contact</NavLink>
           </div>
         </div>
@@ -69,6 +70,7 @@ const Navbar = () => {
             <NavLink to="/blog-grid" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname.startsWith('/blog') ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Blog</NavLink>
             <NavLink to="/about" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/about' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>About</NavLink>
             <NavLink to="/career" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/career' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Career</NavLink>
+            <NavLink to="/portfolio" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/portfolio' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Portfolio</NavLink>
             <NavLink to="/contact" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/contact' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
           </div>
         </div>

@@ -11,6 +11,7 @@ import BlogGrid from "./pages/BlogGrid";
 import BlogDetails from "./pages/BlogDetails";
 import RelatedBlogDetails from "./pages/RelatedBlogDetails";
 import Career from "./pages/Career";
+import Portfolio from "./pages/Portfolio";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/blog-details" element={<BlogDetails />} />
             <Route path="/blog-details/:key" element={<RelatedBlogDetails />} />
             <Route path="/career" element={<Career />} />
+            <Route path="/portfolio" element={<Portfolio />} />
           </Routes>
         </main>
         <Footer />
