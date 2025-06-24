@@ -131,9 +131,7 @@ const BlogDetails = () => {
           <div className="bg-white p-8 rounded-lg shadow-md">
             
             {/* Render blogs from data */}
-            {blogsData.map(blog => (
-              <BlogPost key={blog.id} blog={blog} />
-            ))}
+            <BlogPost blog={blogsData[0]} />
 
             {/* Related posts */}
             <h2 className="border-t pt-6 border-gray-200 text-2xl font-bold mb-6 text-gray-900">Related Posts</h2>
@@ -170,18 +168,6 @@ const BlogDetails = () => {
               </div>
             </div>
 
-            {/* Written by section */}
-            <div className="bg-white p-12 border border-gray-300 mb-8">
-              <div className="flex items-center">
-                <img src={authorInfo.avatar} alt="Author" className="w-40 h-40 mr-8 object-cover rounded-full" />
-                <div>
-                  <h3 className="font-bold text-base text-[#008080]">Written by</h3>
-                  <p className="text-2xl font-bold text-gray-900 mb-2">{authorInfo.name}</p>
-                  <p className="text-gray-900 leading-relaxed text-sm mb-2">{authorInfo.title}</p>
-                  <p className="text-gray-900 leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: authorInfo.bio }}></p>
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>

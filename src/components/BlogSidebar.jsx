@@ -132,25 +132,7 @@ const BlogSidebar = () => {
         </div>
       </div>
 
-      {/*Search objects */}
-      <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-          <span className="w-4 h-8 bg-[#008080] rounded-none mr-3"></span>
-          Search Objects
-        </h3>
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search your keyword..."
-            className="w-full pl-4 pr-12 py-3 bg-gray-50 text-sm text-gray-600 rounded-none focus:outline-none focus:ring-2 focus:ring-[#008080] transition-all"
-          />
-          <button className="absolute right-0 top-0 h-full btn-primary rounded-none border-0">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </button>
-        </div>
-      </div>
+      
 
       {/* Popular feeds */}
       <div className="bg-[#F8F6F3] rounded-none border-2 border-gray-200 p-8">
