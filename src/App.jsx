@@ -5,7 +5,7 @@ import { AboutProvider } from './context/AboutContext';
 import AboutUs from './pages/about/AboutUs';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
-import Footer from './layouts/footer/Footer';
+import Footer from './layouts/Footer';
 
 function App() {
   return (

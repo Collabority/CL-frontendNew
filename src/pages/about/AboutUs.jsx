@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAbout } from '../../context/AboutContext';
-import Navbar from '../../layouts/navbar/Navbar';
+import Navbar from '../../layouts/Navbar';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import HistoryTimeline from '../../components/about/HistoryTimeline';
@@ -74,7 +74,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-beige font-poppins">
+    <div className="min-h-screen bg-beige">
       <Navbar />
 
       {/* Hero/Breadcrumb Section */}

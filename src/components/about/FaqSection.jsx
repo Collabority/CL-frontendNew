@@ -76,7 +76,6 @@ const FaqSection = () => {
                   <button
                     onClick={() => handleToggle(idx)}
                     className={`flex items-center w-full px-6 py-6 focus:outline-none bg-transparent`}
-                    style={{ fontFamily: 'Poppins, sans-serif' }}
                   >
                     <span className="flex items-center mr-4 text-[#3b82f6]">
                       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -109,7 +108,6 @@ const FaqSection = () => {
                     {visibleIdx === idx && (
                       <div
                         className="text-[#7b8bb2] pt-2 font-medium transition-all duration-200"
-                        style={{ fontFamily: 'Poppins, sans-serif', fontSize: '12px' }}
                       >
                         {faq.answer}
                       </div>

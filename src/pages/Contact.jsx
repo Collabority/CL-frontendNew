@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from '../layouts/navbar/Navbar';
-import Footer from '../layouts/footer/Footer';
+import Navbar from '../layouts/Navbar';
+import Footer from '../layouts/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { COLORS, TEXTS } from '../constants/data';
 import { Link } from 'react-router-dom';
@@ -44,7 +44,7 @@ const Contact = () => {
   const toggleVideoModal = () => setIsVideoModalOpen(!isVideoModalOpen);
 
   return (
-    <div className="min-h-screen bg-white font-poppins">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <div className="bg-[#F8F6F3]">
         {/* Hero Section */}
