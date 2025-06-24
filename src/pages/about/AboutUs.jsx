@@ -89,7 +89,7 @@ const AboutUs = () => {
               Collabority: Empowering<br />
               Digital Transformation
             </h2>
-          </div>
+              </div>
           <div className="md:w-1/2 md:pl-8">
             <p className="text-base text-[#7b8ca0] mb-4">
               At Collabority, we specialize in IT solutions, marketing, creative design, and video production. Our expertise ensures seamless digital transformation and brand growth for businesses in the digital era. 
@@ -128,7 +128,7 @@ const AboutUs = () => {
                   <p className="text-white drop-shadow-md">
                     {card.desc}
                   </p>
-                </div>
+                    </div>
                 <a
                   href="#"
                   className="mt-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
