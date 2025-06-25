@@ -21,9 +21,10 @@ import {
 } from "../utils/useScrollAnimation";
 import tileGallery01 from "../assets/tileGallery01.webp";
 import tileGallery02 from "../assets/tileGallery02.webp";
-import { FaComment, FaCommentDots, FaLaptop } from "react-icons/fa";
+import { FaComment, FaCommentDots} from "react-icons/fa";
 import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
+import ScrollToTop from "../components/ScrolltoTop";
 
 const Home = () => {
   const [animate, setAnimate] = useState(false);
@@ -83,19 +84,17 @@ const Home = () => {
               `}
               >
                 <span className="text-2xl font-semibold text-[#008080] tracking-widest">
-                  IT Business Consulting
+                Digital Transformation & Creative Services Agency
                 </span>
                 <h1 className="text-8xl font-extrabold text-blue-950">
                   Best IT Solutions <br className="hidden sm:inline" /> Provider
                   Agency
                 </h1>
                 <p className="pt-6 font-semibold text-xl text-blue-950">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremda <br /> tium totam rem aperiam eaque ipsa
-                  quae ab illo inventore veritatis
+                At Collabority, we provide innovative IT solutions, impactful marketing, creative <br/> design, and high-quality video production. Our multi-domain expertise drives <br/> seamless digital transformation and lasting brand growth.
                 </p>
-                <Link to="/" className="w-full sm:w-auto">
-                  <button className="group inline-flex items-center gap-2 mt-4 justify-center px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-[#008080] hover:bg-gray-900 text-white text-sm sm:text-base md:text-base rounded font-medium w-full sm:w-auto max-w-xs sm:max-w-none transition-colors duration-300 ease-in-out">
+                <Link to="/services-details" className="w-full sm:w-auto">
+                  <button className="group inline-flex items-center cursor-pointer gap-2 mt-4 justify-center px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-[#008080] hover:bg-gray-900 text-white text-sm sm:text-base md:text-base rounded font-medium w-full sm:w-auto max-w-xs sm:max-w-none transition-colors duration-300 ease-in-out">
                     Our Services
                     <ArrowRight className="ml-2 narrow-icon" />
                   </button>
@@ -172,7 +171,7 @@ const Home = () => {
 
                 {/* Description */}
                 <p className="text-gray-500 group-hover:text-white mb-6 sm:mb-10 text-sm sm:text-base leading-relaxed z-20">
-                  Sed ut perspiciatis unde omnis iste natus error volup
+                  {service.des}
                 </p>
               </div>
             );
@@ -209,39 +208,38 @@ const Home = () => {
             CORE FEATURES
           </h4>
           <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left break-words">
-            Get More Good Experience.
+          Enhancing Your Digital Journey
           </h1>
 
-          <h2 className="text-gray-600 mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
-            Our knowledge of computers will help us
-          </h2>
+          <ul className="text-gray-600 flex flex-col gap-2 mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
+            <li>Innovative IT Solutions</li>
+            <li>Result-Driven Marketing</li>
+            <li>Creative Design Services</li>
+            <li>Professional Video Production</li>
+          </ul>
           <p className="text-sm sm:text-base text-gray-600 mt-6 sm:mt-10 font-medium leading-relaxed">
-            Does any industry face a more complex audience journey and marketing
-            sales process than B2B technology? Consider the number of people who
-            influence a sale, the length of the decision-making cycle, the
-            competing interests of the people who purchase, implement, manage,
-            and use the technology. It's a lot meaningful content here.
+          At Collabority, we bring together technology, strategy, creativity, and media to empower businesses in the digital space. From building scalable IT systems to running impactful marketing campaigns, we ensure every aspect aligns with your growth goals. Our design services enhance brand identity while our video production brings stories to life with clarity and emotion. With expertise across these domains, we drive seamless digital transformation tailored to your vision.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mt-6 sm:mt-10 justify-center lg:justify-start">
             <button className="bg-[#008080] rounded text-white py-3 px-6 hover:bg-gray-900 transition-colors w-full sm:w-auto">
-              Learn More
+              <Link to="/about">Learn More</Link>
             </button>
 
             <button
               onClick={() => setShowVideo(true)}
-              className="bg-gray-500 rounded text-white py-3 px-6 hover:bg-gray-900 flex gap-2 items-center justify-center transition-colors w-full sm:w-auto"
+              className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-900 transition-colors flex gap-2 items-center"
             >
               <Video /> Intro Video
             </button>
 
             {/* Popup Video (No dark overlay) */}
             {showVideo && (
-              <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-                <div className="relative bg-[#008080] rounded-lg max-w-4xl w-full p-1 pointer-events-auto">
+              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+                <div className="relative bg-[#008080] rounded-lg max-w-4xl w-full p-1 shadow-lg">
                   {/* Close Button */}
                   <button
                     onClick={() => setShowVideo(false)}
-                    className="absolute top-2 right-2 text-gray-700 hover:text-red-500 text-2xl font-bold text-red-300"
+                    className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl font-bold"
                   >
                     ✕
                   </button>
@@ -250,7 +248,7 @@ const Home = () => {
                   <div className="aspect-video w-full">
                     <iframe
                       className="w-full h-full rounded"
-                      src="https://youtube.com/embed/9xwazD5SyVg?"
+                      src="https://www.youtube.com/embed/9xwazD5SyVg"
                       title="Intro Video"
                       allow="autoplay; encrypted-media"
                       allowFullScreen
@@ -270,10 +268,10 @@ const Home = () => {
             OUR LATEST SERVICES
           </h3>
           <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
-            We Offer Better Solution
+          Crafting Innovative Solutions for  
           </h1>
           <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
-            For Your IT Business
+          Your Digital Success
           </h1>
         </div>
         <div className="flex flex-col">
@@ -291,7 +289,6 @@ const Home = () => {
 
                 {/* Text Content */}
                 <div className="px-32 flex flex-col">
-                  <FaLaptop className="mb-10 text-4xl" />
                   <h1 className="text-4xl font-bold text-black">
                     {item.title}
                   </h1>
@@ -299,38 +296,31 @@ const Home = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex gap-10 justify-center items-center">
+              <div key={idx} className="flex gap-10 justify-center items-center">
                 <div className="px-32 flex flex-col">
-                  <FaLaptop className="mb-10 text-4xl" />
                   <h1 className="text-4xl font-bold">{item.title}</h1>
-                  <p className="mt-8 text-gray-400">
-                    {item.para}
-                  </p>
+                  <p className="mt-8 text-gray-400">{item.para}</p>
                 </div>
                 {/* Bold Vertical Line */}
                 <div className="w-[4px] h-[300px] bg-black"></div>
-                <img
-                  src={item.image}
-                  alt = {item.title}
-                  className="h-[400px]"
-                />
+                <img src={item.image} alt={item.title} className="h-[400px]" />
               </div>
             )
           )}
         </div>
       </section>
 
-      {/* Latest Case Study */}
+      {/* Portfolio Section */}
       <section className="flex flex-col bg-gray-900 mt-12 sm:mt-20">
         <div className="px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto">
           <h3 className="text-[#008080] font-medium text-lg sm:text-xl mb-4 text-center lg:text-left">
-            Latest Case Studies
+            Latest Porfolios
           </h3>
 
           <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-6 lg:gap-0">
             {/* Left Heading */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight text-center lg:text-left">
-              Reads Our Recent <br /> Case Studies
+            Explore Our Latest Work <br/> and Stunning Portfolios
             </h1>
 
             {/* Right Arrow Buttons */}
@@ -364,7 +354,7 @@ const Home = () => {
               <img
                 src={src.image}
                 alt={src.title}
-                className="w-full object-cover"
+                className="w-full object-cover rounded-md"
               />
 
               {/* Overlay Content */}
@@ -380,9 +370,11 @@ const Home = () => {
                 </h4>
 
                 {/* Arrow Button */}
+                <Link to="/portfolio">
                 <button className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
                   <ArrowRight className="w-4 h-4" />
                 </button>
+                </Link>
               </div>
             </div>
           ))}
@@ -469,15 +461,15 @@ const Home = () => {
               CALL TO ACTION
             </h4>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
-              Let's Discuss With Us
+              Connect with Us to 
             </h1>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
-              Your Estimate.
+            make Your Brand.
             </h1>
           </div>
           <div className="flex-shrink-0">
-            <Link>
-              <button className="flex items-center p-4 gap-3 bg-[#008080] text-white rounded hover:bg-gray-100 transition-colors hover:text-[#008080]">
+            <Link to="/contact">
+              <button className="flex items-center cursor-pointer p-4 gap-3 bg-[#008080] text-white rounded hover:bg-gray-100 transition-colors hover:text-[#008080]">
                 <FaComment />
                 <span className="font-medium">Contact Us</span>
               </button>
@@ -516,7 +508,7 @@ const Home = () => {
                   {key.des}
                 </h4>
                 <div className="flex gap-2 items-center">
-                  <Link className="flex items-center text-gray-600 gap-2 text-sm sm:text-base">
+                  <Link to="/blog" className="flex items-center text-gray-600 gap-2 text-sm sm:text-base">
                     Read More
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
                   </Link>
@@ -529,6 +521,7 @@ const Home = () => {
 
       {/* Footer */}
       <Footer />
+      <ScrollToTop/>
     </main>
   );
 };
