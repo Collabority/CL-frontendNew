@@ -7,6 +7,7 @@ import { FaPlay } from "react-icons/fa6";
 import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
 import ScrollToTop from "../components/ScrolltoTop";
+import NewsLetter from "../components/NewsLetter";
 
 const Services = () => {
 
@@ -92,7 +93,7 @@ const Services = () => {
             seamless digital transformation and lasting growth.
           </p>
           <button className="bg-[#008080] w-1/3 rounded mt-8 text-white py-3 px-6 hover:bg-white hover:text-[#008080] transition-colors">
-            <Link to="/about">Learn More</Link>
+            <Link to="/services-details">Learn More</Link>
           </button>
         </div>
 
@@ -201,7 +202,7 @@ const Services = () => {
           ))}
         </div>
       </section>
-
+          <NewsLetter/>
       <Footer/>
       <ScrollToTop/>
     </main>

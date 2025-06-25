@@ -6,6 +6,7 @@ import Navbar from "../layouts/Navbar";
 import { motion } from 'framer-motion';
 import Footer from "../layouts/Footer";
 import { Link } from "react-router-dom";
+import NewsLetter from "../components/NewsLetter";
 
 const contactTiles = [
   {
@@ -176,6 +177,7 @@ const Contact = () => {
           )}
         </section>
       </div>
+      <NewsLetter/>
       <Footer/>
       <ScrollToTop />
     </div>

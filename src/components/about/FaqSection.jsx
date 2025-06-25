@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import faqData from "../../constants/faqData";
 
 const FaqSection = () => {
   const [openIdx, setOpenIdx] = useState(null);

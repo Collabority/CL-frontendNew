@@ -1,11 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useAbout } from '../../context/AboutContext';
-import Navbar from '../../layouts/Navbar';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from "react";
+import { useAbout } from "../../context/AboutContext";
+import Navbar from "../../layouts/Navbar";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import HistoryTimeline from '../../components/about/HistoryTimeline';
-import FaqSection from '../../components/about/FaqSection';
-import PageHeader from '../../components/PageHeader';
+import HistoryTimeline from "../../components/about/HistoryTimeline";
+import FaqSection from "../../components/about/FaqSection";
+import PageHeader from "../../components/PageHeader";
+import Footer from "../../layouts/Footer";
+import ScrollToTop from "../../components/ScrolltoTop";
+import NewsLetter from "../../components/NewsLetter";
 
 // Restore serviceCards array for the animated tiles (with images)
 const serviceCards = [
@@ -34,9 +37,9 @@ const AboutUs = () => {
   const tilesRef = useRef([]);
 
   const toggleFaq = (id) => {
-    setOpenFaqs(prev => ({
+    setOpenFaqs((prev) => ({
       ...prev,
-      [id]: !prev[id]
+      [id]: !prev[id],
     }));
   };
 
@@ -78,35 +81,56 @@ const AboutUs = () => {
       <Navbar />
 
       {/* Hero/Breadcrumb Section */}
-      <PageHeader title="About Us" breadcrumb={
-        <>
-        <div className='flex gap-2'>
-          <Link to="/">Home</Link>
-          <p>|</p>
-          <Link to="/contact">Contact</Link>
-        </div>
-        </>
-      } />
+      <PageHeader
+        title="About Us"
+        breadcrumb={
+          <>
+            <div className="flex gap-2">
+              <Link to="/">Home</Link>
+              <p>|</p>
+              <Link to="/career">Career</Link>
+            </div>
+          </>
+        }
+      />
 
       {/* Experience/Intro Section */}
       <section className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between">
           <div className="mb-8 md:mb-0 md:w-1/2">
-            <div className="text-[#2563eb] font-bold text-lg mb-2">Years of Digital Excellence</div>
+            <div className="text-[#2563eb] font-bold text-lg mb-2">
+              Years of Digital Excellence
+            </div>
             <h2 className="text-6xl font-extrabold text-[#002248] leading-tight mb-4">
-              Collabority: Empowering<br />
+              Collabority: Empowering
+              <br />
               Digital Transformation
             </h2>
-              </div>
+          </div>
           <div className="md:w-1/2 md:pl-8">
             <p className="text-base text-[#7b8ca0] mb-4">
-              At Collabority, we specialize in IT solutions, marketing, creative design, and video production. Our expertise ensures seamless digital transformation and brand growth for businesses in the digital era. 
-              <br /><br />
-              We deliver custom software, cloud integration, and secure infrastructure to empower your operations. Our marketing team crafts result-driven strategies to boost your brand's reach and engagement. With a passion for creativity, our designers and video producers create compelling visuals and stories that set you apart from the competition. 
-              <br /><br />
-              Whether you're a startup or an established enterprise, Collabority is your trusted partner for innovation, growth, and digital excellence. Let us help you thrive in a rapidly evolving digital landscape.
+              At Collabority, we specialize in IT solutions, marketing, creative
+              design, and video production. Our expertise ensures seamless
+              digital transformation and brand growth for businesses in the
+              digital era.
+              <br />
+              <br />
+              We deliver custom software, cloud integration, and secure
+              infrastructure to empower your operations. Our marketing team
+              crafts result-driven strategies to boost your brand's reach and
+              engagement. With a passion for creativity, our designers and video
+              producers create compelling visuals and stories that set you apart
+              from the competition.
+              <br />
+              <br />
+              Whether you're a startup or an established enterprise, Collabority
+              is your trusted partner for innovation, growth, and digital
+              excellence. Let us help you thrive in a rapidly evolving digital
+              landscape.
             </p>
-            <Link to="#" className="text-[#2563eb] font-semibold text-base">Read More</Link>
+            <Link to="#" className="text-[#2563eb] font-semibold text-base">
+              Read More
+            </Link>
           </div>
         </div>
       </section>
@@ -117,9 +141,13 @@ const AboutUs = () => {
           {serviceCards.map((card, idx) => (
             <div
               key={idx}
-              ref={el => tilesRef.current[idx] = el}
+              ref={(el) => (tilesRef.current[idx] = el)}
               className={`relative overflow-hidden group shadow-lg w-full max-w-sm h-96 rounded-none bg-[#e7dbcc] flex flex-col justify-end transition-all duration-700 ease-in-out
-                ${tilesVisible[idx] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                ${
+                  tilesVisible[idx]
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
             >
               <img
                 src={card.img}
@@ -127,16 +155,12 @@ const AboutUs = () => {
                 className="w-full h-full object-cover absolute inset-0 z-0 group-hover:scale-105 transition-transform duration-500"
               />
               <div className="relative z-10 p-8 flex flex-col items-start w-full h-full justify-end">
-                <div
-                  className="transition-transform duration-300 group-hover:-translate-y-4"
-                >
+                <div className="transition-transform duration-300 group-hover:-translate-y-4">
                   <h3 className="text-xl font-semibold mb-2 text-white drop-shadow-md">
                     {card.title}
                   </h3>
-                  <p className="text-white drop-shadow-md">
-                    {card.desc}
-                  </p>
-                    </div>
+                  <p className="text-white drop-shadow-md">{card.desc}</p>
+                </div>
                 <a
                   href="#"
                   className="mt-4 text-white font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -165,7 +189,7 @@ const AboutUs = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 className="absolute inset-0 flex items-center justify-center"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: "auto" }}
                 onClick={toggleVideoModal}
               >
                 <motion.span
@@ -174,33 +198,60 @@ const AboutUs = () => {
                     boxShadow: [
                       "0 0 0 0 rgba(13,89,219,0.7)",
                       "0 0 0 20px rgba(13,89,219,0.0)",
-                      "0 0 0 0 rgba(13,89,219,0.7)"
-                    ]
+                      "0 0 0 0 rgba(13,89,219,0.7)",
+                    ],
                   }}
                   transition={{
                     repeat: Infinity,
                     duration: 1.5,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 >
                   <svg className="w-10 h-10" fill="white" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" stroke="white" strokeWidth="0.5" strokeLinejoin="round" strokeLinecap="round"/>
+                    <path
+                      d="M8 5v14l11-7z"
+                      stroke="white"
+                      strokeWidth="0.5"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                    />
                   </svg>
                 </motion.span>
               </motion.button>
-                </div>
-              </div>
+            </div>
+          </div>
           {/* Text Content */}
           <div className="w-full md:w-1/2 flex flex-col justify-center items-start">
-            <span className="text-[#2563eb] font-semibold text-lg mb-2">Our Story</span>
-            <h1 className="text-6xl font-extrabold text-[#002248] mb-8" style={{ lineHeight: '1.3' }}>Helping Businesses<br />Thrive Digitally</h1>
-            <h2 className="text-2xl text-[#68A1BB] font-light mb-8" style={{ lineHeight: '2.6rem' }}>
-              Collabority delivers IT, marketing, design, and video expertise for your brand's success.
+            <span className="text-[#2563eb] font-semibold text-lg mb-2">
+              Our Story
+            </span>
+            <h1
+              className="text-6xl font-extrabold text-[#002248] mb-8"
+              style={{ lineHeight: "1.3" }}
+            >
+              Helping Businesses
+              <br />
+              Thrive Digitally
+            </h1>
+            <h2
+              className="text-2xl text-[#68A1BB] font-light mb-8"
+              style={{ lineHeight: "2.6rem" }}
+            >
+              Collabority delivers IT, marketing, design, and video expertise
+              for your brand's success.
             </h2>
-            <p className="text-[#68A1BB] text-base font-light mb-10 max-w-xl" style={{ lineHeight: '2.1rem' }}>
-              We partner with you to create innovative solutions, drive engagement, and ensure your business stands out in the digital landscape. Our team's passion and experience make us your trusted digital growth partner.
+            <p
+              className="text-[#68A1BB] text-base font-light mb-10 max-w-xl"
+              style={{ lineHeight: "2.1rem" }}
+            >
+              We partner with you to create innovative solutions, drive
+              engagement, and ensure your business stands out in the digital
+              landscape. Our team's passion and experience make us your trusted
+              digital growth partner.
             </p>
-            <button className="bg-[#008080] text-white text-lg font-semibold px-8 py-4 rounded-none shadow hover:bg-teal/80 transition-colors">Learn More</button>
+            <button className="bg-[#008080] text-white text-lg font-semibold px-8 py-4 rounded-none shadow hover:bg-teal/80 transition-colors">
+              Learn More
+            </button>
           </div>
         </div>
       </section>
@@ -214,13 +265,13 @@ const AboutUs = () => {
           <div
             className="relative bg-white shadow-2xl flex flex-col"
             style={{
-              width: '70vw',
-              height: '70vh',
-              maxWidth: '100vw',
-              maxHeight: '100vh',
-              minWidth: '320px',
-              minHeight: '200px',
-              overflow: 'auto',
+              width: "70vw",
+              height: "70vh",
+              maxWidth: "100vw",
+              maxHeight: "100vh",
+              minWidth: "320px",
+              minHeight: "200px",
+              overflow: "auto",
             }}
           >
             <button
@@ -234,11 +285,14 @@ const AboutUs = () => {
               src="/about"
               title="About Us Modal"
               className="w-full h-full border-none"
-              style={{ width: '100%', height: '100%', minHeight: '200px' }}
+              style={{ width: "100%", height: "100%", minHeight: "200px" }}
             />
           </div>
         </div>
       )}
+      <NewsLetter/>
+      <Footer />
+      <ScrollToTop />
     </div>
   );
 };
