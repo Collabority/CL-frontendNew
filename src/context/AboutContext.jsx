@@ -57,54 +57,6 @@ const aboutData = {
         linkedin: "#"
       }
     }
-  ],
-  timeline: [
-    {
-      id: 1,
-      year: "1998",
-      title: "Company Founded",
-      description: "Started with a vision to revolutionize the industry"
-    },
-    {
-      id: 2,
-      year: "2005",
-      title: "First Major Project",
-      description: "Successfully completed our first major project"
-    },
-    {
-      id: 3,
-      year: "2010",
-      title: "Global Expansion",
-      description: "Expanded operations to multiple countries"
-    },
-    {
-      id: 4,
-      year: "2020",
-      title: "Digital Transformation",
-      description: "Launched our digital transformation initiative"
-    }
-  ],
-  faqs: [
-    {
-      id: 1,
-      question: "What services do you offer?",
-      answer: "We offer a wide range of services including web development, mobile app development, UI/UX design, and digital marketing."
-    },
-    {
-      id: 2,
-      question: "How long have you been in business?",
-      answer: "We have been in business for over 25 years, serving clients worldwide."
-    },
-    {
-      id: 3,
-      question: "What is your team size?",
-      answer: "We have a team of over 50 professionals working across different departments."
-    },
-    {
-      id: 4,
-      question: "Do you offer custom solutions?",
-      answer: "Yes, we specialize in creating custom solutions tailored to our clients' specific needs."
-    }
   ]
 };
 

@@ -31,7 +31,7 @@ const HistoryTimeline = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20" style={{ background: '#F8F6F2' }}>
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-6xl font-extrabold text-center mb-4 text-[#002248]">Our History</h2>
         <p className="text-center text-sm text-gray-400 mb-16 max-w-2xl mx-auto">

@@ -2,7 +2,7 @@ import React from 'react';
 import "./App.css";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AboutProvider } from './context/AboutContext';
-import AboutUs from './pages/about/AboutUs';
+import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import Footer from './layouts/Footer';

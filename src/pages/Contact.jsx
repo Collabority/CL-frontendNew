@@ -10,28 +10,28 @@ import PageHeader from '../components/PageHeader';
 const contactTiles = [
   {
     title: 'Phone Number',
-    value: '+1 234 567 890',
+    value: '+91 83193 01961',
     icon: (
       <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z"/></svg>
     ),
   },
   {
     title: 'Email Address',
-    value: 'info@omnivus.com',
+    value: 'hello@collabority.in',
     icon: (
       <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6 12 13 2 6"/></svg>
     ),
   },
   {
     title: 'Office Location',
-    value: '12/A, London, UK',
+    value: 'Ghaziabad',
     icon: (
       <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
     ),
   },
   {
     title: 'Social Network',
-    value: 'fb.com/example',
+    value: 'https://www.collabority.in/',
     icon: (
       <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2Z"/></svg>
     ),
@@ -69,8 +69,8 @@ const Contact = () => {
             </div>
             <div className="w-full h-full shadow bg-[#F8F6F3] rounded-none aspect-square flex items-stretch">
               <iframe
-                title="Google Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.650441857727!2d90.4125183153637!3d23.8103329845617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7afc6b6b6b7%3A0x7b7b7b7b7b7b7b7b!2sBangladesh!5e0!3m2!1sen!2sbd!4v1680000000000!5m2!1sen!2sbd"
+                title="Collabority Ghaziabad Location"
+                src="https://www.google.com/maps?q=Ghaziabad,+Uttar+Pradesh,+India&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -154,11 +154,12 @@ const Contact = () => {
                   &times;
                 </button>
                 <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                  title="Contact Video"
+                  src="https://www.youtube.com/embed/AExAZLYf65Q"
+                  title="Collabority Get in Touch Video"
                   className="w-full h-full border-none"
-                  style={{ width: '100%', height: '100%', minHeight: '200px' }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  style={{ width: '100%', height: '100%', minHeight: '200px' }}
                 />
               </div>
             </div>
