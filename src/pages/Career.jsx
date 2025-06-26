@@ -2,33 +2,35 @@ import React from "react";
 import MainIllustration from "../assets/main.png";
 import LeftLaurelPng from "../assets/image1.png";
 import RightLaurelPng from "../assets/image2.png";
-import { allDomains, allJobs, awards, clients, roles } from "../constants/Data";
+import { allDomains, allJobs, awards, roles } from "../constants/Data";
 import Navbar from "../layouts/Navbar";
 import { useState, useEffect } from "react";
-import { ExternalLink } from "lucide-react";
 import Footer from "../layouts/Footer";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../components/ScrolltoTop";
 import { useRef } from "react";
+import ClientTestimonial from "../components/ClientTestimonial";
+import { motion } from "framer-motion";
 
 const Career = () => {
-   // State for the single filter for all roles
-   const [selectedDomain, setSelectedDomain] = useState('all');
-  
-   // State to store jobs filtered by the selected domain
-   const [filteredJobs, setFilteredJobs] = useState([]);
- 
-   // Effect to filter jobs based on selected domain
-   useEffect(() => {
-     let currentFilteredJobs = [];
-     if (selectedDomain === 'all') {
-       currentFilteredJobs = allJobs;
-     } else {
-       currentFilteredJobs = allJobs.filter(job => job.domainId === selectedDomain);
-     }
-     setFilteredJobs(currentFilteredJobs);
-   }, [selectedDomain]); // Depend only on the single selectedDomain state
- 
+  // State for the single filter for all roles
+  const [selectedDomain, setSelectedDomain] = useState("all");
+
+  // State to store jobs filtered by the selected domain
+  const [filteredJobs, setFilteredJobs] = useState([]);
+
+  // Effect to filter jobs based on selected domain
+  useEffect(() => {
+    let currentFilteredJobs = [];
+    if (selectedDomain === "all") {
+      currentFilteredJobs = allJobs;
+    } else {
+      currentFilteredJobs = allJobs.filter(
+        (job) => job.domainId === selectedDomain
+      );
+    }
+    setFilteredJobs(currentFilteredJobs);
+  }, [selectedDomain]); // Depend only on the single selectedDomain state
 
   const [email, setEmail] = useState("");
   const [selectedRoles, setSelectedRoles] = useState([]);
@@ -46,7 +48,27 @@ const Career = () => {
 
   const openRolesRef = useRef(null);
 
-  
+  const test = [
+    {
+      img: "https://images.unsplash.com/photo-1653379672421-40c464f335e2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGluZGlhbiUyMHdvbWVuJTIwY29ycG9yYXRlJTIwaW1hZ2V8ZW58MHx8MHx8fDA%3D",
+      text: "Working at Collabority has been a game-changer for my career. The team values creativity, encourages experimentation, and gives you full ownership of your ideas. They truly cares about digital authenticity and user trust.",
+      name: "Ananya Shah",
+      post: "Creative Lead, Collabority",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1552642986-ccb41e7059e7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwbWVufGVufDB8fDB8fHww",
+      text: "At Collabority, I don’t just write code—I help build tools that combat misinformation and protect real people. The supportive environment, flexible work culture, and meaningful purpose make it the most fulfilling job I’ve ever had.",
+      post: "Software Engineer, Collabority",
+      name: "Raj Mehra",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1599668946438-519e96061e60?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGluZGlhbiUyMHdvbWVufGVufDB8fDB8fHww",
+      text: "Collabority is more than just a workplace—it’s a mission I proudly stand behind. I get to work with passionate, sharp minds every day, all while helping spread awareness about deepfakes and digital safety. The energy here is unmatched!",
+      name: "Fatima Khan",
+      post: "Marketing Strategist, Collabority",
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-white font-poppins">
       {/* Navbar */}
@@ -63,7 +85,10 @@ const Career = () => {
             <br />
             impact on humanity
           </h1>
-          <button onClick={() => openRolesRef.current.scrollIntoView({behaviour: "smooth"})}
+          <button
+            onClick={() =>
+              openRolesRef.current.scrollIntoView({ behaviour: "smooth" })
+            }
             className={`bg-[#008080] text-white py-3 px-6 rounded-[10px] text-base font-bold cursor-pointer transition-colors duration-300 hover:bg-gray-900`}
           >
             See open roles
@@ -109,8 +134,8 @@ const Career = () => {
 
       {/* Open Roles Section */}
       <section ref={openRolesRef} className="min-h-screen bg-gray-50">
-      <style>
-        {`
+        <style>
+          {`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         .font-sans {
             font-family: 'Inter', sans-serif;
@@ -125,87 +150,96 @@ const Career = () => {
             color: #4B5563;
         }
         `}
-      </style>
+        </style>
 
-      {/* Main Header and overall filter */}
-      <header className="bg-white shadow-sm py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-4 sm:mb-0 text-center sm:text-left">
-            Open Roles
-          </h1>
-          {/* Consolidated Roles Filter Dropdown */}
-          <div className="relative w-full sm:w-auto">
-            <label htmlFor="domain-filter" className="sr-only">Filter roles by domain</label>
-            <select
-              id="domain-filter"
-              className="block w-full sm:w-48 bg-gray-100 border border-gray-300 text-gray-700 py-2 pl-4 pr-10 rounded-lg leading-tight
+        {/* Main Header and overall filter */}
+        <header className="bg-white shadow-sm py-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
+            <h1 className="text-3xl font-extrabold text-gray-900 mb-4 sm:mb-0 text-center sm:text-left">
+              Open Roles
+            </h1>
+            {/* Consolidated Roles Filter Dropdown */}
+            <div className="relative w-full sm:w-auto">
+              <label htmlFor="domain-filter" className="sr-only">
+                Filter roles by domain
+              </label>
+              <select
+                id="domain-filter"
+                className="block w-full sm:w-48 bg-gray-100 border border-gray-300 text-gray-700 py-2 pl-4 pr-10 rounded-lg leading-tight
                          focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary transition duration-150 ease-in-out appearance-none"
-              value={selectedDomain}
-              onChange={(e) => setSelectedDomain(e.target.value)}
-              aria-label="Filter roles by category"
-            >
-              {allDomains.map((domain) => (
-                <option key={domain.id} value={domain.id}>
-                  {domain.name}
-                </option>
-              ))}
-            </select>
-            <div className="custom-select-arrow">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
+                value={selectedDomain}
+                onChange={(e) => setSelectedDomain(e.target.value)}
+                aria-label="Filter roles by category"
               >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z" />
-              </svg>
+                {allDomains.map((domain) => (
+                  <option key={domain.id} value={domain.id}>
+                    {domain.name}
+                  </option>
+                ))}
+              </select>
+              <div className="custom-select-arrow">
+                <svg
+                  className="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z" />
+                </svg>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main className="max-w-7xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-        {/* Horizontal separator line after the main header/overall filter */}
-        <hr className="border-gray-200 mb-8" />
+        <main className="max-w-7xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+          {/* Horizontal separator line after the main header/overall filter */}
+          <hr className="border-gray-200 mb-8" />
 
-        {/* Job Listings Section or "No Matching Roles" message */}
-        {filteredJobs.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobs.map((job) => (
-              <div
-                key={job.id}
-                className="bg-white border border-gray-200 rounded-xl shadow hover:shadow-lg transition duration-200 overflow-hidden group"
-              >
-                <div className="h-1 bg-gradient-to-r from-secondary to-gray-900" />
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900 group-hover:text-secondary transition">{job.title}</h3>
-                    <span className="text-xs px-2 py-1 rounded-full bg-primary text-secondary font-medium capitalize">
-                      {allDomains.find(d => d.id === job.domainId)?.name || 'General'}
-                    </span>
+          {/* Job Listings Section or "No Matching Roles" message */}
+          {filteredJobs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredJobs.map((job) => (
+                <div
+                  key={job.id}
+                  className="bg-white border border-gray-200 rounded-xl shadow hover:shadow-lg transition duration-200 overflow-hidden group"
+                >
+                  <div className="h-1 bg-gradient-to-r from-secondary to-gray-900" />
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-secondary transition">
+                        {job.title}
+                      </h3>
+                      <span className="text-xs px-2 py-1 rounded-full bg-primary text-secondary font-medium capitalize">
+                        {allDomains.find((d) => d.id === job.domainId)?.name ||
+                          "General"}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-500 mb-1">{job.location}</p>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                      {job.description}
+                    </p>
+                    <Link
+                      to={`/job/${job.id}`}
+                      className="inline-block mt-2 text-sm font-medium text-white bg-gray-900 hover:bg-primary hover:text-secondary hover:border transition px-4 py-2 rounded-md"
+                    >
+                      View Details
+                    </Link>
                   </div>
-                  <p className="text-sm text-gray-500 mb-1">{job.location}</p>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{job.description}</p>
-                  <Link
-                    to={`/job/${job.id}`}
-                    className="inline-block mt-2 text-sm font-medium text-white bg-gray-900 hover:bg-primary hover:text-secondary hover:border transition px-4 py-2 rounded-md"
-                  >
-                    View Details
-                  </Link>
                 </div>
-              </div>
-
-            ))}
-          </div>
-        ) : (
-          // Message when no jobs are found based on any filter
-          <div className="bg-white p-8 rounded-xl shadow-md text-center">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">No Matching Roles Found</h2>
-            <p className="text-gray-600 text-lg">
-              Adjust your domain selection or check back later for new opportunities.
-            </p>
-          </div>
-        )}
-      </main>
+              ))}
+            </div>
+          ) : (
+            // Message when no jobs are found based on any filter
+            <div className="bg-white p-8 rounded-xl shadow-md text-center">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                No Matching Roles Found
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Adjust your domain selection or check back later for new
+                opportunities.
+              </p>
+            </div>
+          )}
+        </main>
       </section>
 
       {/* Application Process */}
@@ -226,8 +260,11 @@ const Career = () => {
               the longer-form application questions.
             </span>
             <span className="block text-base">
-              We encourage candidates to spend time reading <Link to="/blog-details" className="text-[#008080]">our blog</Link> to get to
-              know our company, values and products.
+              We encourage candidates to spend time reading{" "}
+              <Link to="/blog-details" className="text-[#008080]">
+                our blog
+              </Link>{" "}
+              to get to know our company, values and products.
             </span>
           </p>
 
@@ -235,8 +272,12 @@ const Career = () => {
             <b className="font-semibold">2. Interviews and task assignment:</b>
             <span className="block text-base mt-1">
               Once your application has passed an internal review, you’ll
-              receive an email from <Link to="mailto:info@collabority.in" className="text-[#008080]">info@collabority.com</Link> to schedule your
-              first interview with someone from the Collabority team over Google Meet.
+              receive an email from{" "}
+              <Link to="mailto:info@collabority.in" className="text-[#008080]">
+                info@collabority.com
+              </Link>{" "}
+              to schedule your first interview with someone from the Collabority
+              team over Google Meet.
             </span>
             <span className="block text-base">
               You may be requested to complete a task assignment that highlights
@@ -251,7 +292,10 @@ const Career = () => {
           <p className="text-xl font-light">
             <b className="font-semibold">3. Decision:</b>
             <span className="block text-base mt-1">
-              You’ll always hear back from us via our <Link to="mailto:hello@collabority.in" className="text-[#008080]">hello@collabority.com </Link>
+              You’ll always hear back from us via our{" "}
+              <Link to="mailto:hello@collabority.in" className="text-[#008080]">
+                hello@collabority.com{" "}
+              </Link>
               email address – we manually review and respond to every
               candidate’s application.
             </span>
@@ -283,132 +327,192 @@ const Career = () => {
             personal wellbeing
           </h1>
         </div>
-          <div className="flex flex-col">
-            <div className="flex gap-40">
-              <div className="flex flex-col justify-center items-center gap-6 mt-24">
-                <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-basics.png" className="w-[45%]"/>
-                <h1 className="text-center font-medium text-3xl">The basics</h1>
-              </div>
-              <div className="flex flex-col mt-14 pl-20">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fglobe.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Work from anywhere</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">Employees at Collabority can work from <br/> anywhere in the world. We never place <br/> restrictions on locations.</p>
-                  </div>
-                  <div className="flex flex-col gap-1 mt-12">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fclock.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Design your own schedule</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">Work during the time of day that’s best for <br/> you. Employees are encouraged to work 8- <br/> hour days and no more than 40 <br/> hours/week.</p>
-                  </div>
-                  <div className="flex flex-col gap-1 mt-12">
-                    <div className="flex gap-4 items-center pl-3">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fdollar.svg" className="w-[2%]"/>
-                      <h3 className="text-lg font-medium">Negotiation-free compensation package</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">Our formula-based salaries are calculated <br/> based on industry-benchmarked skills <br/> and geographical location – no stressful <br/> negotiation required.</p>
-                  </div>
-              </div>
-            </div>
-            <hr className="border-t border-gray-300 mt-10" />
-            <div className="flex gap-40">
-              <div className="flex flex-col justify-center items-center gap-6 mt-24">
-                <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-skills.png" className="w-[45%]"/>
-                <h1 className="text-center font-medium text-3xl">Expand your <br/> professional skills</h1>
-              </div>
-              <div className="flex flex-col mt-14 pl-10">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fcase.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Continue your education</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">You’ll have a recurring budget to spend on <br/> attending conferences, taking courses, <br/> and purchasing books.</p>
-                  </div>
-                  <div className="flex flex-col gap-1 mt-12">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fticket.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Collaborate in-person at retreats</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">Our team- and company-wide retreats are <br/> unforgettable. The connections that we <br/> make in person inspire us throughout the <br/> year.</p>
-                  </div>
-              </div>
-            </div>
-            <hr className="border-t border-gray-300 mt-10" />
-            <div className="flex gap-40">
-              <div className="flex flex-col justify-center items-center gap-6 mt-24">
-                <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-environment.png" className="w-[45%]"/>
-                <h1 className="text-center font-medium text-3xl">Craft your ideal <br/> work environment</h1>
-              </div>
-              <div className="flex flex-col mt-14 pl-20">
-                  <div className="flex flex-col gap-1">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fbuilding.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Cozy up at a coworking space</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">Find the coworking space that’s right for <br/> you and Collabority will cover the expense.</p>
-                  </div>
-                  <div className="flex flex-col gap-1 mt-12">
-                    <div className="flex gap-4 items-center">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fapps.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Subscribe to apps and services</h3>
-                    </div>
-                    <p className="pl-11 text-gray-600">You’ll have a monthly budget to spend on <br/> services that help you do your job: home <br/> internet, work apps, music subscription, <br/> etc.</p>
-                  </div>
-                  <div className="flex flex-col gap-1 mt-12">
-                    <div className="flex gap-4 items-center pl-3">
-                      <img src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fcomputer.svg" className="w-[4%]"/>
-                      <h3 className="text-lg font-medium">Purchase the hardware you need
-                      </h3>
-                    </div>
-                    <p className="pl-13 text-gray-600">Every employee at Collabority has access < br/> to a recurring budget to spend on work- <br/> related equipment.</p>
-                  </div>
-              </div>
-            </div>
-          </div>
-      </section>
-
-      {/* testimonial */}
-      <section className="bg-[#F8F6F3] mt-10">
         <div className="flex flex-col">
-          <div className="flex flex-col justify-center items-center py-12 sm:py-16 px-4">
-            <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
-            Space to shape your career
-            </h4>
-            <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
-              What our employees say
-            </h1>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-start mb-12 sm:mb-16 px-4 sm:px-6 max-w-7xl mx-auto">
-            {clients.map((items, idx) => (
-              <div key={idx} className="w-full">
-                <div
-                  className={`bg-white w-full h-auto p-8 border-t-4 border-red-700 text-sm sm:text-base`}
-                >
-                  {items.text}
-                </div>
-                <div className="flex gap-3 mt-5">
+          <div className="flex gap-40">
+            <motion.div
+              className="flex flex-col justify-center items-center gap-6 mt-24"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <img
+                src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-basics.png"
+                className="w-[45%]"
+              />
+              <h1 className="text-center font-medium text-3xl">The basics</h1>
+            </motion.div>
+            <div className="flex flex-col mt-14 pl-20">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-4 items-center">
                   <img
-                    src={items.img}
-                    alt={items.name}
-                    className="w-12 h-12 rounded-full"
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fglobe.svg"
+                    className="w-[4%]"
                   />
-                  <div className="flex flex-col gap-1 sm:gap-3">
-                    <h4 className="font-bold text-sm sm:text-base">
-                      {items.name}
-                    </h4>
-                    <h6 className="text-gray-500 text-xs sm:text-sm">
-                      {items.post}
-                    </h6>
-                  </div>
+                  <h3 className="text-lg font-medium">Work from anywhere</h3>
                 </div>
+                <p className="pl-11 text-gray-600">
+                  Employees at Collabority can work from <br /> anywhere in the
+                  world. We never place <br /> restrictions on locations.
+                </p>
               </div>
-            ))}
+              <div className="flex flex-col gap-1 mt-12">
+                <div className="flex gap-4 items-center">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fclock.svg"
+                    className="w-[4%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Design your own schedule
+                  </h3>
+                </div>
+                <p className="pl-11 text-gray-600">
+                  Work during the time of day that’s best for <br /> you.
+                  Employees are encouraged to work 8- <br /> hour days and no
+                  more than 40 <br /> hours/week.
+                </p>
+              </div>
+              <div className="flex flex-col gap-1 mt-12">
+                <div className="flex gap-4 items-center pl-3">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fdollar.svg"
+                    className="w-[2%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Negotiation-free compensation package
+                  </h3>
+                </div>
+                <p className="pl-11 text-gray-600">
+                  Our formula-based salaries are calculated <br /> based on
+                  industry-benchmarked skills <br /> and geographical location –
+                  no stressful <br /> negotiation required.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr className="border-t border-gray-300 mt-10" />
+          <div className="flex gap-40">
+            <motion.div
+              className="flex flex-col justify-center items-center gap-6 mt-24"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <img
+                src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-skills.png"
+                className="w-[45%]"
+              />
+              <h1 className="text-center font-medium text-3xl">
+                Expand your <br /> professional skills
+              </h1>
+            </motion.div>
+            <div className="flex flex-col mt-14 pl-10">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-4 items-center">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fcase.svg"
+                    className="w-[4%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Continue your education
+                  </h3>
+                </div>
+                <p className="pl-11 text-gray-600">
+                  You’ll have a recurring budget to spend on <br /> attending
+                  conferences, taking courses, <br /> and purchasing books.
+                </p>
+              </div>
+              <div className="flex flex-col gap-1 mt-12">
+                <div className="flex gap-4 items-center">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fticket.svg"
+                    className="w-[4%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Collaborate in-person at retreats
+                  </h3>
+                </div>
+                <p className="pl-11 text-gray-600">
+                  Our team- and company-wide retreats are <br /> unforgettable.
+                  The connections that we <br /> make in person inspire us
+                  throughout the <br /> year.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr className="border-t border-gray-300 mt-10" />
+          <div className="flex gap-40">
+            <motion.div
+              className="flex flex-col justify-center items-center gap-6 mt-24"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <img
+                src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-environment.png"
+                className="w-[45%]"
+              />
+              <h1 className="text-center font-medium text-3xl">
+                Craft your ideal <br /> work environment
+              </h1>
+            </motion.div>
+            <div className="flex flex-col mt-14 pl-20">
+              <div className="flex flex-col gap-1">
+                <div className="flex gap-4 items-center">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fbuilding.svg"
+                    className="w-[4%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Cozy up at a coworking space
+                  </h3>
+                </div>
+                <p className="pl-11 text-gray-600">
+                  Find the coworking space that’s right for <br /> you and
+                  Collabority will cover the expense.
+                </p>
+              </div>
+              <div className="flex flex-col gap-1 mt-12">
+                <div className="flex gap-4 items-center">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fapps.svg"
+                    className="w-[4%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Subscribe to apps and services
+                  </h3>
+                </div>
+                <p className="pl-11 text-gray-600">
+                  You’ll have a monthly budget to spend on <br /> services that
+                  help you do your job: home <br /> internet, work apps, music
+                  subscription, <br /> etc.
+                </p>
+              </div>
+              <div className="flex flex-col gap-1 mt-12">
+                <div className="flex gap-4 items-center pl-3">
+                  <img
+                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fcomputer.svg"
+                    className="w-[4%]"
+                  />
+                  <h3 className="text-lg font-medium">
+                    Purchase the hardware you need
+                  </h3>
+                </div>
+                <p className="pl-13 text-gray-600">
+                  Every employee at Collabority has access <br /> to a recurring
+                  budget to spend on work- <br /> related equipment.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* testimonial */}
+      <ClientTestimonial
+        title1="Space to Shape your Career"
+        title2="What our Employees Say"
+        data={test}
+      />
       <hr className="border-t border-gray-300" />
       {/* Notified Section */}
 
@@ -480,7 +584,7 @@ const Career = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
       <ScrollToTop />
     </main>
   );

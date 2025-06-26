@@ -3,6 +3,8 @@ import PageHeader from "../components/PageHeader";
 import { ArrowLeft, ArrowRight, Calendar, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../layouts/Navbar";
+import NewsLetter from "../components/NewsLetter";
+import Footer from "../layouts/Footer";
 
 // Base blog entries
 const baseBlogs = [
@@ -23,6 +25,12 @@ const baseBlogs = [
     image: "/blogimages/b3.png",
     category: "DESIGN & VIDEO",
     date: "June 8, 2025",
+  },
+  {
+    title: "Result-Driven Marketing Strategies for Brand Growth",
+    image: "/blogimages/b2.png",
+    category: "MARKETING",
+    date: "June 10, 2025",
   },
 ];
 
@@ -111,7 +119,7 @@ const BlogGrid = () => {
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-secondary bg-primary hover:bg-secondary hover:text-white disabled:opacity-50"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-secondary bg-primary hover:bg-[#008080] hover:text-white disabled:opacity-60"
         >
           <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
@@ -133,11 +141,13 @@ const BlogGrid = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-secondary bg-primary hover:bg-secondary hover:text-white disabled:opacity-50"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-secondary bg-primary hover:bg-[#008080] hover:text-white disabled:opacity-60"
         >
           <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
+      <NewsLetter/>
+      <Footer />
     </div>
   );
 };

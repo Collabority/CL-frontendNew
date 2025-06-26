@@ -3,11 +3,14 @@ import Navbar from "../layouts/Navbar";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
 import Footer from "../layouts/Footer";
-import { portfolioPage, serviceCarousel } from "../constants/Data";
+import { portfolioPage } from "../constants/Data";
 import { FaComment } from "react-icons/fa6";
 import ScrollToTop from "../components/ScrolltoTop";
+import { useAnimateElementById, useAnimateElementsByClass } from "../utils/useScrollAnimation";
 
 const Portfolio = () => {
+  useAnimateElementById("slideUpImage")
+  useAnimateElementsByClass("animate-on-scroll")
   return (
     <main className="min-h-screen bg-white font-poppins">
       {/* Navbar */}
@@ -43,7 +46,7 @@ const Portfolio = () => {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"/>
+                  className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll" id="slideUpImage"/>
 
                 {/* Bold Vertical Line */}
                 <div className="w-[4px] h-[300px] bg-black"></div>
@@ -70,7 +73,7 @@ const Portfolio = () => {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"/>
+                  className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"/>
               </div>
             )
           )}

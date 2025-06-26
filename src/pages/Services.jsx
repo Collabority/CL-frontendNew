@@ -8,8 +8,19 @@ import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
 import ScrollToTop from "../components/ScrolltoTop";
 import NewsLetter from "../components/NewsLetter";
+import {
+  useAnimateElementById,
+  useAnimateElementsByClass,
+} from "../utils/useScrollAnimation";
+
+import { motion } from "framer-motion";
 
 const Services = () => {
+  // for the image to animate
+  useAnimateElementById("slideUpImage");
+
+  // for grid-elements to animate.
+  useAnimateElementsByClass("animate-on-scroll");
 
   const [showVideo, setShowVideo] = useState(false);
   return (
@@ -32,13 +43,19 @@ const Services = () => {
         {/* Left Images */}
         <div className="flex flex-col ml-32 sm:flex-row lg:flex-col sm:gap-8 w-full lg:w-1/2">
           <div className="mt-0 lg:mt-10 flex-shrink-0 relative z-10">
-            <img
+            <motion.img
               className="w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0  object-cover"
               src="src/assets/services-op-1.webp"
               alt="services-op-1"
+              initial={{ x: -200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             />
           </div>
-          <div className="px-0 sm:px-6 lg:px-24 flex-shrink-0 -mt-16 sm:-mt-20 lg:-mt-42 z-20">
+          <div
+            className="px-0 sm:px-6 lg:px-24 flex-shrink-0 -mt-16 sm:-mt-20 lg:-mt-42 z-20 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+            id="slideUpImage"
+          >
             <img
               className="border-10 border-white w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 object-cover"
               src="src/assets/services-op-2.webp"
@@ -145,10 +162,10 @@ const Services = () => {
       </section>
       {/* Services Section */}
       <section className="py-16 lg:px-40 flex-grow bg-[#F8F6F3]">
-        <h1 className="text-5xl font-bold text-gray-900 text-center mb-10">
+        <h1 className="text-5xl font-bold text-blue-950 text-center mb-10">
           Latest Services
         </h1>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll">
           <div className="flex flex-wrap justify-center -m-4">
             {servicesCards.map((service, i) => (
               <div key={i} className="w-full sm:w-1/2 lg:w-1/3 p-6">
@@ -167,10 +184,10 @@ const Services = () => {
             News Feed
           </h1>
           <p className="font-medium text-white text-sm sm:text-base">
-          Helping brands thrive with the perfect blend of 
+            Helping brands thrive with the perfect blend of
           </p>
           <p className="font-medium text-white text-sm sm:text-base">
-          strategy, creativity, and technology.
+            strategy, creativity, and technology.
           </p>
         </div>
 
@@ -178,7 +195,7 @@ const Services = () => {
           {newsfeed.map((item, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col items-center text-white w-full sm:w-80 text-center overflow-hidden rounded shadow-lg"
+              className="group relative flex flex-col items-center text-white w-full sm:w-80 text-center overflow-hidden rounded shadow-lg transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll" id="slideUpImage"
             >
               {/* Image with hover effect */}
               <img
@@ -193,18 +210,18 @@ const Services = () => {
                   {item.des}
                 </p>
                 <Link to="/blog">
-                <button className="mt-4 opacity-0 cursor-pointer group-hover:opacity-100 transform group-hover:translate-y-0 translate-y-2 transition-all duration-500 text-white text-2xl drop-shadow-md">
-                  →
-                </button>
+                  <button className="mt-4 opacity-0 cursor-pointer group-hover:opacity-100 transform group-hover:translate-y-0 translate-y-2 transition-all duration-500 text-white text-2xl drop-shadow-md">
+                    →
+                  </button>
                 </Link>
               </div>
             </div>
           ))}
         </div>
       </section>
-          <NewsLetter/>
-      <Footer/>
-      <ScrollToTop/>
+      <NewsLetter />
+      <Footer />
+      <ScrollToTop />
     </main>
   );
 };

@@ -3,38 +3,81 @@ import PageHeader from "../components/PageHeader";
 import ScrollToTop from "../components/ScrolltoTop";
 import { COLORS } from "../constants/Data";
 import Navbar from "../layouts/Navbar";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import Footer from "../layouts/Footer";
 import { Link } from "react-router-dom";
 import NewsLetter from "../components/NewsLetter";
 
 const contactTiles = [
   {
-    title: 'Phone Number',
-    value: '+91 0000000000',
+    title: "Phone Number",
+    value: "+91 0000000000",
     icon: (
-      <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z"/></svg>
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        stroke={COLORS.PRIMARY}
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z" />
+      </svg>
     ),
   },
   {
-    title: 'Email Address',
+    title: "Email Address",
     value: <a href="mailto:hello@collabority">hello@collabority</a>,
     icon: (
-      <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6 12 13 2 6"/></svg>
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        stroke={COLORS.PRIMARY}
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="M22 6 12 13 2 6" />
+      </svg>
     ),
   },
   {
-    title: 'Office Location',
-    value: 'Ghaziabad, Uttar Pradesh, India, 201001',
+    title: "Office Location",
+    value: "Ghaziabad, Uttar Pradesh, India, 201001",
     icon: (
-      <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        stroke={COLORS.PRIMARY}
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
     ),
   },
   {
-    title: 'Social Network',
-    value: <a href="https://www.linkedin.com/company/collaborityofficial/">Linkedin</a>,
+    title: "Social Network",
+    value: (
+      <a href="https://www.linkedin.com/company/collaborityofficial/">
+        Linkedin
+      </a>
+    ),
     icon: (
-      <svg width="32" height="32" fill="none" stroke={COLORS.PRIMARY} strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2Z"/></svg>
+      <svg
+        width="32"
+        height="32"
+        fill="none"
+        stroke={COLORS.PRIMARY}
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2Z" />
+      </svg>
     ),
   },
 ];
@@ -50,17 +93,17 @@ const Contact = () => {
       <div className="bg-[#F8F6F3]">
         {/* Hero Section */}
         <PageHeader
-        title="Contact Us"
-        breadcrumb={
-          <>
-            <div className="flex gap-2">
-              <Link to="/">Home</Link>
-              <p>|</p>
-              <Link to="/services">Services</Link>
-            </div>
-          </>
-        }
-      />
+          title="Contact Us"
+          breadcrumb={
+            <>
+              <div className="flex gap-2">
+                <Link to="/">Home</Link>
+                <p>|</p>
+                <Link to="/services">Services</Link>
+              </div>
+            </>
+          }
+        />
         {/* Contact Info & Map */}
         <div className="w-full py-12 mb-12">
           <section className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
@@ -69,12 +112,14 @@ const Contact = () => {
                 <div
                   key={idx}
                   className={`flex flex-col items-center justify-center aspect-square min-h-[180px] h-full rounded-none text-center bg-transparent
-                    ${idx < 2 ? 'border-b border-[#e0d8c8]' : ''}
-                    ${idx % 2 === 0 ? 'border-r border-[#e0d8c8]' : ''}
+                    ${idx < 2 ? "border-b border-[#e0d8c8]" : ""}
+                    ${idx % 2 === 0 ? "border-r border-[#e0d8c8]" : ""}
                   `}
                 >
                   <div className="mb-4">{tile.icon}</div>
-                  <div className="text-xl font-bold text-[#002248] mb-2">{tile.title}</div>
+                  <div className="text-xl font-bold text-[#002248] mb-2">
+                    {tile.title}
+                  </div>
                   <div className="text-base text-[#7b8ca0]">{tile.value}</div>
                 </div>
               ))}
@@ -98,15 +143,41 @@ const Contact = () => {
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
             {/* Contact Form */}
             <form className="w-full md:w-1/2 flex flex-col gap-6 bg-[#f3ede6] p-8 rounded-lg relative">
-              <span className="text-[#2563eb] font-semibold text-lg mb-2">Get In Touch</span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#002248] mb-8">Estimate For Your Projects.</h2>
-              <input type="text" placeholder="Enter your name" className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none" />
-              <input type="email" placeholder="Enter your email" className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none" />
-              <textarea placeholder="Enter your message" rows={4} className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] resize-none rounded-none" />
-              <button type="submit" className="bg-[#008080] text-white text-lg font-semibold px-12 py-4 rounded-none hover:bg-[#006666] transition-colors mt-4 self-start">Submit</button>
+              <span className="text-[#2563eb] font-semibold text-lg mb-2">
+                Get In Touch
+              </span>
+              <h2 className="text-4xl md:text-5xl font-extrabold text-[#002248] mb-8">
+                Estimate For Your Projects.
+              </h2>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none"
+              />
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none"
+              />
+              <textarea
+                placeholder="Enter your message"
+                rows={4}
+                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] resize-none rounded-none"
+              />
+              <button
+                type="submit"
+                className="bg-[#008080] text-white text-lg font-semibold px-12 py-4 rounded-none hover:bg-[#006666] transition-colors mt-4 self-start"
+              >
+                Submit
+              </button>
             </form>
             {/* Video/Image with Play Button */}
-            <div className="relative w-full md:w-1/2 flex justify-center items-center h-full">
+            <motion.div
+              className="relative w-full md:w-1/2 flex justify-center items-center h-full"
+              initial={{ x: 200, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <div className="relative w-full h-full flex items-center justify-center">
                 <img
                   src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
@@ -117,7 +188,7 @@ const Contact = () => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   className="absolute inset-0 flex items-center justify-center"
-                  style={{ pointerEvents: 'auto' }}
+                  style={{ pointerEvents: "auto" }}
                   onClick={toggleVideoModal}
                 >
                   <motion.span
@@ -126,22 +197,28 @@ const Contact = () => {
                       boxShadow: [
                         "0 0 0 0 rgba(13,89,219,0.7)",
                         "0 0 0 20px rgba(13,89,219,0.0)",
-                        "0 0 0 0 rgba(13,89,219,0.7)"
-                      ]
+                        "0 0 0 0 rgba(13,89,219,0.7)",
+                      ],
                     }}
                     transition={{
                       repeat: Infinity,
                       duration: 1.5,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                   >
                     <svg className="w-10 h-10" fill="white" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" stroke="white" strokeWidth="0.5" strokeLinejoin="round" strokeLinecap="round"/>
+                      <path
+                        d="M8 5v14l11-7z"
+                        stroke="white"
+                        strokeWidth="0.5"
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </motion.span>
                 </motion.button>
               </div>
-            </div>
+            </motion.div>
           </div>
           {/* Video Modal */}
           {isVideoModalOpen && (
@@ -149,13 +226,13 @@ const Contact = () => {
               <div
                 className="relative bg-white shadow-2xl flex flex-col"
                 style={{
-                  width: '70vw',
-                  height: '70vh',
-                  maxWidth: '100vw',
-                  maxHeight: '100vh',
-                  minWidth: '320px',
-                  minHeight: '200px',
-                  overflow: 'auto',
+                  width: "70vw",
+                  height: "70vh",
+                  maxWidth: "100vw",
+                  maxHeight: "100vh",
+                  minWidth: "320px",
+                  minHeight: "200px",
+                  overflow: "auto",
                 }}
               >
                 <button
@@ -169,7 +246,7 @@ const Contact = () => {
                   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                   title="Contact Video"
                   className="w-full h-full border-none"
-                  style={{ width: '100%', height: '100%', minHeight: '200px' }}
+                  style={{ width: "100%", height: "100%", minHeight: "200px" }}
                   allowFullScreen
                 />
               </div>
@@ -177,11 +254,11 @@ const Contact = () => {
           )}
         </section>
       </div>
-      <NewsLetter/>
-      <Footer/>
+      <NewsLetter />
+      <Footer />
       <ScrollToTop />
     </div>
   );
 };
 
-export default Contact; 
+export default Contact;

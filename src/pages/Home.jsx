@@ -21,10 +21,13 @@ import {
 } from "../utils/useScrollAnimation";
 import tileGallery01 from "../assets/tileGallery01.webp";
 import tileGallery02 from "../assets/tileGallery02.webp";
-import { FaComment, FaCommentDots} from "react-icons/fa";
+import { FaComment, FaCommentDots } from "react-icons/fa";
 import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
 import ScrollToTop from "../components/ScrolltoTop";
+
+import { motion } from "framer-motion";
+import ClientTestimonial from "../components/ClientTestimonial";
 
 const Home = () => {
   const [animate, setAnimate] = useState(false);
@@ -84,14 +87,17 @@ const Home = () => {
               `}
               >
                 <span className="text-2xl font-semibold text-[#008080] tracking-widest">
-                Digital Transformation & Creative Services Agency
+                  Digital Transformation & Creative Services Agency
                 </span>
                 <h1 className="text-8xl font-extrabold text-blue-950">
                   Best IT Solutions <br className="hidden sm:inline" /> Provider
                   Agency
                 </h1>
                 <p className="pt-6 font-semibold text-xl text-blue-950">
-                At Collabority, we provide innovative IT solutions, impactful marketing, creative <br/> design, and high-quality video production. Our multi-domain expertise drives <br/> seamless digital transformation and lasting brand growth.
+                  At Collabority, we provide innovative IT solutions, impactful
+                  marketing, creative <br /> design, and high-quality video
+                  production. Our multi-domain expertise drives <br /> seamless
+                  digital transformation and lasting brand growth.
                 </p>
                 <Link to="/services-details" className="w-full sm:w-auto">
                   <button className="group inline-flex items-center cursor-pointer gap-2 mt-4 justify-center px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-[#008080] hover:bg-gray-900 text-white text-sm sm:text-base md:text-base rounded font-medium w-full sm:w-auto max-w-xs sm:max-w-none transition-colors duration-300 ease-in-out">
@@ -147,7 +153,7 @@ const Home = () => {
             return (
               <div
                 key={idx}
-                className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-lg shadow-lg cursor-pointer group bg-white text-black transition-all duration-500 ease-in-out hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105 transform"
+                className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-lg shadow-lg cursor-pointer group bg-white text-black transition-all duration-500 ease-in-out hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105 transform transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll" id="slideUpImage"
               >
                 {/* Hover Dotted Background */}
                 <div
@@ -208,7 +214,7 @@ const Home = () => {
             CORE FEATURES
           </h4>
           <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left break-words">
-          Enhancing Your Digital Journey
+            Enhancing Your Digital Journey
           </h1>
 
           <ul className="text-gray-600 flex flex-col gap-2 mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
@@ -218,7 +224,14 @@ const Home = () => {
             <li>Professional Video Production</li>
           </ul>
           <p className="text-sm sm:text-base text-gray-600 mt-6 sm:mt-10 font-medium leading-relaxed">
-          At Collabority, we bring together technology, strategy, creativity, and media to empower businesses in the digital space. From building scalable IT systems to running impactful marketing campaigns, we ensure every aspect aligns with your growth goals. Our design services enhance brand identity while our video production brings stories to life with clarity and emotion. With expertise across these domains, we drive seamless digital transformation tailored to your vision.
+            At Collabority, we bring together technology, strategy, creativity,
+            and media to empower businesses in the digital space. From building
+            scalable IT systems to running impactful marketing campaigns, we
+            ensure every aspect aligns with your growth goals. Our design
+            services enhance brand identity while our video production brings
+            stories to life with clarity and emotion. With expertise across
+            these domains, we drive seamless digital transformation tailored to
+            your vision.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mt-6 sm:mt-10 justify-center lg:justify-start">
             <button className="bg-[#008080] rounded text-white py-3 px-6 hover:bg-gray-900 transition-colors w-full sm:w-auto">
@@ -268,27 +281,34 @@ const Home = () => {
             OUR LATEST SERVICES
           </h3>
           <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
-          Crafting Innovative Solutions for  
+            Crafting Innovative Solutions for
           </h1>
           <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
-          Your Digital Success
+            Your Digital Success
           </h1>
         </div>
         <div className="flex flex-col">
           {serviceCarousel.map((item, idx) =>
-            idx % 2 == 0 ? (
+            idx % 2 === 0 ? (
               <div
                 key={idx}
-                className="flex gap-10 justify-center items-center"
+                className="flex gap-10 justify-center items-center mb-16"
               >
-                {/* Image */}
-                <img src={item.image} alt={item.title} className="h-[400px]" />
+                {/* Image with animation from left */}
+                <motion.img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-[400px]"
+                  initial={{ x: -200, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
 
                 {/* Bold Vertical Line */}
                 <div className="w-[4px] h-[300px] bg-black"></div>
 
                 {/* Text Content */}
-                <div className="px-32 flex flex-col">
+                <div className="px-8 sm:px-32 flex flex-col">
                   <h1 className="text-4xl font-bold text-black">
                     {item.title}
                   </h1>
@@ -296,14 +316,29 @@ const Home = () => {
                 </div>
               </div>
             ) : (
-              <div key={idx} className="flex gap-10 justify-center items-center">
-                <div className="px-32 flex flex-col">
-                  <h1 className="text-4xl font-bold">{item.title}</h1>
+              <div
+                key={idx}
+                className="flex gap-10 justify-center items-center mb-16"
+              >
+                <div className="px-8 sm:px-32 flex flex-col">
+                  <h1 className="text-4xl font-bold text-black">
+                    {item.title}
+                  </h1>
                   <p className="mt-8 text-gray-400">{item.para}</p>
                 </div>
+
                 {/* Bold Vertical Line */}
                 <div className="w-[4px] h-[300px] bg-black"></div>
-                <img src={item.image} alt={item.title} className="h-[400px]" />
+
+                {/* Image with animation from right */}
+                <motion.img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-[400px]"
+                  initial={{ x: 200, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
               </div>
             )
           )}
@@ -320,7 +355,7 @@ const Home = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-6 lg:gap-0">
             {/* Left Heading */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight text-center lg:text-left">
-            Explore Our Latest Work <br/> and Stunning Portfolios
+              Explore Our Latest Work <br /> and Stunning Portfolios
             </h1>
 
             {/* Right Arrow Buttons */}
@@ -343,7 +378,7 @@ const Home = () => {
           </div>
         </div>
         <div
-          className="flex flex-col transition-transform duration-500 ease-in-out sm:flex-row px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto gap-6 sm:gap-7"
+          className="flex flex-col transition-transform duration-500 ease-in-out sm:flex-row px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto gap-6 sm:gap-7 "
           style={{ transform: `translateX` }}
         >
           {portfolioImages.slice(startIndex, startIndex + 3).map((src, idx) => (
@@ -371,9 +406,9 @@ const Home = () => {
 
                 {/* Arrow Button */}
                 <Link to="/portfolio">
-                <button className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                  <button className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </Link>
               </div>
             </div>
@@ -414,44 +449,7 @@ const Home = () => {
       </section>
 
       {/* Client testimonial */}
-      <section className="bg-[#F8F6F3]">
-        <div className="flex flex-col">
-          <div className="flex flex-col justify-center items-center py-12 sm:py-16 px-4">
-            <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
-              Client Testimonials
-            </h4>
-            <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
-              What our clients say
-            </h1>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-start mb-12 sm:mb-16 px-4 sm:px-6 max-w-7xl mx-auto">
-            {clients.map((items, idx) => (
-              <div key={idx} className="w-full">
-                <div
-                  className={`bg-white w-full h-auto p-8 border-t-4 border-red-700 text-sm sm:text-base`}
-                >
-                  {items.text}
-                </div>
-                <div className="flex gap-3 mt-5">
-                  <img
-                    src={items.img}
-                    alt={items.name}
-                    className="w-12 h-12 rounded-full"
-                  />
-                  <div className="flex flex-col gap-1 sm:gap-3">
-                    <h4 className="font-bold text-sm sm:text-base">
-                      {items.name}
-                    </h4>
-                    <h6 className="text-gray-500 text-xs sm:text-sm">
-                      {items.post}
-                    </h6>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ClientTestimonial title1="Client Testimonials" title2="What Our Clients Say" data={clients}/>
 
       {/* Call to action */}
       <section className="bg-gray-900">
@@ -461,10 +459,10 @@ const Home = () => {
               CALL TO ACTION
             </h4>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
-              Connect with Us to 
+              Connect with Us to
             </h1>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
-            make Your Brand.
+              make Your Brand.
             </h1>
           </div>
           <div className="flex-shrink-0">
@@ -496,6 +494,7 @@ const Home = () => {
             <div
               key={idx}
               className="bg-[#F8F6F3] flex flex-col justify-start border-2 border-gray-200 rounded-lg overflow-hidden transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+              id="slideUpImage"
             >
               <img
                 src={key.img}
@@ -508,7 +507,10 @@ const Home = () => {
                   {key.des}
                 </h4>
                 <div className="flex gap-2 items-center">
-                  <Link to="/blog" className="flex items-center text-gray-600 gap-2 text-sm sm:text-base">
+                  <Link
+                    to="/blog"
+                    className="flex items-center text-gray-600 gap-2 text-sm sm:text-base"
+                  >
                     Read More
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
                   </Link>
@@ -521,7 +523,7 @@ const Home = () => {
 
       {/* Footer */}
       <Footer />
-      <ScrollToTop/>
+      <ScrollToTop />
     </main>
   );
 };
