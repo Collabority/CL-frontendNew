@@ -13,7 +13,7 @@ import {
   portfolioImages,
   serviceCarousel,
   services,
-} from "../constants/data"
+} from "../constants/data";
 import dottedImage from "../assets/dotted_image.webp";
 import {
   useAnimateElementById,
@@ -61,7 +61,7 @@ const Home = () => {
   // for video playing -->
   const [showVideo, setShowVideo] = useState(false);
   return (
-    <main className="min-h-screen bg-white font-poppins">
+    <main className="min-h-screen bg-white font-poppins overflow-x-hidden">
       {/* Navbar */}
 
       <Navbar />
@@ -72,57 +72,45 @@ const Home = () => {
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="h-full w-full flex items-center">
-          <section className="w-full">
-            <div className="flex justify-between">
-              {/* Left Text */}
+          <section className="w-full px-4 sm:px-8">
+            <div className="flex flex-col-reverse lg:flex-row justify-between items-center">
               <div
-                className={`
-                pl-10 pt-30
-                transition-transform transition-opacity duration-1200 ease-out
-                ${
+                className={`transition-transform transition-opacity duration-1200 ease-out w-full lg:w-1/2 ${
                   animate
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
-                }
-              `}
+                }`}
               >
-                <span className="text-2xl font-semibold text-[#008080] tracking-widest">
+                <span className="text-xl sm:text-2xl font-semibold text-[#008080] tracking-widest block mb-4">
                   Digital Transformation & Creative Services Agency
                 </span>
-                <h1 className="text-8xl font-extrabold text-blue-950">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-blue-950">
                   Best IT Solutions <br className="hidden sm:inline" /> Provider
                   Agency
                 </h1>
-                <p className="pt-6 font-semibold text-xl text-blue-950">
+                <p className="pt-4 sm:pt-6 text-base sm:text-lg font-semibold text-blue-950">
                   At Collabority, we provide innovative IT solutions, impactful
-                  marketing, creative <br /> design, and high-quality video
-                  production. Our multi-domain expertise drives <br /> seamless
-                  digital transformation and lasting brand growth.
+                  marketing, creative design, and high-quality video production.
+                  Our multi-domain expertise drives seamless digital
+                  transformation and lasting brand growth.
                 </p>
-                <Link to="/services-details" className="w-full sm:w-auto">
-                  <button className="group inline-flex items-center cursor-pointer gap-2 mt-4 justify-center px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-[#008080] hover:bg-gray-900 text-white text-sm sm:text-base md:text-base rounded font-medium w-full sm:w-auto max-w-xs sm:max-w-none transition-colors duration-300 ease-in-out">
-                    Our Services
-                    <ArrowRight className="ml-2 narrow-icon" />
+                <Link to="/services-details">
+                  <button className="group inline-flex items-center mt-4 px-6 py-3 bg-[#008080] hover:bg-gray-900 text-white text-base rounded font-medium transition duration-300">
+                    Our Services <ArrowRight className="ml-2" />
                   </button>
                 </Link>
               </div>
-
-              {/* Right Image */}
               <div
-                className={`
-                pr-4
-                transition-transform transition-opacity duration-1200 ease-out
-                ${
+                className={`transition-transform transition-opacity duration-1200 ease-out w-full lg:w-1/2 mb-10 lg:mb-0 ${
                   animate
                     ? "translate-x-0 opacity-100"
                     : "translate-x-full opacity-0"
-                }
-              `}
+                }`}
               >
                 <img
                   src={banner_img}
                   alt="Work"
-                  className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
+                  className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
                 />
               </div>
             </div>
@@ -153,7 +141,8 @@ const Home = () => {
             return (
               <div
                 key={idx}
-                className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-lg shadow-lg cursor-pointer group bg-white text-black transition-all duration-500 ease-in-out hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105 transform transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll" id="slideUpImage"
+                className="relative overflow-hidden flex flex-col items-center text-center p-6 rounded-lg shadow-lg cursor-pointer group bg-white text-black transition-all duration-500 ease-in-out hover:bg-gray-800 hover:text-white hover:shadow-xl hover:scale-105 transform transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+                id="slideUpImage"
               >
                 {/* Hover Dotted Background */}
                 <div
@@ -240,7 +229,7 @@ const Home = () => {
 
             <button
               onClick={() => setShowVideo(true)}
-              className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-900 transition-colors flex gap-2 items-center"
+              className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-900 transition-colors flex gap-2 items-center justify-center"
             >
               <Video /> Intro Video
             </button>
@@ -280,68 +269,50 @@ const Home = () => {
           <h3 className="font-semibold tracking-widest text-[#008080] text-base sm:text-lg">
             OUR LATEST SERVICES
           </h3>
-          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
+          <h1 className="font-bold text-blue-950 text-3xl sm:text-4xl lg:text-5xl xl:text-7xl">
             Crafting Innovative Solutions for
           </h1>
-          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
+          <h1 className="font-bold text-blue-950 text-3xl sm:text-4xl lg:text-5xl xl:text-7xl">
             Your Digital Success
           </h1>
         </div>
-        <div className="flex flex-col">
-          {serviceCarousel.map((item, idx) =>
-            idx % 2 === 0 ? (
+
+        <div className="flex flex-col gap-12 w-full">
+          {serviceCarousel.map((item, idx) => {
+            const isEven = idx % 2 === 0;
+
+            return (
               <div
                 key={idx}
-                className="flex gap-10 justify-center items-center mb-16"
+                className={`flex flex-col ${
+                  isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                } gap-8 lg:gap-10 items-center justify-center w-full`}
               >
-                {/* Image with animation from left */}
+                {/* Image */}
                 <motion.img
                   src={item.image}
                   alt={item.title}
-                  className="h-[400px]"
-                  initial={{ x: -200, opacity: 0 }}
+                  className="w-full sm:w-[90%] md:w-[70%] lg:w-[45%] h-auto object-cover max-h-[400px]"
+                  initial={{ x: isEven ? -200 : 200, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
 
-                {/* Bold Vertical Line */}
-                <div className="w-[4px] h-[300px] bg-black"></div>
+                {/* Vertical Line (hidden on small screens) */}
+                <div className="hidden lg:block w-[4px] h-[300px] bg-black"></div>
 
-                {/* Text Content */}
-                <div className="px-8 sm:px-32 flex flex-col">
-                  <h1 className="text-4xl font-bold text-black">
+                {/* Text */}
+                <div className="px-2 sm:px-4 lg:px-6 xl:px-10 flex flex-col text-center lg:text-left max-w-full lg:max-w-[45%]">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">
                     {item.title}
                   </h1>
-                  <p className="mt-8 text-gray-400">{item.para}</p>
+                  <p className="mt-4 sm:mt-6 text-sm sm:text-base lg:text-lg text-gray-500 leading-relaxed">
+                    {item.para}
+                  </p>
                 </div>
               </div>
-            ) : (
-              <div
-                key={idx}
-                className="flex gap-10 justify-center items-center mb-16"
-              >
-                <div className="px-8 sm:px-32 flex flex-col">
-                  <h1 className="text-4xl font-bold text-black">
-                    {item.title}
-                  </h1>
-                  <p className="mt-8 text-gray-400">{item.para}</p>
-                </div>
-
-                {/* Bold Vertical Line */}
-                <div className="w-[4px] h-[300px] bg-black"></div>
-
-                {/* Image with animation from right */}
-                <motion.img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-[400px]"
-                  initial={{ x: 200, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                />
-              </div>
-            )
-          )}
+            );
+          })}
         </div>
       </section>
 
@@ -449,7 +420,11 @@ const Home = () => {
       </section>
 
       {/* Client testimonial */}
-      <ClientTestimonial title1="Client Testimonials" title2="What Our Clients Say" data={clients}/>
+      <ClientTestimonial
+        title1="Client Testimonials"
+        title2="What Our Clients Say"
+        data={clients}
+      />
 
       {/* Call to action */}
       <section className="bg-gray-900">
