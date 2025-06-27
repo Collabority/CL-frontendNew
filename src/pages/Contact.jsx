@@ -49,7 +49,7 @@ const Contact = () => {
       <Navbar />
       <div className="bg-[#F8F6F3]">
         {/* Hero Section */}
-        <PageHeader title="About Us" breadcrumb={
+        <PageHeader title="Contact Us" breadcrumb={
         <>
         <div className='flex gap-2'>
           <Link to="/">Home</Link>

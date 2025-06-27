@@ -17,7 +17,7 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="flex-grow">
+    <div className="flex-grow overflow-x-hidden">
       <Navbar />
       <PageHeader
         title="News Details"
