@@ -6,9 +6,9 @@ import { blogsData } from "../constants/blogs";
 import PageHeader from "../components/PageHeader";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
-import ScrollToTop from "../components/ScrolltoTop";
 import NewsLetter from "../components/NewsLetter";
 import { motion } from "framer-motion";
+import ScrollToTop from "../components/ScrollToTop";
 
 const BlogDetails = () => {
   const navigate = useNavigate();

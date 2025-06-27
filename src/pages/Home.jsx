@@ -269,50 +269,74 @@ const Home = () => {
           <h3 className="font-semibold tracking-widest text-[#008080] text-base sm:text-lg">
             OUR LATEST SERVICES
           </h3>
-          <h1 className="font-bold text-blue-950 text-3xl sm:text-4xl lg:text-5xl xl:text-7xl">
+          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
             Crafting Innovative Solutions for
           </h1>
-          <h1 className="font-bold text-blue-950 text-3xl sm:text-4xl lg:text-5xl xl:text-7xl">
+          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
             Your Digital Success
           </h1>
         </div>
 
-        <div className="flex flex-col gap-12 w-full">
-          {serviceCarousel.map((item, idx) => {
-            const isEven = idx % 2 === 0;
-
-            return (
+        <div className="flex flex-col">
+          {serviceCarousel.map((item, idx) =>
+            idx % 2 === 0 ? (
               <div
                 key={idx}
-                className={`flex flex-col ${
-                  isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                } gap-8 lg:gap-10 items-center justify-center w-full`}
+                className="flex flex-col sm:flex-row gap-6 sm:gap-10 justify-center items-center mb-16"
               >
-                {/* Image */}
+                {/* Image on Left */}
                 <motion.img
                   src={item.image}
                   alt={item.title}
-                  className="w-full sm:w-[90%] md:w-[70%] lg:w-[45%] h-auto object-cover max-h-[400px]"
-                  initial={{ x: isEven ? -200 : 200, opacity: 0 }}
+                  className="w-full sm:w-auto h-auto sm:h-[400px] max-w-[90vw] sm:max-w-none"
+                  initial={{ x: -200, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
 
-                {/* Vertical Line (hidden on small screens) */}
-                <div className="hidden lg:block w-[4px] h-[300px] bg-black"></div>
+                {/* Vertical Line (hidden on mobile) */}
+                <div className="hidden sm:block w-[4px] h-[300px] bg-black"></div>
 
-                {/* Text */}
-                <div className="px-2 sm:px-4 lg:px-6 xl:px-10 flex flex-col text-center lg:text-left max-w-full lg:max-w-[45%]">
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">
+                {/* Text Content */}
+                <div className="px-4 sm:px-32 flex flex-col text-center sm:text-left">
+                  <h1 className="text-2xl sm:text-4xl font-bold text-black">
                     {item.title}
                   </h1>
-                  <p className="mt-4 sm:mt-6 text-sm sm:text-base lg:text-lg text-gray-500 leading-relaxed">
+                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg">
                     {item.para}
                   </p>
                 </div>
               </div>
-            );
-          })}
+            ) : (
+              <div
+                key={idx}
+                className="flex flex-col sm:flex-row-reverse gap-6 sm:gap-10 justify-center items-center mb-16"
+              >
+                {/* Image on Right */}
+                <motion.img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full sm:w-auto h-auto sm:h-[400px] max-w-[90vw] sm:max-w-none"
+                  initial={{ x: 200, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+
+                {/* Vertical Line (hidden on mobile) */}
+                <div className="hidden sm:block w-[4px] h-[300px] bg-black"></div>
+
+                {/* Text Content */}
+                <div className="px-4 sm:px-32 flex flex-col text-center sm:text-left">
+                  <h1 className="text-2xl sm:text-4xl font-bold text-black">
+                    {item.title}
+                  </h1>
+                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg">
+                    {item.para}
+                  </p>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </section>
 

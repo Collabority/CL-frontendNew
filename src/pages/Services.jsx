@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
-import { newsfeed, servicesCards, servicesCardsData } from "../constants/Data";
+import { newsfeed, servicesCards, } from "../constants/data";
 import ServiceCard from "../components/ServiceCard";
 import { Link } from "react-router-dom";
 import { FaPlay } from "react-icons/fa6";
 import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
-import ScrollToTop from "../components/ScrolltoTop";
 import NewsLetter from "../components/NewsLetter";
 import {
   useAnimateElementById,
@@ -14,6 +13,7 @@ import {
 } from "../utils/useScrollAnimation";
 
 import { motion } from "framer-motion";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Services = () => {
   // for the image to animate
