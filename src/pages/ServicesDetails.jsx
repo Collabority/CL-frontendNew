@@ -8,9 +8,8 @@ import {
   hoverTextColors,
   services,
   servicesCardsData,
-} from "../constants/Data";
+} from "../constants/data";
 import PageHeader from "../components/PageHeader";
-import ScrollToTop from "../components/ScrolltoTop";
 import dottedImage from "../assets/dotted_image.webp";
 import { FaComment } from "react-icons/fa";
 import {
@@ -18,6 +17,7 @@ import {
   useAnimateElementsByClass,
 } from "../utils/useScrollAnimation";
 import { motion } from "framer-motion";
+import ScrollToTop from "../components/ScrollToTop";
 
 const ServicesDetails = () => {
   useAnimateElementById("slideUpImage");
@@ -151,48 +151,47 @@ const ServicesDetails = () => {
 
       {/* Details Section */}
       <section className="flex flex-col mt-10">
-        <h1 className="text-center text-6xl font-bold text-blue-950">
+        <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold text-blue-950 px-4">
           Explore Our Services
         </h1>
-        <div className="w-full min-h-screen flex flex-col pt-10 gap-10">
-          <div className="flex flex-col m-10 bg-[#F8F6F3]">
+        <div className="w-full flex flex-col pt-10 gap-10">
+          <div className="flex flex-col bg-[#F8F6F3] px-4 sm:px-10">
             {servicesCardsData.map((item, idx) =>
               idx % 2 === 0 ? (
                 <div
                   key={idx}
-                  className="flex gap-10 justify-center items-center pl-10 py-10"
+                  className="flex flex-col lg:flex-row gap-10 justify-center items-center py-10"
                 >
                   {/* Image */}
                   <motion.img
                     src={item.image}
                     alt={item.title}
-                    className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"
+                    className="h-[300px] sm:h-[350px] lg:h-[400px] w-auto max-w-md rounded shadow-xl object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"
                     initial={{ x: -200, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{
                       type: "spring",
                       stiffness: 80,
                       damping: 18,
-                      duration: 1, // optional to help with smoothness
-                    }}                  
+                    }}
                   />
 
                   {/* Bold Vertical Line */}
-                  <div className="w-[4px] h-[300px] bg-black"></div>
+                  <div className="w-[4px] h-[200px] lg:h-[300px] bg-black hidden sm:block"></div>
 
                   {/* Text Content */}
-                  <div className="px-32 flex flex-col max-w-[700px]">
-                    <h1 className="text-4xl font-bold text-black">
+                  <div className="px-4 sm:px-8 lg:px-32 flex flex-col max-w-[700px] text-center lg:text-left">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">
                       {item.title}
                     </h1>
-                    <p className="mt-8 text-gray-500 leading-relaxed hover:text-gray-900">
+                    <p className="mt-4 text-gray-500 leading-relaxed hover:text-gray-900 text-sm sm:text-base">
                       {expandedIndex === idx
                         ? item.fullDescription
                         : item.shortDescription}
                     </p>
                     <button
                       onClick={() => toggleReadMore(idx)}
-                      className="mt-2 text-blue-500 underline text-sm w-fit cursor-pointer"
+                      className="mt-2 text-blue-500 underline text-sm w-fit self-center lg:self-start"
                     >
                       {expandedIndex === idx ? "Read Less" : "Read More"}
                     </button>
@@ -201,38 +200,38 @@ const ServicesDetails = () => {
               ) : (
                 <div
                   key={idx}
-                  className="flex gap-10 justify-center items-center pr-10 py-10"
+                  className="flex flex-col lg:flex-row-reverse gap-10 justify-center items-center py-10"
                 >
+                  {/* Image */}
+                  <motion.img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-[300px] sm:h-[350px] lg:h-[400px] w-auto max-w-md rounded shadow-xl object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"
+                    initial={{ x: 200, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+
+                  {/* Bold Vertical Line */}
+                  <div className="w-[4px] h-[200px] lg:h-[300px] bg-black hidden sm:block"></div>
+
                   {/* Text Content */}
-                  <div className="px-32 flex flex-col max-w-[700px]">
-                    <h1 className="text-4xl font-bold text-black">
+                  <div className="px-4 sm:px-8 lg:px-32 flex flex-col max-w-[700px] text-center lg:text-left">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">
                       {item.title}
                     </h1>
-                    <p className="mt-8 text-gray-500 leading-relaxed hover:text-gray-900">
+                    <p className="mt-4 text-gray-500 leading-relaxed hover:text-gray-900 text-sm sm:text-base">
                       {expandedIndex === idx
                         ? item.fullDescription
                         : item.shortDescription}
                     </p>
                     <button
                       onClick={() => toggleReadMore(idx)}
-                      className="mt-2 text-blue-500 underline text-sm w-fit cursor-pointer"
+                      className="mt-2 text-blue-500 underline text-sm w-fit self-center lg:self-start"
                     >
                       {expandedIndex === idx ? "Read Less" : "Read More"}
                     </button>
                   </div>
-
-                  {/* Bold Vertical Line */}
-                  <div className="w-[4px] h-[300px] bg-black"></div>
-
-                  {/* Image */}
-                  <motion.img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"
-                    initial={{ x: 200, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                  />
                 </div>
               )
             )}

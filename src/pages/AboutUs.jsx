@@ -72,7 +72,7 @@ const AboutUs = () => {
     <div className="bg-beige text-[#002248]">
       <Navbar />
       <PageHeader title="About Us" breadcrumb={
-        <div className="flex flex-wrap gap-2 text-sm sm:text-base">
+        <div className="flex flex-wrap gap-2">
           <Link to="/">Home</Link>
           <span>|</span>
           <Link to="/services">Services</Link>
