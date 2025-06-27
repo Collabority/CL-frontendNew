@@ -9,10 +9,10 @@ import JobDetails from "./pages/JobDetails";
 import Contact from "./pages/Contact";
 import BlogGrid from "./pages/BlogGrid";
 import BlogDetails from "./pages/BlogDetails";
-import AboutUs from "./pages/about/AboutUs";
 import RelatedBlogDetails from "./pages/RelatedBlogDetails";
 import { AboutProvider } from "./context/AboutContext";
-import About from "./pages/about/About";
+import AboutUs from "./pages/AboutUs";
+
 
 function App() {
   return (

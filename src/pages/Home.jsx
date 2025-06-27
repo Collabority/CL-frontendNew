@@ -13,7 +13,7 @@ import {
   portfolioImages,
   serviceCarousel,
   services,
-} from "../constants/Data";
+} from "../constants/data"
 import dottedImage from "../assets/dotted_image.webp";
 import {
   useAnimateElementById,
@@ -24,7 +24,7 @@ import tileGallery02 from "../assets/tileGallery02.webp";
 import { FaComment, FaCommentDots } from "react-icons/fa";
 import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
-import ScrollToTop from "../components/ScrolltoTop";
+import ScrollToTop from "../components/ScrollToTop";
 
 import { motion } from "framer-motion";
 import ClientTestimonial from "../components/ClientTestimonial";
@@ -502,7 +502,7 @@ const Home = () => {
                 className="w-full h-48 sm:h-56 object-cover"
               />
               <div className="p-4 flex flex-col gap-4">
-                <h6 className="text-blue-700 font-bold text-sm">{key.date}</h6>
+                <h6 className="text-[#008080] font-bold text-sm">{key.date}</h6>
                 <h4 className="font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight">
                   {key.des}
                 </h4>
