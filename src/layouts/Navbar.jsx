@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import CollaboryLogo from '../assets/collabory-logo.png'; 
+import CollaboryLogo from '../assets/collabory-logo.png';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,18 +10,18 @@ const Navbar = () => {
     isActive ? 'text-[#008080] font-bold' : 'text-gray-700 hover:text-[#008080]';
 
   return (
-    <nav className="bg-white shadow-md z-50 relative"> 
-      <div className="container mx-auto  py-3 flex justify-between items-center">
+    <nav className="bg-white shadow-md z-50 relative">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-3 flex justify-between items-center">
 
         {/* logo */}
-        <div className="flex items-center pl-0">
-          <img src={CollaboryLogo} alt="Collabory Logo" className="h-12" />
+        <div className="flex items-center">
+          <img src={CollaboryLogo} alt="Collabory Logo" className="h-10 md:h-11 lg:h-12" />
         </div>
 
-        {/* Mobile menu button*/}
+        {/* Mobile menu button */}
         <div className="md:hidden flex items-center">
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-700 focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -32,17 +32,29 @@ const Navbar = () => {
         </div>
 
         {/* Desktop menu */}
-        <div className="hidden md:flex items-center space-x-7">
-          <div className="flex space-x-9">
+        <div className="hidden md:flex items-center md:space-x-5 lg:space-x-7">
+          <div className="flex md:space-x-6 lg:space-x-9">
             <NavLink to="/" className={desktopLinkClass}>Home</NavLink>
-            <NavLink to="/services" className={({ isActive }) =>
-              location.pathname.startsWith('/services')
-                ? 'text-[#008080] font-bold'
-                : 'text-gray-700 hover:text-[#008080]'}>Services</NavLink>
-            <NavLink to="/blog" className={({ isActive }) =>
-              location.pathname.startsWith('/blog')
-                ? 'text-[#008080] font-bold'
-                : 'text-gray-700 hover:text-[#008080]'}>Blog</NavLink>
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                location.pathname.startsWith('/services')
+                  ? 'text-[#008080] font-bold'
+                  : 'text-gray-700 hover:text-[#008080]'
+              }
+            >
+              Services
+            </NavLink>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                location.pathname.startsWith('/blog')
+                  ? 'text-[#008080] font-bold'
+                  : 'text-gray-700 hover:text-[#008080]'
+              }
+            >
+              Blog
+            </NavLink>
             <NavLink to="/about" className={desktopLinkClass}>About</NavLink>
             <NavLink to="/career" className={desktopLinkClass}>Career</NavLink>
             <NavLink to="/portfolio" className={desktopLinkClass}>Portfolio</NavLink>
@@ -51,14 +63,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* menu overlay */}
+      {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-white z-40 overflow-y-auto">
-
           <div className="flex justify-between items-center px-4 py-4 border-b border-gray-200">
-            <img src={CollaboryLogo} alt="Collabory Logo" className="h-12" />
+            <img src={CollaboryLogo} alt="Collabory Logo" className="h-10" />
             <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-700 focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -79,4 +90,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

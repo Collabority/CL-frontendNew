@@ -72,10 +72,10 @@ const Home = () => {
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="h-full w-full flex items-center">
-          <section className="w-full px-4 sm:px-8">
-            <div className="flex flex-col-reverse lg:flex-row justify-between items-center">
+          <section className="w-full px-4 sm:px-8 md:px-12 lg:px-16">
+            <div className="flex flex-col-reverse lg:flex-row justify-between items-center md:gap-8 lg:gap-16">
               <div
-                className={`transition-transform transition-opacity duration-1200 ease-out w-full lg:w-1/2 ${
+                className={`transition-all duration-1000 w-full lg:w-1/2 ${
                   animate
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-full opacity-0"
@@ -90,9 +90,8 @@ const Home = () => {
                 </h1>
                 <p className="pt-4 sm:pt-6 text-base sm:text-lg font-semibold text-blue-950">
                   At Collabority, we provide innovative IT solutions, impactful
-                  marketing, creative design, and high-quality video production.
-                  Our multi-domain expertise drives seamless digital
-                  transformation and lasting brand growth.
+                  marketing, creative design, and high-quality video
+                  production...
                 </p>
                 <Link to="/services-details">
                   <button className="group inline-flex items-center mt-4 px-6 py-3 bg-[#008080] hover:bg-gray-900 text-white text-base rounded font-medium transition duration-300">
@@ -101,7 +100,7 @@ const Home = () => {
                 </Link>
               </div>
               <div
-                className={`transition-transform transition-opacity duration-1200 ease-out w-full lg:w-1/2 mb-10 lg:mb-0 ${
+                className={`transition-all duration-1000 w-full lg:w-1/2 mb-10 lg:mb-0 ${
                   animate
                     ? "translate-x-0 opacity-100"
                     : "translate-x-full opacity-0"
@@ -177,20 +176,23 @@ const Home = () => {
       {/* core-features */}
       <section className="bg-[#F8F6F3] py-12 sm:py-20 px-4 sm:px-8 lg:px-20 flex flex-col lg:flex-row gap-5 lg:gap-5">
         {/* Left Images */}
-        <div className="flex flex-col pl-10 sm:flex-row lg:flex-col sm:gap-8 w-full lg:w-1/2">
-          <div className="mt-0 lg:mt-10 flex-shrink-0 relative z-10">
+        <div className="flex flex-col md:flex-row lg:flex-col items-center md:justify-center md:gap-6 w-full lg:w-1/2">
+          {/* First Image */}
+          <div className="flex-shrink-0 relative z-10 mt-0 lg:mt-10">
             <img
-              className="border-10 border-white w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0  object-cover"
+              className="border-10 border-white w-full max-w-xs sm:max-w-sm md:max-w-[280px] lg:max-w-md object-cover mx-auto"
               src={tileGallery01}
               alt="Gallery 1"
             />
           </div>
+
+          {/* Second Image */}
           <div
-            className="px-0 sm:px-6 lg:px-16 flex-shrink-0 relative -mt-16 sm:-mt-20 lg:-mt-24 z-20 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
+            className="relative z-20 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll -mt-10 md:mt-0 lg:-mt-24"
             id="slideUpImage"
           >
             <img
-              className="border-10 border-white w-full max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 object-cover"
+              className="border-10 border-white w-full max-w-xs sm:max-w-sm md:max-w-[280px] lg:max-w-md object-cover mx-auto"
               src={tileGallery02}
               alt="Gallery 2"
             />
@@ -198,21 +200,21 @@ const Home = () => {
         </div>
 
         {/* Right Text */}
-        <div className="mt-10 lg:mt-28 px-0 flex flex-col text-center lg:text-left w-full lg:w-1/2">
+        <div className="mt-10 lg:mt-28 flex flex-col text-center lg:text-left w-full lg:w-1/2">
           <h4 className="text-gray-900 font-semibold text-sm sm:text-base tracking-widest">
             CORE FEATURES
           </h4>
-          <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left break-words">
+          <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left md:text-center lg:text-left break-words">
             Enhancing Your Digital Journey
           </h1>
 
-          <ul className="text-gray-600 flex flex-col gap-2 mt-6 sm:mt-10 font-medium text-lg sm:text-xl lg:text-3xl">
+          <ul className="text-gray-600 flex flex-col gap-2 mt-6 sm:mt-10 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl">
             <li>Innovative IT Solutions</li>
             <li>Result-Driven Marketing</li>
             <li>Creative Design Services</li>
             <li>Professional Video Production</li>
           </ul>
-          <p className="text-sm sm:text-base text-gray-600 mt-6 sm:mt-10 font-medium leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 mt-6 sm:mt-10 font-medium leading-relaxed">
             At Collabority, we bring together technology, strategy, creativity,
             and media to empower businesses in the digital space. From building
             scalable IT systems to running impactful marketing campaigns, we
@@ -222,6 +224,7 @@ const Home = () => {
             these domains, we drive seamless digital transformation tailored to
             your vision.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mt-6 sm:mt-10 justify-center lg:justify-start">
             <button className="bg-[#008080] rounded text-white py-3 px-6 hover:bg-gray-900 transition-colors w-full sm:w-auto">
               <Link to="/about">Learn More</Link>
@@ -234,19 +237,15 @@ const Home = () => {
               <Video /> Intro Video
             </button>
 
-            {/* Popup Video (No dark overlay) */}
             {showVideo && (
               <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
                 <div className="relative bg-[#008080] rounded-lg max-w-4xl w-full p-1 shadow-lg">
-                  {/* Close Button */}
                   <button
                     onClick={() => setShowVideo(false)}
                     className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl font-bold"
                   >
                     ✕
                   </button>
-
-                  {/* Video Player */}
                   <div className="aspect-video w-full">
                     <iframe
                       className="w-full h-full rounded"
@@ -282,27 +281,27 @@ const Home = () => {
             idx % 2 === 0 ? (
               <div
                 key={idx}
-                className="flex flex-col sm:flex-row gap-6 sm:gap-10 justify-center items-center mb-16"
+                className="flex flex-col sm:flex-row md:items-start md:justify-between gap-6 sm:gap-10 mb-16 md:px-4"
               >
                 {/* Image on Left */}
                 <motion.img
                   src={item.image}
                   alt={item.title}
-                  className="w-full sm:w-auto h-auto sm:h-[400px] max-w-[90vw] sm:max-w-none"
+                  className="w-full sm:w-auto h-auto sm:h-[400px] md:h-[320px] max-w-[90vw] sm:max-w-none object-cover"
                   initial={{ x: -200, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
 
-                {/* Vertical Line (hidden on mobile) */}
-                <div className="hidden sm:block w-[4px] h-[300px] bg-black"></div>
+                {/* Vertical Line */}
+                <div className="hidden sm:block w-[1px] h-[300px] bg-black"></div>
 
-                {/* Text Content */}
-                <div className="px-4 sm:px-32 flex flex-col text-center sm:text-left">
+                {/* Text */}
+                <div className="px-4 sm:px-32 md:px-8 flex flex-col text-center sm:text-left md:text-left md:max-w-[50%]">
                   <h1 className="text-2xl sm:text-4xl font-bold text-black">
                     {item.title}
                   </h1>
-                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg">
+                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg md:text-base">
                     {item.para}
                   </p>
                 </div>
@@ -310,27 +309,27 @@ const Home = () => {
             ) : (
               <div
                 key={idx}
-                className="flex flex-col sm:flex-row-reverse gap-6 sm:gap-10 justify-center items-center mb-16"
+                className="flex flex-col sm:flex-row-reverse md:items-start md:justify-between gap-6 sm:gap-10 mb-16 md:px-4"
               >
                 {/* Image on Right */}
                 <motion.img
                   src={item.image}
                   alt={item.title}
-                  className="w-full sm:w-auto h-auto sm:h-[400px] max-w-[90vw] sm:max-w-none"
+                  className="w-full sm:w-auto h-auto sm:h-[400px] md:h-[320px] max-w-[90vw] sm:max-w-none object-cover"
                   initial={{ x: 200, opacity: 0 }}
                   whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
                 />
 
-                {/* Vertical Line (hidden on mobile) */}
-                <div className="hidden sm:block w-[4px] h-[300px] bg-black"></div>
+                {/* Vertical Line */}
+                <div className="hidden sm:block w-[px] h-[300px] bg-black"></div>
 
-                {/* Text Content */}
-                <div className="px-4 sm:px-32 flex flex-col text-center sm:text-left">
+                {/* Text */}
+                <div className="px-4 sm:px-32 md:px-8 flex flex-col text-center sm:text-left md:text-left md:max-w-[50%]">
                   <h1 className="text-2xl sm:text-4xl font-bold text-black">
                     {item.title}
                   </h1>
-                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg">
+                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg md:text-base">
                     {item.para}
                   </p>
                 </div>
@@ -413,12 +412,18 @@ const Home = () => {
 
       {/* Info */}
       <section className="bg-gray-800 px-6 py-16 sm:py-20">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row flex-wrap justify-center gap-8 sm:gap-12">
+        <div
+          className="max-w-7xl mx-auto flex flex-col sm:flex-row flex-wrap 
+                  md:flex-nowrap md:flex-row md:justify-between 
+                  gap-8 sm:gap-12 md:gap-6"
+        >
           {infoData.map((item, idx) => (
             <div
               key={idx}
               className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-700 ease-out
-        flex flex-col items-center justify-center w-full sm:w-64 p-6 sm:p-8 gap-4 
+        flex flex-col items-center justify-center 
+        w-full sm:w-64 md:w-1/4
+        p-6 sm:p-8 gap-4 
         rounded-2xl border border-gray-600 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:scale-105 
         bg-gradient-to-br from-gray-900 to-gray-800 transition-transform duration-300 box-border group`}
             >
@@ -452,21 +457,24 @@ const Home = () => {
 
       {/* Call to action */}
       <section className="bg-gray-900">
-        <div className="flex flex-col lg:flex-row px-4 sm:px-12 py-12 w-full max-w-screen-xl mx-auto gap-6 lg:gap-7 items-center">
-          <div className="flex flex-col justify-start lg:mr-64 mt-8 lg:mt-16 mb-8 lg:mb-16 text-center lg:text-left flex-1">
-            <h4 className="font-semibold text-xs sm:text-sm text-[#008080]">
+        <div className="flex flex-col md:flex-row items-center justify-between px-4 sm:px-12 py-16 w-full max-w-screen-xl mx-auto gap-8">
+          {/* Text Section */}
+          <div className="flex flex-col text-center md:text-left items-center md:items-start flex-1">
+            <h4 className="font-semibold text-xs sm:text-sm text-[#008080] mb-2">
               CALL TO ACTION
             </h4>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
               Connect with Us to
             </h1>
-            <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight">
+            <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-white leading-tight mb-6">
               make Your Brand.
             </h1>
           </div>
+
+          {/* Button Section */}
           <div className="flex-shrink-0">
             <Link to="/contact">
-              <button className="flex items-center cursor-pointer p-4 gap-3 bg-[#008080] text-white rounded hover:bg-gray-100 transition-colors hover:text-[#008080]">
+              <button className="flex items-center gap-3 bg-[#008080] text-white px-6 py-3 rounded hover:bg-gray-100 hover:text-[#008080] transition-colors">
                 <FaComment />
                 <span className="font-medium">Contact Us</span>
               </button>
