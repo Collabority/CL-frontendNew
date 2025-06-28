@@ -3,16 +3,19 @@ import Navbar from "../layouts/Navbar";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
 import Footer from "../layouts/Footer";
-import { portfolioPage } from "../constants/Data";
+import { portfolioPage } from "../constants/data";
 import { FaComment } from "react-icons/fa6";
-import ScrollToTop from "../components/ScrolltoTop";
-import { useAnimateElementById, useAnimateElementsByClass } from "../utils/useScrollAnimation";
+import {
+  useAnimateElementById,
+  useAnimateElementsByClass,
+} from "../utils/useScrollAnimation";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Portfolio = () => {
-  useAnimateElementById("slideUpImage")
-  useAnimateElementsByClass("animate-on-scroll")
+  useAnimateElementById("slideUpImage");
+  useAnimateElementsByClass("animate-on-scroll");
   return (
-    <main className="min-h-screen bg-white font-poppins">
+    <main className="min-h-screen bg-white font-poppins overflow-x-hidden">
       {/* Navbar */}
       <Navbar />
       {/* Hero Section */}
@@ -31,49 +34,61 @@ const Portfolio = () => {
       {/* Portfolio Section */}
       <section className="w-full min-h-screen flex flex-col pt-10 gap-10">
         <div>
-          <h1 className="text-center font-semibold text-6xl text-gray-900">
+          <h1 className="text-center font-semibold text-4xl sm:text-5xl md:text-6xl text-gray-900">
             See Our Portfolios
           </h1>
         </div>
-        <div className="flex flex-col m-10">
+        <div className="flex flex-col m-4 sm:m-6 md:m-10 gap-12">
           {portfolioPage.map((item, idx) =>
-            idx % 2 == 0 ? (
+            idx % 2 === 0 ? (
               <div
                 key={idx}
-                className="flex gap-10 justify-center items-center pl-10"
+                className="flex flex-col md:flex-row gap-8 md:gap-10 justify-center items-center md:pl-10"
               >
                 {/* Image */}
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll" id="slideUpImage"/>
+                  className="w-full md:w-auto h-[200px] sm:h-[300px] md:h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110 opacity-0 translate-y-20 animate-on-scroll"
+                />
 
                 {/* Bold Vertical Line */}
-                <div className="w-[4px] h-[300px] bg-black"></div>
+                <div className="hidden md:block w-[4px] h-[200px] sm:h-[250px] md:h-[300px] bg-black"></div>
 
                 {/* Text Content */}
-                <div className="px-32 flex flex-col">
-                  <h1 className="text-4xl font-bold text-black">
+                <div className="px-4 sm:px-8 md:px-32 flex flex-col text-center md:text-left">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
                     {item.title}
                   </h1>
-                  <p className="mt-8 text-gray-400">{item.text}</p>
+                  <p className="mt-4 sm:mt-6 md:mt-8 text-gray-400">
+                    {item.text}
+                  </p>
                 </div>
               </div>
             ) : (
               <div
                 key={idx}
-                className="flex gap-10 justify-center items-center pr-10"
+                className="flex flex-col md:flex-row-reverse gap-8 md:gap-10 justify-center items-center md:pr-10"
               >
-                <div className="px-32 flex flex-col">
-                  <h1 className="text-4xl font-bold">{item.title}</h1>
-                  <p className="mt-8 text-gray-400">{item.text}</p>
-                </div>
-                {/* Bold Vertical Line */}
-                <div className="w-[4px] h-[300px] bg-black"></div>
+                {/* Image */}
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"/>
+                  className="w-full md:w-auto h-[200px] sm:h-[300px] md:h-[400px] rounded shadow-xl transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110 opacity-0 translate-y-20 animate-on-scroll"
+                />
+
+                {/* Bold Vertical Line */}
+                <div className="hidden md:block w-[4px] h-[200px] sm:h-[250px] md:h-[300px] bg-black"></div>
+
+                {/* Text Content */}
+                <div className="px-4 sm:px-8 md:px-32 flex flex-col text-center md:text-left">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+                    {item.title}
+                  </h1>
+                  <p className="mt-4 sm:mt-6 md:mt-8 text-gray-400">
+                    {item.text}
+                  </p>
+                </div>
               </div>
             )
           )}
@@ -87,10 +102,10 @@ const Portfolio = () => {
               CALL TO ACTION
             </h4>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-gray-900 leading-tight">
-              Connect with Us to 
+              Connect with Us to
             </h1>
             <h1 className="font-bold text-3xl sm:text-4xl lg:text-6xl text-gray-900 leading-tight">
-            make Your Brand.
+              make Your Brand.
             </h1>
           </div>
           <div className="flex-shrink-0">

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaRegEdit, FaRegUser, FaRegEnvelope, FaCommentAlt, FaReply, FaCalendarAlt } from 'react-icons/fa';
-import PageHeader from '../components/PageHeader';
 import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
 

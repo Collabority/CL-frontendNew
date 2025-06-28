@@ -67,7 +67,7 @@ const Navbar = () => {
           <div className="px-4 py-8 flex flex-col space-y-4">
             <NavLink to="/" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Home</NavLink>
             <NavLink to="/services" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname.startsWith('/services') ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Services</NavLink>
-            <NavLink to="/blog-grid" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname.startsWith('/blog') ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Blog</NavLink>
+            <NavLink to="/blog" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname.startsWith('/blog') ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Blog</NavLink>
             <NavLink to="/about" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/about' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>About</NavLink>
             <NavLink to="/career" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/career' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Career</NavLink>
             <NavLink to="/portfolio" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/portfolio' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Portfolio</NavLink>
