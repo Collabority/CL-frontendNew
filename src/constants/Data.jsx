@@ -384,6 +384,8 @@ export const servicesCardsData = [
     image: img1,
     shortDescription:
       "Secure, scalable, and future-ready IT infrastructures — from cloud deployments to system integrations...",
+    tabletFullDescription:
+      "Secure, scalable, and future-ready IT infrastructures — from cloud deployments to system integrations — customized for your business needs. We begin by analyzing your current systems and identifying performance gaps.",
     fullDescription:
       "Secure, scalable, and future-ready IT infrastructures — from cloud deployments to system integrations — customized for your business needs. We begin by analyzing your current systems and identifying performance gaps. Our solutions include server management, cloud migration, cybersecurity, and enterprise architecture. Every project is designed to be secure, agile, and easily maintainable. We also provide 24/7 monitoring and support to ensure seamless operations. Whether you're modernizing legacy systems or building from scratch, we deliver reliability at scale. Collabority ensures your technology becomes a strategic asset, not a burden.",
   },
@@ -393,6 +395,8 @@ export const servicesCardsData = [
     image: img2,
     shortDescription:
       "Performance-driven campaigns built on research, creative targeting, and analytics...",
+    tabletFullDescription:
+      "Performance-driven campaigns built on research, creative targeting, and analytics — designed to maximize your ROI. Our strategies are built from competitor research, consumer behavior analysis, and tailored messaging.",
     fullDescription:
       "Performance-driven campaigns built on research, creative targeting, and analytics — designed to maximize your ROI. Our strategies are built from competitor research, consumer behavior analysis, and tailored messaging. We optimize across channels including SEO, PPC, email, and social media. We continuously monitor KPIs and adapt campaigns for real-time results. Automation and A/B testing ensure efficient scaling of performance. Our expert team focuses on generating high-quality leads and improving brand loyalty. At Collabority, we don’t guess — we grow through data.",
   },
@@ -402,6 +406,8 @@ export const servicesCardsData = [
     image: img3,
     shortDescription:
       "We craft human-centered designs that are beautiful, functional...",
+    tabletFullDescription:
+      "We craft human-centered designs that are beautiful, functional, and aligned with your business objectives. Our team maps user journeys to design seamless experiences across mobile, web, and app interfaces.",
     fullDescription:
       "We craft human-centered designs that are beautiful, functional, and aligned with your business objectives. Our team maps user journeys to design seamless experiences across mobile, web, and app interfaces. We focus on accessibility, clarity, and conversion principles in every layout. Typography, color theory, and hierarchy are thoughtfully applied to tell your brand’s story. Prototypes and wireframes are validated through testing before deployment. Whether you're rebranding or launching a new product, we ensure first impressions last. Collabority designs for both form and function — with purpose.",
   },
@@ -411,6 +417,8 @@ export const servicesCardsData = [
     image: img4,
     shortDescription:
       "Bring your brand to life with high-quality videos — from concept to editing...",
+    tabletFullDescription:
+      "Bring your brand to life with high-quality videos — from concept to editing — perfect for digital campaigns and storytelling. Our production process includes scripting, storyboarding, filming, motion graphics, and post-production polish.",
     fullDescription:
       "Bring your brand to life with high-quality videos — from concept to editing — perfect for digital campaigns and storytelling. Our production process includes scripting, storyboarding, filming, motion graphics, and post-production polish. We create explainer videos, product showcases, interviews, and promotional content. Videos are tailored for platforms like YouTube, Instagram, LinkedIn, and your website. We emphasize brand tone, emotion, and visual rhythm to keep viewers engaged. Captions, animations, and music are professionally integrated. Collabority transforms ideas into powerful video narratives.",
   },
@@ -420,6 +428,8 @@ export const servicesCardsData = [
     image: img5,
     shortDescription:
       "Define your brand’s voice, tone, and visual identity...",
+    tabletFullDescription:
+      "Define your brand’s voice, tone, and visual identity to create consistent experiences across every channel. We start by discovering your core values, mission, and target audience. Our team develops logos, typography, color palettes, and brand guidelines.",
     fullDescription:
       "Define your brand’s voice, tone, and visual identity to create consistent experiences across every channel. We start by discovering your core values, mission, and target audience. Our team develops logos, typography, color palettes, and brand guidelines. We ensure your brand speaks with clarity and emotion at every customer touchpoint. From packaging to digital presence, everything is unified. A strong identity increases trust, recognition, and customer loyalty. Collabority builds brands that stand the test of time and attention.",
   },
@@ -429,10 +439,13 @@ export const servicesCardsData = [
     image: img6,
     shortDescription:
       "We merge technology and creativity to launch automated...",
+    tabletFullDescription:
+      "We merge technology and creativity to launch automated, multi-channel campaigns that drive measurable business growth. Using CRMs, AI tools, and data analytics, we target users at the right time with personalized content.",
     fullDescription:
       "We merge technology and creativity to launch automated, multi-channel campaigns that drive measurable business growth. Using CRMs, AI tools, and data analytics, we target users at the right time with personalized content. Campaigns span email, ads, social, and retargeting for full-funnel impact. Our engineers ensure smooth system integration and tracking. Real-time dashboards allow you to measure ROI with clarity. We test, learn, and scale with speed and precision. Collabority turns complexity into predictable, repeatable success.",
   },
 ];
+
 
 
 
