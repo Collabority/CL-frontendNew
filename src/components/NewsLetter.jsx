@@ -6,19 +6,23 @@ const NewsLetter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Connect to backend or email service
     console.log("Subscribed email:", email);
     setSubscribed(true);
     setEmail("");
   };
+
   return (
-    <section className="relative w-full py-16 px-4" id="newsletter ">
-      <div className="absolute inset-0 w-full h-full scale-x-[-1] bg-[url('/src/assets/image3.avif')] bg-cover bg-center z-0"></div>
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center relative z-10 bg-white/10">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <section className="relative w-full py-16 px-4 md:px-10" id="newsletter">
+      {/* Background Image */}
+      <div className="absolute inset-0 w-full h-full scale-x-[-1] bg-[url('/src/assets/image3.avif')] bg-cover bg-center z-0" />
+
+      {/* Content Container */}
+      <div className="max-w-3xl mx-auto text-center flex flex-col items-center relative z-10 bg-white/10 p-4 md:p-8 rounded-xl">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
           Stay Ahead with Collabority
         </h2>
-        <p className="text-gray-600 mb-6 text-lg">
+
+        <p className="text-gray-600 mb-6 text-lg md:text-xl">
           Get expert insights, product updates, and the latest trends in IT and
           digital marketing—delivered straight to your inbox.
         </p>
@@ -44,12 +48,12 @@ const NewsLetter = () => {
             </button>
           </form>
         ) : (
-          <p className="text-[#008080] font-medium text-lg">
+          <p className="text-[#008080] font-medium text-lg md:text-xl">
             Thanks for subscribing!
           </p>
         )}
 
-        <div className="mt-4 text-sm text-gray-500">
+        <div className="mt-4 text-sm md:text-base text-gray-500">
           Trusted by industry leaders · Expert-curated content anytime.
         </div>
       </div>

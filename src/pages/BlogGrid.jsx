@@ -52,7 +52,6 @@ const BlogGrid = () => {
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
-      // window.scrollTo(0, 0);
     }
   };
 
@@ -67,37 +66,34 @@ const BlogGrid = () => {
       <PageHeader
         title="Blogs"
         breadcrumb={
-          <>
-            <div className="flex gap-2">
-              <Link to="/">Home</Link>
-              <p>|</p>
-              <Link to="/blog-details">BlogDetails</Link>
-            </div>
-          </>
+          <div className="flex gap-2">
+            <Link to="/">Home</Link>
+            <p>|</p>
+            <Link to="/blog-details">BlogDetails</Link>
+          </div>
         }
       />
 
-      <div className="p-4 sm:p-6 max-w-7xl mx-auto">
-        {/* Grid wrapper */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="p-4 sm:p-6 md:p-10 max-w-7xl mx-auto">
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {paginatedBlogs.map((blog) => (
             <div
               key={blog.id}
-              className="relative mt-20 w-full h-[300px] sm:h-[360px] md:h-[400px] overflow-hidden shadow-lg rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="relative mt-20 w-full h-[300px] sm:h-[360px] md:h-[420px] lg:h-[400px] overflow-hidden shadow-lg rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
               onClick={() => window.location.href = `/blog-details`}
             >
               <img
                 src={blog.image}
                 alt={blog.title}
                 className="w-full h-full object-cover"
-                
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70 p-4 sm:p-6 flex flex-col justify-between">
                 <span className="bg-secondary text-black text-xs px-2 py-1 rounded w-fit font-semibold">
                   {blog.category}
                 </span>
                 <div className="mb-4">
-                  <h3 className="text-white text-sm sm:text-base md:text-lg font-bold leading-tight mb-2">
+                  <h3 className="text-white text-sm sm:text-base md:text-base lg:text-lg font-bold leading-tight mb-2">
                     {blog.title}
                   </h3>
                   <div className="flex justify-between items-center text-white text-xs sm:text-sm">
@@ -146,7 +142,8 @@ const BlogGrid = () => {
           <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
-      <NewsLetter/>
+
+      <NewsLetter />
       <Footer />
     </div>
   );

@@ -129,7 +129,7 @@ const BlogDetails = () => {
         </div>
 
         {/* Sidebar area */}
-        <div className="lg:col-span-4">
+        <div className="hidden md:hidden lg:block lg:col-span-4">
           <div className="scroll-animate slide-in-right max-w-xs">
             <BlogSidebar />
           </div>
