@@ -26,6 +26,7 @@ const Services = () => {
   return (
     <main className="bg-white min-h-screen flex flex-col font-poppins overflow-x-hidden">
       <Navbar />
+      {/* Hero-Section */}
       <PageHeader
         title="Services"
         breadcrumb={
@@ -88,6 +89,7 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Intro-Video Section */}
       <section className="bg-gray-900 min-h-screen sm:py-12 sm:py-20 px-4 sm:px-8 md:px-12 lg:px-20 flex flex-col md:flex-row items-center gap-10 md:gap-8">
         {/* LEFT CONTENT */}
         <div className="flex flex-col w-full md:w-1/2 md:pr-6">
@@ -228,7 +230,10 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Newsletter Section */}
       <NewsLetter />
+
+      {/* Footer */}
       <Footer />
       <ScrollToTop />
     </main>

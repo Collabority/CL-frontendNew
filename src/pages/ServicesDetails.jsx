@@ -67,6 +67,7 @@ const ServicesDetails = () => {
         }
       />
 
+      {/* What We Do */}
       <section className="py-12 sm:py-16 bg-white">
         <div className="text-center mb-8 sm:mb-12 px-4 max-w-3xl mx-auto">
           <h6 className="text-base sm:text-base font-semibold text-[#008080] tracking-wider">
@@ -122,6 +123,7 @@ const ServicesDetails = () => {
         </div>
       </section>
 
+      {/* Services Icons Display */}
       <section>
         <div className="flex justify-center gap-4 flex-wrap">
           {imagesArray.map((item, idx) => {
@@ -244,8 +246,10 @@ const ServicesDetails = () => {
         </div>
       </section>
 
+      {/* Contact Section */}
       <ContactSection />
 
+      {/* Footer */}
       <Footer />
       <ScrollToTop />
     </main>

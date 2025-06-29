@@ -58,6 +58,8 @@ const Contact = () => {
         </div>
         </>
       } />
+
+
         {/* Contact Info & Map */}
         <div className="w-full py-12 mb-12">
           <section className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
@@ -90,6 +92,7 @@ const Contact = () => {
             </div>
           </section>
         </div>
+
         {/* Get in Touch Section */}
         <section className="w-full bg-[#f3ede6] py-16">
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
@@ -174,8 +177,13 @@ const Contact = () => {
             </div>
           )}
         </section>
+
       </div>
+
+      {/* NewsLetter Section */}
       <NewsLetter/>
+
+      {/* Footer */}
       <Footer/>
       <ScrollToTop />
 

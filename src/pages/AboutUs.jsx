@@ -8,6 +8,7 @@ import FaqSection from '../components/about/FaqSection';
 import PageHeader from '../components/PageHeader';
 import NewsLetter from '../components/NewsLetter';
 import Footer from '../layouts/Footer';
+import ScrollToTop from '../components/ScrollToTop';
 
 const serviceCards = [
   {
@@ -71,6 +72,7 @@ const AboutUs = () => {
   return (
     <div className="bg-beige text-[#002248] overflow-x-hidden">
       <Navbar />
+      {/* Hero Section */}
       <PageHeader title="About Us" breadcrumb={
         <div className="flex flex-wrap gap-2 text-md">
           <Link to="/">Home</Link>
@@ -192,8 +194,11 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
+      
+      {/* History Timeline */}
       <HistoryTimeline />
+
+      {/* FAQs Section */}
       <FaqSection />
 
       {/* Video Modal */}
@@ -216,8 +221,12 @@ const AboutUs = () => {
         </div>
       )}
 
+      {/* Newsletter Section */}
       <NewsLetter />
+
+      {/* Footer */}
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

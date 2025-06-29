@@ -19,6 +19,8 @@ const BlogDetails = () => {
   return (
     <div className="flex-grow overflow-x-hidden">
       <Navbar />
+
+      {/* Hero-Section */}
       <PageHeader
         title="News Details"
         breadcrumb={
@@ -32,6 +34,7 @@ const BlogDetails = () => {
         }
       />
 
+      {/* Blog Details Section */}
       <div className="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl">
         {/* Main content area */}
         <div className="lg:col-span-8">
@@ -135,7 +138,11 @@ const BlogDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* NewsLetter Section */}
       <NewsLetter />
+
+      {/* Footer */}
       <Footer />
       <ScrollToTop />
     </div>

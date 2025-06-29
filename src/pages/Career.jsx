@@ -706,6 +706,8 @@ const Career = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
       <Footer />
       <ScrollToTop />
     </main>

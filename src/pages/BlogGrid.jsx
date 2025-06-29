@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../layouts/Navbar";
 import NewsLetter from "../components/NewsLetter";
 import Footer from "../layouts/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 
 // Base blog entries
 const baseBlogs = [
@@ -63,6 +64,8 @@ const BlogGrid = () => {
   return (
     <div>
       <Navbar />
+
+      {/* Hero-Section */}
       <PageHeader
         title="Blogs"
         breadcrumb={
@@ -143,8 +146,12 @@ const BlogGrid = () => {
         </button>
       </div>
 
+      {/* NewsLetter Section */}
       <NewsLetter />
+
+      {/* Footer */}
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
