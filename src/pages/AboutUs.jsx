@@ -69,10 +69,10 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className="bg-beige text-[#002248]">
+    <div className="bg-beige text-[#002248] overflow-x-hidden">
       <Navbar />
       <PageHeader title="About Us" breadcrumb={
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 text-md">
           <Link to="/">Home</Link>
           <span>|</span>
           <Link to="/services">Services</Link>
