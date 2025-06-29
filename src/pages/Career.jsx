@@ -70,13 +70,17 @@ const Career = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-white font-poppins">
+    <main className="min-h-screen bg-white font-poppins overflow-x-hidden">
       {/* Navbar */}
       <Navbar />
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center py-10 px-5 bg-white text-center">
         <div className="mb-1 max-w-[800px]">
-          <h1 className="text-[3.5em] font-bold text-[#24221E] mb-[30px] leading-[1.2] max-[640px]:text-[2em] max-[640px]:leading-[1.3]">
+          <h1
+            className="text-[3.5em] font-bold text-[#24221E] mb-[30px] leading-[1.2]
+                   max-[640px]:text-[2em] max-[640px]:leading-[1.3]
+                   md:text-[2.5em] md:leading-[1.3]"
+          >
             Breaking the status
             <br />
             quo to make an
@@ -87,46 +91,74 @@ const Career = () => {
             onClick={() =>
               openRolesRef.current.scrollIntoView({ behaviour: "smooth" })
             }
-            className="bg-[#008080] text-white py-3 px-6 rounded-[10px] text-base font-bold cursor-pointer transition-colors duration-300 hover:bg-gray-900 max-[640px]:text-sm max-[640px]:px-4 max-[640px]:py-2"
+            className="bg-[#008080] text-white py-3 px-6 rounded-[10px] text-base font-bold cursor-pointer transition-colors duration-300 hover:bg-gray-900 
+                 max-[640px]:text-sm max-[640px]:px-4 max-[640px]:py-2
+                 md:text-[0.95rem] md:px-5 md:py-2.5"
           >
             See open roles
           </button>
 
-          <div className="mt-1 w-full h-[300px] bg-transparent flex items-center justify-center text-[#666] text-lg rounded-none overflow-hidden max-[640px]:h-[200px]">
+          <div
+            className="mt-1 w-full h-[300px] bg-transparent flex items-center justify-center text-[#666] text-lg rounded-none overflow-hidden 
+                    max-[640px]:h-[200px]
+                    md:h-[250px]"
+          >
             <img
               src={MainIllustration}
               alt="Main Illustration"
-              className="max-w-full h-full object-contain block mx-auto"
+              className="max-w-full h-full object-contain block mx-auto md:max-w-[90%]"
             />
           </div>
         </div>
 
-        <div className="flex justify-center flex-nowrap gap-10 mt-4 w-full max-w-[1200px] max-[640px]:flex-wrap max-[640px]:gap-4">
+        <div
+          className="flex justify-center flex-nowrap gap-10 mt-4 w-full max-w-[1200px]
+                  max-[640px]:flex-wrap max-[640px]:gap-4
+                  md:gap-6 md:flex-wrap md:justify-center"
+        >
           {awards.map((award, index) => (
             <div
               key={index}
-              className="flex items-center gap-1 max-[640px]:flex-col max-[640px]:gap-2"
+              className="flex items-center gap-1
+                   max-[640px]:flex-col max-[640px]:gap-2
+                   md:flex-col md:gap-2"
             >
               <img
                 src={LeftLaurelPng}
                 alt="Left Laurel"
-                className="w-6 h-6 object-contain max-[640px]:w-4 max-[640px]:h-4"
+                className="w-6 h-6 object-contain 
+                     max-[640px]:w-4 max-[640px]:h-4 
+                     md:w-5 md:h-5"
               />
               <div className="flex-none bg-transparent p-0 rounded-none shadow-none flex flex-col items-center text-center">
-                <p className="text-[0.8em] text-[#6F6D6B] max-[640px]:text-[0.7em]">
+                <p
+                  className="text-[0.8em] text-[#6F6D6B] 
+                        max-[640px]:text-[0.7em] 
+                        md:text-[0.75em]"
+                >
                   {award.title}
                 </p>
-                <p className="text-[1.1em] font-bold text-[#24221E] max-[640px]:text-base">
+                <p
+                  className="text-[1.1em] font-bold text-[#24221E] 
+                        max-[640px]:text-base 
+                        md:text-[1em]"
+                >
                   {award.awardName}
                 </p>
-                <p className="text-[0.8em] text-[#6F6D6B] max-[640px]:text-[0.7em]">
+                <p
+                  className="text-[0.8em] text-[#6F6D6B] 
+                        max-[640px]:text-[0.7em] 
+                        md:text-[0.75em]"
+                >
                   By {award.by}
                 </p>
               </div>
               <img
                 src={RightLaurelPng}
                 alt="Right Laurel"
-                className="w-6 h-6 object-contain max-[640px]:w-4 max-[640px]:h-4"
+                className="w-6 h-6 object-contain 
+                     max-[640px]:w-4 max-[640px]:h-4 
+                     md:w-5 md:h-5"
               />
             </div>
           ))}
@@ -244,34 +276,69 @@ const Career = () => {
       </section>
 
       {/* Application Process */}
-      <section className="w-full min-h-screen bg-[url('/src/assets/image3.avif')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center px-4 max-[640px]:px-3 max-[640px]:py-10">
+      <section
+        className="w-full min-h-screen bg-[url('/src/assets/image3.avif')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center px-4 
+                    max-[640px]:px-3 max-[640px]:py-10 md:px-8 md:py-12"
+      >
         {/* Heading */}
-        <div className="text-center mb-6 max-[640px]:mb-4">
-          <h1 className="text-5xl font-semibold max-[640px]:text-3xl max-[640px]:leading-tight">
+        <div
+          className="text-center mb-6 
+                  max-[640px]:mb-4 md:mb-8"
+        >
+          <h1
+            className="text-5xl font-semibold 
+                   max-[640px]:text-3xl max-[640px]:leading-tight 
+                   md:text-4xl md:leading-snug"
+          >
             Our transparent <br /> application process
           </h1>
         </div>
 
         {/* Paragraph */}
-        <div className="max-w-xl text-left mt-4 flex flex-col gap-6 max-[640px]:gap-4 max-[640px]:text-sm">
-          <p className="text-xl font-normal max-[640px]:text-base max-[640px]:font-medium">
+        <div
+          className="max-w-xl text-left mt-4 flex flex-col gap-6 
+                  max-[640px]:gap-4 max-[640px]:text-sm 
+                  md:gap-5 md:text-[1rem]"
+        >
+          {/* Step 1 */}
+          <p
+            className="text-xl font-normal 
+                  max-[640px]:text-base max-[640px]:font-medium 
+                  md:text-lg md:font-medium"
+          >
             <b className="font-semibold">1. Submit your application:</b>
-            <span className="block text-base mt-1 max-[640px]:text-sm max-[640px]:mt-1.5">
+            <span
+              className="block text-base mt-1 
+                      max-[640px]:text-sm max-[640px]:mt-1.5 
+                      md:text-[0.95rem] md:mt-1.5"
+            >
               Follow the steps to complete the online application and respond to
               the longer-form application questions.
             </span>
-            <span className="block text-base max-[640px]:text-sm">
-              We encourage candidates to spend time reading
+            <span
+              className="block text-base 
+                      max-[640px]:text-sm md:text-[0.95rem]"
+            >
+              We encourage candidates to spend time reading{" "}
               <Link to="/blog-details" className="text-[#008080] underline">
                 our blog
-              </Link>
+              </Link>{" "}
               to get to know our company, values and products.
             </span>
           </p>
 
-          <p className="text-xl font-light max-[640px]:text-base max-[640px]:font-normal">
+          {/* Step 2 */}
+          <p
+            className="text-xl font-light 
+                  max-[640px]:text-base max-[640px]:font-normal 
+                  md:text-lg md:font-normal"
+          >
             <b className="font-semibold">2. Interviews and task assignment:</b>
-            <span className="block text-base mt-1 max-[640px]:text-sm max-[640px]:mt-1.5">
+            <span
+              className="block text-base mt-1 
+                      max-[640px]:text-sm max-[640px]:mt-1.5 
+                      md:text-[0.95rem] md:mt-1.5"
+            >
               Once your application has passed an internal review, you’ll
               receive an email from{" "}
               <Link
@@ -283,19 +350,34 @@ const Career = () => {
               to schedule your first interview with someone from the Collabority
               team over Google Meet.
             </span>
-            <span className="block text-base max-[640px]:text-sm">
+            <span
+              className="block text-base 
+                      max-[640px]:text-sm md:text-[0.95rem]"
+            >
               You may be requested to complete a task assignment that highlights
               your technical capabilities and communication skills.
             </span>
-            <span className="block text-base max-[640px]:text-sm">
+            <span
+              className="block text-base 
+                      max-[640px]:text-sm md:text-[0.95rem]"
+            >
               Once we’ve evaluated your task assignment, you may be invited to
               two additional interviews with two other Collabority employees.
             </span>
           </p>
 
-          <p className="text-xl font-light max-[640px]:text-base max-[640px]:font-normal">
+          {/* Step 3 */}
+          <p
+            className="text-xl font-light 
+                  max-[640px]:text-base max-[640px]:font-normal 
+                  md:text-lg md:font-normal"
+          >
             <b className="font-semibold">3. Decision:</b>
-            <span className="block text-base mt-1 max-[640px]:text-sm max-[640px]:mt-1.5">
+            <span
+              className="block text-base mt-1 
+                      max-[640px]:text-sm max-[640px]:mt-1.5 
+                      md:text-[0.95rem] md:mt-1.5"
+            >
               You’ll always hear back from us via our{" "}
               <Link
                 to="mailto:hello@collabority.in"
@@ -306,19 +388,34 @@ const Career = () => {
               email address – we manually review and respond to every
               candidate’s application.
             </span>
-            <span className="block text-base max-[640px]:text-sm">
+            <span
+              className="block text-base 
+                      max-[640px]:text-sm md:text-[0.95rem]"
+            >
               If the hiring committee has agreed to hire you, you’ll receive an
               official offer to join our team.
             </span>
           </p>
 
-          <p className="text-xl font-light max-[640px]:text-base max-[640px]:font-normal">
+          {/* Step 4 */}
+          <p
+            className="text-xl font-light 
+                  max-[640px]:text-base max-[640px]:font-normal 
+                  md:text-lg md:font-normal"
+          >
             <b className="font-semibold">4. Onboarding and mentorship:</b>
-            <span className="block text-base mt-1 max-[640px]:text-sm max-[640px]:mt-1.5">
+            <span
+              className="block text-base mt-1 
+                      max-[640px]:text-sm max-[640px]:mt-1.5 
+                      md:text-[0.95rem] md:mt-1.5"
+            >
               Leading up to your start date, you’ll be invited to a meticulously
               crafted project that outlines your first months at Collabority.
             </span>
-            <span className="block text-base max-[640px]:text-sm">
+            <span
+              className="block text-base 
+                      max-[640px]:text-sm md:text-[0.95rem]"
+            >
               You’ll also be paired with a mentor and have the opportunity to
               spend a week working with them in person wherever they’re located.
             </span>
@@ -328,8 +425,8 @@ const Career = () => {
 
       {/* Company Benifits */}
       <section className="min-h-screen flex flex-col">
-        <div className="text-center mb-6 pt-32 max-[640px]:pt-20 max-[640px]:px-4">
-          <h1 className="text-5xl font-semibold max-[640px]:text-2xl max-[640px]:leading-snug">
+        <div className="text-center mb-6 pt-32 max-[640px]:pt-20 max-[640px]:px-4 max-[1024px]:pt-28 max-[1024px]:px-6">
+          <h1 className="text-5xl font-semibold max-[640px]:text-2xl max-[640px]:leading-snug max-[1024px]:text-4xl max-[1024px]:leading-snug">
             A company that supports <br /> your ambitious goals <br /> and
             personal wellbeing
           </h1>
@@ -337,197 +434,196 @@ const Career = () => {
 
         <div className="flex flex-col">
           {/* --- BLOCK 1 --- */}
-          <div className="flex gap-40 max-[640px]:flex-col max-[640px]:gap-8 max-[640px]:px-4">
+          <div className="flex gap-40 max-[1024px]:gap-20 max-[640px]:flex-col max-[640px]:gap-8 max-[640px]:px-4 max-[1024px]:flex-col max-[1024px]:px-6">
             <motion.div
-              className="flex flex-col justify-center items-center gap-6 mt-24 max-[640px]:mt-0"
+              className="flex flex-col justify-center items-center gap-6 mt-24 max-[640px]:mt-0 max-[1024px]:mt-10"
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <img
                 src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-basics.png"
-                className="w-[45%] max-[640px]:w-[80%]"
+                className="w-[45%] max-[640px]:w-[80%] max-[1024px]:w-[60%]"
               />
-              <h1 className="text-center font-medium text-3xl max-[640px]:text-xl">
+              <h1 className="text-center font-medium text-3xl max-[640px]:text-xl max-[1024px]:text-2xl">
                 The basics
               </h1>
             </motion.div>
 
-            <div className="flex flex-col mt-14 pl-20 max-[640px]:mt-6 max-[640px]:pl-0 max-[640px]:gap-8">
-              <div className="flex flex-col gap-1">
-                <div className="flex gap-4 items-center max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fglobe.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Work from anywhere
-                  </h3>
+            <div className="flex flex-col mt-14 pl-14 max-[640px]:mt-6 max-[640px]:pl-0 max-[640px]:gap-8 max-[1024px]:pl-0 max-[1024px]:mt-10">
+              {[
+                {
+                  icon: "globe",
+                  title: "Work from anywhere",
+                  desc: "Employees at Collabority can work from anywhere in the world. We never place restrictions on locations.",
+                },
+                {
+                  icon: "clock",
+                  title: "Design your own schedule",
+                  desc: "Work during the time of day that’s best for you. Employees are encouraged to work 8-hour days and no more than 40 hours/week.",
+                },
+                {
+                  icon: "dollar",
+                  title: "Negotiation-free compensation package",
+                  desc: "Our formula-based salaries are calculated based on industry-benchmarked skills and geographical location – no stressful negotiation required.",
+                },
+              ].map(({ icon, title, desc }, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col gap-1 mt-12 first:mt-0 max-[640px]:mt-8"
+                >
+                  <div className="flex gap-4 items-center max-[640px]:gap-2 max-[1024px]:gap-3 max-[1024px]:justify-center">
+                    <img
+                      src={`https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2F${icon}.svg`}
+                      className="w-[4%] max-[640px]:w-6 max-[1024px]:w-6"
+                    />
+                    <h3 className="text-lg font-medium max-[640px]:text-base max-[1024px]:text-base max-[1024px]:text-center">
+                      {title}
+                    </h3>
+                  </div>
+                  <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[1024px]:pl-0 max-[640px]:text-sm max-[1024px]:text-sm max-[1024px]:text-center">
+                    {desc.split(" ").map((word, i) =>
+                      i % 12 === 0 ? (
+                        <>
+                          <br />
+                          {word}{" "}
+                        </>
+                      ) : (
+                        word + " "
+                      )
+                    )}
+                  </p>
                 </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  Employees at Collabority can work from anywhere in the world.
-                  We never place restrictions on locations.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 mt-12 max-[640px]:mt-8">
-                <div className="flex gap-4 items-center max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fclock.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Design your own schedule
-                  </h3>
-                </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  Work during the time of day that’s best for you. Employees are
-                  encouraged to work 8-hour days and no more than 40 hours/week.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 mt-12 max-[640px]:mt-8">
-                <div className="flex gap-4 items-center pl-3 max-[640px]:pl-0 max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fdollar.svg"
-                    className="w-[2%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Negotiation-free compensation package
-                  </h3>
-                </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  Our formula-based salaries are calculated based on
-                  industry-benchmarked skills and geographical location – no
-                  stressful negotiation required.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
           <hr className="border-t border-gray-300 mt-10" />
 
           {/* --- BLOCK 2 --- */}
-          <div className="flex gap-40 max-[640px]:flex-col max-[640px]:gap-8 max-[640px]:px-4">
+          <div className="flex gap-40 max-[640px]:flex-col max-[640px]:gap-8 max-[640px]:px-4 max-[1024px]:flex-col max-[1024px]:gap-20 max-[1024px]:px-6">
             <motion.div
-              className="flex flex-col justify-center items-center gap-6 mt-24 max-[640px]:mt-0"
+              className="flex flex-col justify-center items-center gap-6 mt-24 max-[640px]:mt-0 max-[1024px]:mt-10"
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <img
                 src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-skills.png"
-                className="w-[45%] max-[640px]:w-[80%]"
+                className="w-[45%] max-[640px]:w-[80%] max-[1024px]:w-[60%]"
               />
-              <h1 className="text-center font-medium text-3xl max-[640px]:text-xl">
+              <h1 className="text-center font-medium text-3xl max-[640px]:text-xl max-[1024px]:text-2xl">
                 Expand your <br /> professional skills
               </h1>
             </motion.div>
 
-            <div className="flex flex-col mt-14 pl-10 max-[640px]:mt-6 max-[640px]:pl-0 max-[640px]:gap-8">
-              <div className="flex flex-col gap-1">
-                <div className="flex gap-4 items-center max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fcase.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Continue your education
-                  </h3>
+            <div className="flex flex-col mt-14 pl-4 max-[640px]:mt-6 max-[640px]:pl-0 max-[1024px]:mt-10 max-[1024px]:pl-0">
+              {[
+                {
+                  icon: "case",
+                  title: "Continue your education",
+                  desc: "You’ll have a recurring budget to spend on attending conferences, taking courses, and purchasing books.",
+                },
+                {
+                  icon: "ticket",
+                  title: "Collaborate in-person at retreats",
+                  desc: "Our team- and company-wide retreats are unforgettable. The connections that we make in person inspire us throughout the year.",
+                },
+              ].map(({ icon, title, desc }, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col gap-1 mt-12 first:mt-0 max-[640px]:mt-8"
+                >
+                  <div className="flex gap-4 items-center max-[640px]:gap-2 max-[1024px]:gap-3 max-[1024px]:justify-center">
+                    <img
+                      src={`https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2F${icon}.svg`}
+                      className="w-[4%] max-[640px]:w-6 max-[1024px]:w-6"
+                    />
+                    <h3 className="text-lg font-medium max-[640px]:text-base max-[1024px]:text-base max-[1024px]:text-center">
+                      {title}
+                    </h3>
+                  </div>
+                  <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[1024px]:pl-0 max-[640px]:text-sm max-[1024px]:text-sm max-[1024px]:text-center">
+                    {desc.split(" ").map((word, i) =>
+                      i % 12 === 0 ? (
+                        <>
+                          <br />
+                          {word}{" "}
+                        </>
+                      ) : (
+                        word + " "
+                      )
+                    )}
+                  </p>
                 </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  You’ll have a recurring budget to spend on attending
-                  conferences, taking courses, and purchasing books.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 mt-12 max-[640px]:mt-8">
-                <div className="flex gap-4 items-center max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fticket.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Collaborate in-person at retreats
-                  </h3>
-                </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  Our team- and company-wide retreats are unforgettable. The
-                  connections that we make in person inspire us throughout the
-                  year.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
           <hr className="border-t border-gray-300 mt-10" />
 
           {/* --- BLOCK 3 --- */}
-          <div className="flex gap-40 max-[640px]:flex-col max-[640px]:gap-8 max-[640px]:px-4">
+          <div className="flex gap-40 max-[640px]:flex-col max-[640px]:gap-8 max-[640px]:px-4 max-[1024px]:flex-col max-[1024px]:gap-20 max-[1024px]:px-6">
             <motion.div
-              className="flex flex-col justify-center items-center gap-6 mt-24 max-[640px]:mt-0"
+              className="flex flex-col justify-center items-center gap-6 mt-24 pt-4 max-[640px]:mt-0 max-[1024px]:mt-10"
               initial={{ x: -200, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <img
                 src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_768/https%3A%2F%2Fdoist.com%2Fstatic%2Fimages%2Fcareers-page%2Fperks%2Fillustration-perks-environment.png"
-                className="w-[45%] max-[640px]:w-[80%]"
+                className="w-[45%] max-[640px]:w-[80%] max-[1024px]:w-[60%]"
               />
-              <h1 className="text-center font-medium text-3xl max-[640px]:text-xl">
+              <h1 className="text-center font-medium text-3xl max-[640px]:text-xl max-[1024px]:text-2xl">
                 Craft your ideal <br /> work environment
               </h1>
             </motion.div>
 
-            <div className="flex flex-col mt-14 pl-10 max-[640px]:mt-6 max-[640px]:pl-0 max-[640px]:gap-8 mb-10">
-              <div className="flex flex-col gap-1">
-                <div className="flex gap-4 items-center max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fbuilding.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Cozy up at a coworking space
-                  </h3>
+            <div className="flex flex-col mt-14 pl-4 max-[640px]:mt-6 max-[640px]:pl-0 max-[1024px]:mt-10 max-[1024px]:pl-0 mb-10">
+              {[
+                {
+                  icon: "building",
+                  title: "Cozy up at a coworking space",
+                  desc: "Find the coworking space that’s right for you and Collabority will cover the expense.",
+                },
+                {
+                  icon: "apps",
+                  title: "Subscribe to apps and services",
+                  desc: "You’ll have a monthly budget to spend on services that help you do your job: home internet, work apps, music subscription, etc.",
+                },
+                {
+                  icon: "computer",
+                  title: "Purchase the hardware you need",
+                  desc: "Every employee at Collabority has access to a recurring budget to spend on work-related equipment.",
+                },
+              ].map(({ icon, title, desc }, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-col gap-1 mt-12 first:mt-0 max-[640px]:mt-8"
+                >
+                  <div className="flex gap-4 items-center max-[640px]:gap-2 max-[1024px]:gap-3 max-[1024px]:justify-center">
+                    <img
+                      src={`https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2F${icon}.svg`}
+                      className="w-[4%] max-[640px]:w-6 max-[1024px]:w-6"
+                    />
+                    <h3 className="text-lg font-medium max-[640px]:text-base max-[1024px]:text-base max-[1024px]:text-center">
+                      {title}
+                    </h3>
+                  </div>
+                  <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm max-[1024px]:pl-0 max-[1024px]:text-sm max-[1024px]:text-center">
+                    {desc.split(" ").map((word, i) =>
+                      i % 12 === 0 ? (
+                        <>
+                          <br />
+                          {word}{" "}
+                        </>
+                      ) : (
+                        word + " "
+                      )
+                    )}
+                  </p>
                 </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  Find the coworking space that’s right for you and Collabority
-                  will cover the expense.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 mt-12 max-[640px]:mt-8">
-                <div className="flex gap-4 items-center max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fapps.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Subscribe to apps and services
-                  </h3>
-                </div>
-                <p className="pl-11 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  You’ll have a monthly budget to spend on services that help
-                  you do your job: home internet, work apps, music subscription,
-                  etc.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1 mt-12 max-[640px]:mt-8">
-                <div className="flex gap-4 items-center max-[640px]:pl-0 max-[640px]:gap-2">
-                  <img
-                    src="https://res.cloudinary.com/imagist/image/fetch/q_auto,f_auto,c_scale,w_480/https%3A%2F%2Fdoist.com%2Fstatic%2Ficons%2Fcomputer.svg"
-                    className="w-[4%] max-[640px]:w-6"
-                  />
-                  <h3 className="text-lg font-medium max-[640px]:text-base">
-                    Purchase the hardware you need
-                  </h3>
-                </div>
-                <p className="pl-13 text-gray-600 max-[640px]:pl-0 max-[640px]:text-sm">
-                  Every employee at Collabority has access to a recurring budget
-                  to spend on work-related equipment.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
