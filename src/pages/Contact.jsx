@@ -111,7 +111,7 @@ const Contact = () => {
                 <img
                   src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
                   alt="Get in Touch Video"
-                  className="w-full h-full object-cover border-r-[8px] border-b-[8px] border-[#008080] aspect-square"
+                  className="w-full h-full object-cover rounded border-b-[8px] border-[#008080] aspect-square"
                 />
                 {/* Play Button with Ripple Animation */}
                 <motion.button
