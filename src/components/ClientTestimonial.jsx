@@ -22,7 +22,7 @@ const ClientTestimonial = ({ title1, title2, data }) => {
               <div className="bg-white w-full h-auto p-6 md:p-8 border-t-4 border-red-700 text-sm sm:text-base md:text-[15px]">
                 {items.text}
                 <div className="mt-2 cursor-pointer text-base md:text-lg">
-                  ⭐️ ⭐️ ⭐️ ⭐️ ⭐️
+                  {items.stars}
                 </div>
               </div>
 

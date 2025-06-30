@@ -118,6 +118,7 @@ export const clients = [
     text: '"Collabority helped us revamp our entire IT infrastructure. Their team delivered secure, scalable solutions that improved our efficiency and digital workflow."',
     name: "Rohan Sharma",
     post: "TechNova Solutions",
+    stars: "⭐️ ⭐️ ⭐️ ⭐️ ⭐️"
   },
 
   {
@@ -125,6 +126,7 @@ export const clients = [
     text: '"Their marketing strategies brought a noticeable boost in our online reach and lead generation. We saw measurable growth in just a few months."',
     name: "Sneha Kapoor",
     post: "Digital Vibes Pvt. Ltd.",
+    stars: "⭐️ ⭐️ ⭐️ ⭐️"
   },
 
   {
@@ -132,6 +134,7 @@ export const clients = [
     text: '"The design and video production team at Collabority brought our brand vision to life. Their creativity and professionalism exceeded our expectations."',
     name: "Amit Verma",
     post: "CreativeNest India",
+    stars: "⭐️ ⭐️ ⭐️ ⭐️ ⭐️"
   },
 ];
 
