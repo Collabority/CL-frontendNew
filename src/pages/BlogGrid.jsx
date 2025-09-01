@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeader from "../components/PageHeader";
 import { ArrowLeft, ArrowRight, Calendar, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -6,49 +6,30 @@ import Navbar from "../layouts/Navbar";
 import NewsLetter from "../components/NewsLetter";
 import Footer from "../layouts/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-
-// Base blog entries
-const baseBlogs = [
-  {
-    title: "Empowering Businesses with Seamless IT Solutions",
-    image: "/blogimages/b1.png",
-    category: "IT SOLUTIONS",
-    date: "June 12, 2025",
-  },
-  {
-    title: "Result-Driven Marketing Strategies for Brand Growth",
-    image: "/blogimages/b2.png",
-    category: "MARKETING",
-    date: "June 10, 2025",
-  },
-  {
-    title: "Creative Design & Professional Video Production",
-    image: "/blogimages/b3.png",
-    category: "DESIGN & VIDEO",
-    date: "June 8, 2025",
-  },
-  {
-    title: "Result-Driven Marketing Strategies for Brand Growth",
-    image: "/blogimages/b2.png",
-    category: "MARKETING",
-    date: "June 10, 2025",
-  },
-];
-
-// Repeat to form 12 blogs
-const allBlogs = Array.from({ length: 12 }, (_, i) => {
-  const blog = baseBlogs[i % baseBlogs.length];
-  return {
-    id: i + 1,
-    ...blog,
-    image: `/blogimages/b${(i % baseBlogs.length) + 1}.png`,
-  };
-});
+import instance from "../lib/instance";
 
 const BlogGrid = () => {
   const blogsPerPage = 3;
-  const totalPages = Math.ceil(allBlogs.length / blogsPerPage);
   const [currentPage, setCurrentPage] = useState(1);
+  const [blogItems, setBlogItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        const response = await instance.get("/blogs/recent-blogs");
+        const data = response.data.data;
+        setBlogItems(data || []);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+        setBlogItems([]);
+      }
+      setLoading(false);
+    }
+    fetchBlogs();
+  }, []);
+
+  const totalPages = Math.ceil(blogItems.length / blogsPerPage);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -56,10 +37,19 @@ const BlogGrid = () => {
     }
   };
 
-  const paginatedBlogs = allBlogs.slice(
+  const paginatedBlogs = blogItems.slice(
     (currentPage - 1) * blogsPerPage,
     currentPage * blogsPerPage
   );
+
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <div>
@@ -80,36 +70,44 @@ const BlogGrid = () => {
       <div className="p-4 sm:p-6 md:p-10 max-w-7xl mx-auto">
         {/* Blog Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          {paginatedBlogs.map((blog) => (
-            <div
-              key={blog.id}
-              className="relative mt-20 w-full h-[300px] sm:h-[360px] md:h-[420px] lg:h-[400px] overflow-hidden shadow-lg rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
-              onClick={() => window.location.href = `/blog-details`}
-            >
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70 p-4 sm:p-6 flex flex-col justify-between">
-                <span className="bg-secondary text-black text-xs px-2 py-1 rounded w-fit font-semibold">
-                  {blog.category}
-                </span>
-                <div className="mb-4">
-                  <h3 className="text-white text-sm sm:text-base md:text-base lg:text-lg font-bold leading-tight mb-2">
-                    {blog.title}
-                  </h3>
-                  <div className="flex justify-between items-center text-white text-xs sm:text-sm">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {blog.date}
-                    </span>
-                    <Heart className="w-4 h-4" />
+          {loading ? (
+            <div className="col-span-3 text-center py-20">Loading...</div>
+          ) : paginatedBlogs.length === 0 ? (
+            <div className="col-span-3 text-center py-20">No blogs found.</div>
+          ) : (
+            paginatedBlogs.map((blog) => (
+              <div
+                key={blog._id}
+                className="relative mt-20 w-full h-[300px] sm:h-[360px] md:h-[420px] lg:h-[400px] overflow-hidden shadow-lg rounded-lg hover:scale-105 transition-transform duration-300 cursor-pointer"
+                onClick={() =>
+                  (window.location.href = `/blog-details/${blog._id}`)
+                }
+              >
+                <img
+                  src={blog.coverImage}
+                  alt={blog.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70 p-4 sm:p-6 flex flex-col justify-between">
+                  <span className="bg-secondary text-black text-xs px-2 py-1 rounded w-fit font-semibold">
+                    {blog.category}
+                  </span>
+                  <div className="mb-4">
+                    <h3 className="text-white text-sm sm:text-base md:text-base lg:text-lg font-bold leading-tight mb-2">
+                      {blog.title}
+                    </h3>
+                    <div className="flex justify-between items-center text-white text-xs sm:text-sm">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {formatDate(blog.createdAt)}
+                      </span>
+                      {/* <Heart className="w-4 h-4" /> */}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
 

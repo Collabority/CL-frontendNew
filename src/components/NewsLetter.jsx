@@ -1,14 +1,28 @@
 import React, { useState } from "react";
+import instance from "../lib/instance";
 
 const NewsLetter = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Subscribed email:", email);
-    setSubscribed(true);
-    setEmail("");
+    try {
+      const response = (await instance.post("/newsletter", { email })).data;
+      console.log("Subscription successful:", response);
+      // if(response.)
+      setSubscribed(true);
+      setEmail("");
+      if (response?.success) {
+        // Handle successful subscription
+        alert("Subscription successful!");
+      }
+    } catch (error) {
+      if (error.response.status === 400) {
+        alert("You are already subscibed.");
+      }
+      console.error("Error subscribing:", error);
+    }
   };
 
   return (
