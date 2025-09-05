@@ -43,4 +43,70 @@ body {
 
 html {
   scroll-behavior: smooth;
+} 
+
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@theme{ 
+    --color-primary:#F8F6F3;
+    --color-secondary:#008080;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(0) translateX(20px);
+  }
+  75% {
+    transform: translateY(20px) translateX(10px);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(20px) translateX(-10px);
+  }
+  50% {
+    transform: translateY(0) translateX(-20px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-15px) translateX(15px);
+  }
+  66% {
+    transform: translateY(15px) translateX(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 10s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
 }
