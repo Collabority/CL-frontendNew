@@ -186,6 +186,75 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Product-Based Services */}
+      <section className="relative py-20 px-6 sm:px-10 bg-gradient-to-b from-white via-gray-50 to-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Our Product-Based Services
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            From validating ideas to launching products, Collabority empowers businesses with
+            end-to-end tech, creative, and marketing solutions — built for scale, speed, and success.
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-left text-gray-800">
+          <div className="bg-primary rounded-xl shadow-md p-6 border hover:shadow-xl transition-all duration-300">
+            <h3 className="text-xl font-semibold text-secondary mb-3">
+              🚀 MVP to Market Fast
+            </h3>
+            <p className="mb-4">
+              We prototype and develop Minimum Viable Products (MVPs) using agile workflows to get your product in front of real users quickly.
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+              <li>Wireframing & UX strategy</li>
+              <li>Frontend & backend development</li>
+              <li>Launch support & iteration</li>
+            </ul>
+          </div>
+
+          <div className="bg-primary rounded-xl shadow-md p-6 border hover:shadow-xl transition-all duration-300">
+            <h3 className="text-xl font-semibold text-secondary mb-3">
+              🎨 Full-Stack Creative Studio
+            </h3>
+            <p className="mb-4">
+              Our in-house design team builds immersive interfaces and visual systems that are on-brand and user-first.
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+              <li>UI/UX design systems</li>
+              <li>Branding & motion graphics</li>
+              <li>Interactive web & mobile design</li>
+            </ul>
+          </div>
+
+          <div className="bg-primary rounded-xl shadow-md p-6 border hover:shadow-xl transition-all duration-300">
+            <h3 className="text-xl font-semibold text-secondary mb-3">
+              📊 Smart Marketing & Analytics
+            </h3>
+            <p className="mb-4">
+              Our digital campaigns are performance-oriented — combining content, automation, and tracking to maximize growth.
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 text-gray-600">
+              <li>SEO & inbound funnels</li>
+              <li>Social & paid ad strategy</li>
+              <li>Performance dashboards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-gray-700 text-lg mb-4">
+            Whether you're a startup building from scratch or a growing brand scaling up — we’ve got you covered.
+          </p>
+          <button className="inline-flex items-center gap-2 bg-[#008080] text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-[#008080] border border-[#008080] transition">
+            Request a Free Quote
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
       {/* News feed */}
 
       <section className="bg-gray-800 py-16">
