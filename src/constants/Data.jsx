@@ -1,27 +1,50 @@
 import { Eye, Film, Globe, Laptop2, PenTool, Rocket } from "lucide-react";
-import {
-  FaLaptopCode,
-} from "react-icons/fa";
+import { FaLaptopCode } from "react-icons/fa";
 import { FaShop } from "react-icons/fa6";
 import { GiClapperboard } from "react-icons/gi";
 import { MdDesignServices } from "react-icons/md";
-import img1 from "../assets/s1.jpeg"
-import img2 from "../assets/s2.jpeg"
-import img3 from "../assets/s3.jpeg"
-import img4 from "../assets/s4.jpeg"
-import img5 from "../assets/s5.jpeg"
-import img6 from "../assets/s6.jpeg"
+import img1 from "../assets/s1.jpeg";
+import img2 from "../assets/s2.jpeg";
+import img3 from "../assets/s3.jpeg";
+import img4 from "../assets/s4.jpeg";
+import img5 from "../assets/s5.jpeg";
+import img6 from "../assets/s6.jpeg";
 
 export const services = [
-  { icon: FaLaptopCode, title: "IT Solutions", color: "green", des: <>
-  Tech-driven company offering software, web/app development, or system integration.
-  </>},
-  { icon: FaShop, title: "Marketing Strategies", color: "blue", des: <>
-   Digital marketing agency traits (SEO, social media, performance marketing).</>},
-  { icon: MdDesignServices, title: "Creative Design Services", color: "orange", des: <>
-Design studio features (branding, UI/UX, graphics).</>},
-  { icon: GiClapperboard, title: "Video Production", color: "red", des: <>Multimedia or content creation agency capabilities.
-  </>},
+  {
+    icon: FaLaptopCode,
+    title: "IT Solutions",
+    color: "green",
+    des: (
+      <>
+        Tech-driven company offering software, web/app development, or system
+        integration.
+      </>
+    ),
+  },
+  {
+    icon: FaShop,
+    title: "Marketing Strategies",
+    color: "blue",
+    des: (
+      <>
+        Digital marketing agency traits (SEO, social media, performance
+        marketing).
+      </>
+    ),
+  },
+  {
+    icon: MdDesignServices,
+    title: "Creative Design Services",
+    color: "orange",
+    des: <>Design studio features (branding, UI/UX, graphics).</>,
+  },
+  {
+    icon: GiClapperboard,
+    title: "Video Production",
+    color: "red",
+    des: <>Multimedia or content creation agency capabilities.</>,
+  },
 ];
 
 export const colorMap = {
@@ -103,7 +126,6 @@ export const portfolioImages = [
   },
 ];
 
-
 export const infoData = [
   { number: "280", label: "Our Branches", color: "bg-green-600" },
   { number: "782", label: "Projects Done", color: "bg-yellow-600" },
@@ -111,14 +133,13 @@ export const infoData = [
   { number: "100", label: "Awards...", color: "bg-blue-600" },
 ];
 
-
 export const clients = [
   {
     img: "https://images.unsplash.com/photo-1607346256330-dee7af15f7c5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5kaWFuJTIwbWFufGVufDB8fDB8fHww",
     text: '"Collabority helped us revamp our entire IT infrastructure. Their team delivered secure, scalable solutions that improved our efficiency and digital workflow."',
     name: "Rohan Sharma",
     post: "TechNova Solutions",
-    stars: "⭐️ ⭐️ ⭐️ ⭐️ ⭐️"
+    stars: "⭐️ ⭐️ ⭐️ ⭐️ ⭐️",
   },
 
   {
@@ -126,7 +147,7 @@ export const clients = [
     text: '"Their marketing strategies brought a noticeable boost in our online reach and lead generation. We saw measurable growth in just a few months."',
     name: "Sneha Kapoor",
     post: "Digital Vibes Pvt. Ltd.",
-    stars: "⭐️ ⭐️ ⭐️ ⭐️"
+    stars: "⭐️ ⭐️ ⭐️ ⭐️",
   },
 
   {
@@ -134,10 +155,9 @@ export const clients = [
     text: '"The design and video production team at Collabority brought our brand vision to life. Their creativity and professionalism exceeded our expectations."',
     name: "Amit Verma",
     post: "CreativeNest India",
-    stars: "⭐️ ⭐️ ⭐️ ⭐️ ⭐️"
+    stars: "⭐️ ⭐️ ⭐️ ⭐️ ⭐️",
   },
 ];
-
 
 export const newsSection = [
   {
@@ -156,8 +176,6 @@ export const newsSection = [
     des: "How Data-Driven Marketing Is Driving Growth for Modern Brands",
   },
 ];
-
-
 
 export const newsfeed = [
   {
@@ -204,136 +222,224 @@ export const serviceCarousel = [
       "https://img.freepik.com/premium-psd/clapper-camera-production-cinema-movie-film-3d_66255-3269.jpg?ga=GA1.1.376547967.1733342161&semt=ais_hybrid&w=740",
     title: "Video Production",
     para: "We produce high-quality videos that tell compelling stories and elevate your brand. From promotional videos to corporate storytelling, our production team handles everything from scripting to post-editing with precision.",
-  }
+  },
 ];
-
 
 export const awards = [
   {
-    year: '2022',
-    title: 'Workplace Flexibility Awards 2022',
-    awardName: 'Best Remote Team Culture',
-    by: 'Running Remote',
+    year: "2022",
+    title: "Workplace Flexibility Awards 2022",
+    awardName: "Best Remote Team Culture",
+    by: "Running Remote",
   },
   {
-    year: '2024',
-    title: 'Remote Excellence Awards 2024',
-    awardName: 'Excellence in Talent Strategy',
-    by: 'Remote.com',
+    year: "2024",
+    title: "Remote Excellence Awards 2024",
+    awardName: "Excellence in Talent Strategy",
+    by: "Remote.com",
   },
   {
-    year: '2024',
-    title: 'Remote Excellence Awards 2024',
-    awardName: 'Excellence in Remote Work Culture',
-    by: 'Remote.com',
+    year: "2024",
+    title: "Remote Excellence Awards 2024",
+    awardName: "Excellence in Remote Work Culture",
+    by: "Remote.com",
   },
 ];
 
 export const allDomains = [
-  { id: 'all', name: 'All Domains' },
-  { id: 'cloud', name: 'Cloud & DevOps' },
-  { id: 'dev', name: 'Software Development' },
-  { id: 'data', name: 'Data & Analytics' },
-  { id: 'cyber', name: 'Cybersecurity' },
-  { id: 'consult', name: 'Consulting & Strategy' },
-  { id: 'infra', name: 'Infrastructure & Ops' },
+  { id: "all", name: "All Domains" },
+  { id: "cloud", name: "Cloud & DevOps" },
+  { id: "dev", name: "Software Development" },
+  { id: "data", name: "Data & Analytics" },
+  { id: "cyber", name: "Cybersecurity" },
+  { id: "consult", name: "Consulting & Strategy" },
+  { id: "infra", name: "Infrastructure & Ops" },
 ];
 
 export const allJobs = [
   {
-    id: 'job1',
-    title: 'Senior Cloud Architect',
-    location: 'Remote',
-    domainId: 'cloud',
-    description: 'Design and implement scalable cloud solutions on AWS/Azure. Requires strong expertise in cloud infrastructure and security.',
-    applyLink: '#apply-cloud-arch',
+    id: "job1",
+    title: "Senior Cloud Architect",
+    location: "Remote",
+    domainId: "cloud",
+    description:
+      "Design and implement scalable cloud solutions on AWS/Azure. Requires strong expertise in cloud infrastructure and security.",
+    applyLink: "#apply-cloud-arch",
   },
   {
-    id: 'job2',
-    title: 'DevOps Engineer',
-    location: 'Pune, India',
-    domainId: 'cloud',
-    description: 'Automate deployment pipelines and manage infrastructure as code. Experience with CI/CD tools (Jenkins, GitLab CI) is a plus.',
-    applyLink: '#apply-devops',
+    id: "job2",
+    title: "DevOps Engineer",
+    location: "Pune, India",
+    domainId: "cloud",
+    description:
+      "Automate deployment pipelines and manage infrastructure as code. Experience with CI/CD tools (Jenkins, GitLab CI) is a plus.",
+    applyLink: "#apply-devops",
   },
   {
-    id: 'job3',
-    title: 'Full Stack Developer (React/Node.js)',
-    location: 'Bangalore, India',
-    domainId: 'dev',
-    description: 'Develop robust web applications using modern JavaScript frameworks and Node.js backend. Strong problem-solving skills required.',
-    applyLink: '#apply-fs-dev',
+    id: "job3",
+    title: "Full Stack Developer (React/Node.js)",
+    location: "Bangalore, India",
+    domainId: "dev",
+    description:
+      "Develop robust web applications using modern JavaScript frameworks and Node.js backend. Strong problem-solving skills required.",
+    applyLink: "#apply-fs-dev",
   },
   {
-    id: 'job4',
-    title: 'Data Scientist',
-    location: 'Hyderabad, India',
-    domainId: 'data',
-    description: 'Analyze complex datasets, build predictive models, and extract actionable insights. Proficiency in Python/R and ML libraries.',
-    applyLink: '#apply-data-sci',
+    id: "job4",
+    title: "Data Scientist",
+    location: "Hyderabad, India",
+    domainId: "data",
+    description:
+      "Analyze complex datasets, build predictive models, and extract actionable insights. Proficiency in Python/R and ML libraries.",
+    applyLink: "#apply-data-sci",
   },
   {
-    id: 'job5',
-    title: 'Cybersecurity Consultant',
-    location: 'London, UK',
-    domainId: 'cyber',
-    description: 'Provide expert advice on security policies, risk assessment, and compliance. Experience with security frameworks is essential.',
-    applyLink: '#apply-cyber-consult',
+    id: "job5",
+    title: "Cybersecurity Consultant",
+    location: "London, UK",
+    domainId: "cyber",
+    description:
+      "Provide expert advice on security policies, risk assessment, and compliance. Experience with security frameworks is essential.",
+    applyLink: "#apply-cyber-consult",
   },
   {
-    id: 'job6',
-    title: 'IT Strategy Consultant',
-    location: 'New York, USA',
-    domainId: 'consult',
-    description: 'Advise clients on digital transformation and technology roadmap development. Strong analytical and communication skills.',
-    applyLink: '#apply-it-strategy',
+    id: "job6",
+    title: "IT Strategy Consultant",
+    location: "New York, USA",
+    domainId: "consult",
+    description:
+      "Advise clients on digital transformation and technology roadmap development. Strong analytical and communication skills.",
+    applyLink: "#apply-it-strategy",
   },
   {
-    id: 'job7',
-    title: 'Systems Administrator',
-    location: 'Frankfurt, Germany',
-    domainId: 'infra',
-    description: 'Manage and maintain server infrastructure, ensuring high availability and performance. Familiarity with Linux/Windows servers.',
-    applyLink: '#apply-sys-admin',
+    id: "job7",
+    title: "Systems Administrator",
+    location: "Frankfurt, Germany",
+    domainId: "infra",
+    description:
+      "Manage and maintain server infrastructure, ensuring high availability and performance. Familiarity with Linux/Windows servers.",
+    applyLink: "#apply-sys-admin",
   },
   {
-    id: 'job8',
-    title: 'Junior Cloud Engineer',
-    location: 'Remote',
-    domainId: 'cloud',
-    description: 'Assist in cloud environment setup and maintenance. Great opportunity for freshers with basic cloud knowledge.',
-    applyLink: '#apply-junior-cloud',
+    id: "job8",
+    title: "Junior Cloud Engineer",
+    location: "Remote",
+    domainId: "cloud",
+    description:
+      "Assist in cloud environment setup and maintenance. Great opportunity for freshers with basic cloud knowledge.",
+    applyLink: "#apply-junior-cloud",
   },
   {
-    id: 'job9',
-    title: 'Backend Developer (Python/Django)',
-    location: 'Delhi, India',
-    domainId: 'dev',
-    description: 'Develop robust backend services and APIs. Experience with Django/Flask and database management.',
-    applyLink: '#apply-backend',
+    id: "job9",
+    title: "Backend Developer (Python/Django)",
+    location: "Delhi, India",
+    domainId: "dev",
+    description:
+      "Develop robust backend services and APIs. Experience with Django/Flask and database management.",
+    applyLink: "#apply-backend",
   },
   {
-    id: 'job10',
-    title: 'Business Intelligence Analyst',
-    location: 'Mumbai, India',
-    domainId: 'data',
-    description: 'Create dashboards and reports, providing insights to drive business decisions. Proficiency in SQL and BI tools (e.g., Tableau, Power BI).',
-    applyLink: '#apply-bi-analyst',
+    id: "job10",
+    title: "Business Intelligence Analyst",
+    location: "Mumbai, India",
+    domainId: "data",
+    description:
+      "Create dashboards and reports, providing insights to drive business decisions. Proficiency in SQL and BI tools (e.g., Tableau, Power BI).",
+    applyLink: "#apply-bi-analyst",
   },
 ];
 
-
 export const roles = [
-  'Backend Developer', 'Senior Cloud Architect', 'DevOps Engineer', 'Full Stack Developer', 'Data Scientist',
-  'Cybersecurity Consultant', 'IT Strategy Consultant', 'Systems Administrator', 'Junior Cloud Engineer', 'Business Intelligence Analysis'
+  "Backend Developer",
+  "Senior Cloud Architect",
+  "DevOps Engineer",
+  "Full Stack Developer",
+  "Data Scientist",
+  "Cybersecurity Consultant",
+  "IT Strategy Consultant",
+  "Systems Administrator",
+  "Junior Cloud Engineer",
+  "Business Intelligence Analysis",
 ];
 
 export const portfolioPage = [
-  {image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGVhbHRoY2FyZSUyMHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D", title: "Cutting-edge IT Solutions", text: <>Collabority led the end-to-end development of <b className="text-gray-500">SmartClinic</b>, an <b className="text-gray-500">AI-driven telehealth platform</b> that enables virtual consultations, smart prescriptions, and <b className="text-gray-500"> real-time health monitoring.</b> Built with scalable microservices and secured via advanced encryption protocols, this platform helped <b className="text-gray-500"> reduce patient wait times by 60% across hospitals.</b></>},
-  {image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlnaXRhbCUyMG1hcmtldGluZyUyMHN0cmF0ZWd5fGVufDB8fDB8fHww", title: "Result-driven Marketing Strategies", text: <>We designed and executed a full-funnel marketing campaign for <b className="text-gray-500">LaunchPro, a B2B SaaS startup</b>. From lead magnet content to paid media optimization and CRM automation, <b className="text-gray-500">the campaign achieved a 230% increase in qualified leads</b> and boosted brand visibility in tech communities globally.</>},
-  {image: "https://plus.unsplash.com/premium_photo-1661770132071-026114fffb61?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnJhbmRpbmclMjBkZXNpZ258ZW58MHx8MHx8fDA%3D", title: "Creative Design Services", text: <>Collabority reimagined the brand identity for <b className="text-gray-500">RebrandX</b>, a fintech startup. From logo design and color theory to UX/UI revamp, we created a <b className="text-gray-500">cohesive brand experience across digital and print media.</b> The updated design system <b className="text-gray-500">led to a 40% uptick in customer engagement.</b></>},
-  {image: "https://plus.unsplash.com/premium_photo-1691223714387-a74006933ffb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dmlkZW8lMjBwcm9kdWN0aW9ufGVufDB8fDB8fHww", title: "Professional Video Production", text: <>We produced a <b className="text-gray-500">high-impact video series for VisionVibe</b> to enhance their <b className="text-gray-500">internal onboarding and client presentations.</b> The project <b className="text-gray-500">included motion graphics, storytelling, and drone videography.</b> The campaign saw a <b className="text-gray-500">3x engagement</b> rate on LinkedIn and internal portals.</>},
-]
+  {
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGVhbHRoY2FyZSUyMHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D",
+    title: "Cutting-edge IT Solutions",
+    text: (
+      <>
+        Collabority led the end-to-end development of{" "}
+        <b className="text-gray-500">SmartClinic</b>, an{" "}
+        <b className="text-gray-500">AI-driven telehealth platform</b> that
+        enables virtual consultations, smart prescriptions, and{" "}
+        <b className="text-gray-500"> real-time health monitoring.</b> Built
+        with scalable microservices and secured via advanced encryption
+        protocols, this platform helped{" "}
+        <b className="text-gray-500">
+          {" "}
+          reduce patient wait times by 60% across hospitals.
+        </b>
+      </>
+    ),
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlnaXRhbCUyMG1hcmtldGluZyUyMHN0cmF0ZWd5fGVufDB8fDB8fHww",
+    title: "Result-driven Marketing Strategies",
+    text: (
+      <>
+        We designed and executed a full-funnel marketing campaign for{" "}
+        <b className="text-gray-500">LaunchPro, a B2B SaaS startup</b>. From
+        lead magnet content to paid media optimization and CRM automation,{" "}
+        <b className="text-gray-500">
+          the campaign achieved a 230% increase in qualified leads
+        </b>{" "}
+        and boosted brand visibility in tech communities globally.
+      </>
+    ),
+  },
+  {
+    image:
+      "https://plus.unsplash.com/premium_photo-1661770132071-026114fffb61?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnJhbmRpbmclMjBkZXNpZ258ZW58MHx8MHx8fDA%3D",
+    title: "Creative Design Services",
+    text: (
+      <>
+        Collabority reimagined the brand identity for{" "}
+        <b className="text-gray-500">RebrandX</b>, a fintech startup. From logo
+        design and color theory to UX/UI revamp, we created a{" "}
+        <b className="text-gray-500">
+          cohesive brand experience across digital and print media.
+        </b>{" "}
+        The updated design system{" "}
+        <b className="text-gray-500">
+          led to a 40% uptick in customer engagement.
+        </b>
+      </>
+    ),
+  },
+  {
+    image:
+      "https://plus.unsplash.com/premium_photo-1691223714387-a74006933ffb?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dmlkZW8lMjBwcm9kdWN0aW9ufGVufDB8fDB8fHww",
+    title: "Professional Video Production",
+    text: (
+      <>
+        We produced a{" "}
+        <b className="text-gray-500">high-impact video series for VisionVibe</b>{" "}
+        to enhance their{" "}
+        <b className="text-gray-500">
+          internal onboarding and client presentations.
+        </b>{" "}
+        The project{" "}
+        <b className="text-gray-500">
+          included motion graphics, storytelling, and drone videography.
+        </b>{" "}
+        The campaign saw a <b className="text-gray-500">3x engagement</b> rate
+        on LinkedIn and internal portals.
+      </>
+    ),
+  },
+];
 
 export const servicesCards = [
   {
@@ -429,8 +535,7 @@ export const servicesCardsData = [
     title: "Brand Identity Development",
     icon: <PenTool className="w-8 h-8" />,
     image: img5,
-    shortDescription:
-      "Define your brand’s voice, tone, and visual identity...",
+    shortDescription: "Define your brand’s voice, tone, and visual identity...",
     tabletFullDescription:
       "Define your brand’s voice, tone, and visual identity to create consistent experiences across every channel. We start by discovering your core values, mission, and target audience. Our team develops logos, typography, color palettes, and brand guidelines.",
     fullDescription:
@@ -449,69 +554,67 @@ export const servicesCardsData = [
   },
 ];
 
-
-
-
 export const COLORS = {
-  PRIMARY: '#2563eb',
-  SECONDARY: '#3b82f6',
-  TEXT_DARK: '#1f2937',
-  TEXT_LIGHT: '#6b7280',
-  BACKGROUND: '#ffffff',
-  FOOTER_BG: '#111827',
-  HOVER: '#1d4ed8'
+  PRIMARY: "#2563eb",
+  SECONDARY: "#3b82f6",
+  TEXT_DARK: "#1f2937",
+  TEXT_LIGHT: "#6b7280",
+  BACKGROUND: "#ffffff",
+  FOOTER_BG: "#111827",
+  HOVER: "#1d4ed8",
 };
 
 export const TEXTS = {
   NAVIGATION: {
-    HOME: 'Home',
-    ABOUT: 'About',
-    SERVICES: 'Services',
-    PAGES: 'Pages',
-    BLOG: 'Blog',
-    CONTACT: 'Contact'
+    HOME: "Home",
+    ABOUT: "About",
+    SERVICES: "Services",
+    PAGES: "Pages",
+    BLOG: "Blog",
+    CONTACT: "Contact",
   },
   BUTTONS: {
-    GET_QUOTE: 'Get A Quote'
+    GET_QUOTE: "Get A Quote",
   },
   SECTIONS: {
     HERO: {
-      TITLE: 'About Collabority',
-      DESCRIPTION: 'Empowering Digital Transformation & Brand Growth'
+      TITLE: "About Collabority",
+      DESCRIPTION: "Empowering Digital Transformation & Brand Growth",
     },
     TIMELINE: {
-      TITLE: 'Our Journey',
-      DESCRIPTION: 'Explore our growth and milestones'
+      TITLE: "Our Journey",
+      DESCRIPTION: "Explore our growth and milestones",
     },
     FAQ: {
-      TITLE: 'Frequently Asked Questions',
-      DESCRIPTION: 'Answers to common questions'
-    }
+      TITLE: "Frequently Asked Questions",
+      DESCRIPTION: "Answers to common questions",
+    },
   },
   FOOTER: {
     COMPANY: {
-      NAME: 'Collabority',
-      SUBTITLE: 'IT Solutions, Marketing, Design & Video',
-      DESCRIPTION: 'At Collabority, we specialize in cutting-edge IT solutions, result-driven marketing strategies, creative design services, and professional video production to help businesses thrive in the digital era.'
+      NAME: "Collabority",
+      SUBTITLE: "IT Solutions, Marketing, Design & Video",
+      DESCRIPTION:
+        "At Collabority, we specialize in cutting-edge IT solutions, result-driven marketing strategies, creative design services, and professional video production to help businesses thrive in the digital era.",
     },
     CONTACT: {
-      PHONE: '+1 800 555 2024',
-      EMAIL: 'hello@collabority.com'
+      PHONE: "+1 800 555 2024",
+      EMAIL: "hello@collabority.com",
     },
     HOURS: {
-      MON_FRI: 'Monday - Friday: 9:00 AM - 6:00 PM',
-      SAT: 'Saturday: 10:00 AM - 2:00 PM',
-      SUN: 'Sunday: Closed'
-    }
-  }
+      MON_FRI: "Monday - Friday: 9:00 AM - 6:00 PM",
+      SAT: "Saturday: 10:00 AM - 2:00 PM",
+      SUN: "Sunday: Closed",
+    },
+  },
 };
 
 export const ANIMATIONS = {
   DURATION: 0.5,
   DELAY: 0.2,
   TIMING: {
-    EASE_IN: 'ease-in',
-    EASE_OUT: 'ease-out',
-    EASE_IN_OUT: 'ease-in-out'
-  }
+    EASE_IN: "ease-in",
+    EASE_OUT: "ease-out",
+    EASE_IN_OUT: "ease-in-out",
+  },
 };

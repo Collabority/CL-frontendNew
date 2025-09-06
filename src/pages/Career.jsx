@@ -1,39 +1,65 @@
-import React from "react";
 import MainIllustration from "../assets/main.png";
 import LeftLaurelPng from "../assets/image1.png";
 import RightLaurelPng from "../assets/image2.png";
-import { allDomains, allJobs, awards, roles } from "../constants/data";
+import { awards, roles } from "../constants/data";
 import Navbar from "../layouts/Navbar";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Footer from "../layouts/Footer";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
 import ClientTestimonial from "../components/ClientTestimonial";
 import { motion } from "framer-motion";
 import ScrollToTop from "../components/ScrollToTop";
+import instance from "../lib/instance";
+
+const allDomains = [
+  { id: "all", name: "All Domains" },
+  { id: "cloud", name: "Cloud & DevOps" },
+  { id: "dev", name: "Software Development" },
+  { id: "data", name: "Data & Analytics" },
+  { id: "cyber", name: "Cybersecurity" },
+  { id: "consult", name: "Consulting & Strategy" },
+  { id: "infra", name: "Infrastructure & Ops" },
+];
 
 const Career = () => {
-  // State for the single filter for all roles
+  // All hooks must be called unconditionally and before any return
   const [selectedDomain, setSelectedDomain] = useState("all");
-
-  // State to store jobs filtered by the selected domain
+  const [fetchedJobs, setFetchedJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
-
-  // Effect to filter jobs based on selected domain
-  useEffect(() => {
-    let currentFilteredJobs = [];
-    if (selectedDomain === "all") {
-      currentFilteredJobs = allJobs;
-    } else {
-      currentFilteredJobs = allJobs.filter(
-        (job) => job.domainId === selectedDomain
-      );
-    }
-    setFilteredJobs(currentFilteredJobs);
-  }, [selectedDomain]); // Depend only on the single selectedDomain state
-
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [selectedRoles, setSelectedRoles] = useState([]);
+  const openRolesRef = useRef(null);
+
+  useEffect(() => {
+    async function fetchAndFilterJobs() {
+      setLoading(true);
+      try {
+        const res = await instance.get("/career/get-jobs");
+        const data = res.data.data.jobs || [];
+        console.log(data.jobs);
+        setFetchedJobs(data.jobs);
+
+        let currentFilteredJobs = [];
+
+        if (selectedDomain === "all") {
+          currentFilteredJobs = data;
+        } else {
+          currentFilteredJobs = data.filter(
+            (job) => job.department === selectedDomain
+          );
+        }
+        setFilteredJobs(currentFilteredJobs);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+        setFetchedJobs([]);
+        setFilteredJobs([]);
+      }
+      setLoading(false);
+    }
+
+    fetchAndFilterJobs();
+  }, [selectedDomain]);
 
   const handleRoleChange = (role) => {
     setSelectedRoles((prev) =>
@@ -45,8 +71,6 @@ const Career = () => {
     e.preventDefault();
     alert("Thank you for signing up!");
   };
-
-  const openRolesRef = useRef(null);
 
   const test = [
     {
@@ -68,6 +92,15 @@ const Career = () => {
       post: "Marketing Strategist, Collabority",
     },
   ];
+
+  // Loading state must be after all hooks
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-white font-poppins flex items-center justify-center">
+        <div className="text-xl text-[#008080] font-semibold">Loading...</div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-white font-poppins overflow-x-hidden">
@@ -232,7 +265,7 @@ const Career = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredJobs.map((job) => (
                 <div
-                  key={job.id}
+                  key={job.id || job._id} // Use a unique key, prefer job.id or job._id
                   className="bg-white border border-gray-200 rounded-xl shadow hover:shadow-lg transition duration-200 overflow-hidden group"
                 >
                   <div className="h-1 bg-gradient-to-r from-secondary to-gray-900" />
@@ -242,8 +275,8 @@ const Career = () => {
                         {job.title}
                       </h3>
                       <span className="text-xs px-2 py-1 rounded-full bg-primary text-secondary font-medium capitalize">
-                        {allDomains.find((d) => d.id === job.domainId)?.name ||
-                          "General"}
+                        {allDomains.find((d) => d.id === job.department)
+                          ?.name || "General"}
                       </span>
                     </div>
                     <p className="text-sm text-gray-500 mb-1">{job.location}</p>
@@ -251,7 +284,7 @@ const Career = () => {
                       {job.description}
                     </p>
                     <Link
-                      to={`/job/${job.id}`}
+                      to={`/job/${job.id || job._id}`}
                       className="inline-block mt-2 text-sm font-medium text-white bg-gray-900 hover:bg-primary hover:text-secondary hover:border transition px-4 py-2 rounded-md"
                     >
                       View Details
@@ -674,9 +707,9 @@ const Career = () => {
                 Which roles would you like to be notified about?
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 ">
-                {roles.map((role) => (
+                {roles.map((role, idx) => (
                   <label
-                    key={role}
+                    key={role + idx} // Ensure unique key
                     className="flex items-center text-gray-900 text-sm cursor-pointer"
                   >
                     <input
