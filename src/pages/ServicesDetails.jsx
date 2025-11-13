@@ -18,6 +18,8 @@ import {
 import { motion } from "framer-motion";
 import ScrollToTop from "../components/ScrollToTop";
 import ContactSection from "../components/ContactSection";
+import { useEffect } from "react";
+import instance from "../lib/instance";
 
 const ServicesDetails = () => {
   useAnimateElementById("slideUpImage");
@@ -48,6 +50,19 @@ const ServicesDetails = () => {
     },
   ];
 
+  const [serviceData, setServiceData] = useState([]);
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      try {
+        const response = (await instance.get("/services/all")).data;
+        console.log(response.data.services);
+        setServiceData(response.data.services);
+      } catch (error) {
+        console.error("Error fetching service data:", error);
+      }
+    };
+    fetchServiceData();
+  }, []);
   return (
     <main className="min-h-screen bg-white overflow-x-hidden">
       {/* Navbar */}
@@ -159,7 +174,7 @@ const ServicesDetails = () => {
         </h1>
         <div className="w-full flex flex-col pt-10 gap-10">
           <div className="flex flex-col bg-[#F8F6F3] px-4 sm:px-10">
-            {servicesCardsData.map((item, idx) =>
+            {serviceData.map((item, idx) =>
               idx % 2 === 0 ? (
                 <div
                   key={idx}
@@ -167,7 +182,7 @@ const ServicesDetails = () => {
                 >
                   {/* Image */}
                   <motion.img
-                    src={item.image}
+                    src={item.coverImage}
                     alt={item.title}
                     className="h-[300px] sm:h-[350px] lg:h-[400px] w-auto max-w-md rounded shadow-xl object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"
                     initial={{ x: -200, opacity: 0 }}
@@ -179,7 +194,6 @@ const ServicesDetails = () => {
                     }}
                   />
 
-
                   {/* Text Content */}
                   <div className="px-4 sm:px-8 lg:px-32 flex flex-col max-w-[700px] text-center lg:text-left">
                     <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black">
@@ -188,11 +202,11 @@ const ServicesDetails = () => {
                     <p className="mt-4 text-gray-500 leading-relaxed hover:text-gray-900 text-sm sm:text-base">
                       {expandedIndex === idx
                         ? window.innerWidth >= 1024
-                          ? item.fullDescription
+                          ? item.description
                           : window.innerWidth >= 768
-                          ? item.tabletFullDescription
-                          : item.fullDescription
-                        : item.shortDescription}
+                          ? item.description
+                          : item.desription
+                        : item.metaData.metaDescription}
                     </p>
                     <button
                       onClick={() => toggleReadMore(idx)}
@@ -209,14 +223,13 @@ const ServicesDetails = () => {
                 >
                   {/* Image */}
                   <motion.img
-                    src={item.image}
+                    src={item.coverImage}
                     alt={item.title}
                     className="h-[300px] sm:h-[350px] lg:h-[400px] w-auto max-w-md rounded shadow-xl object-cover transition-transform duration-300 ease-in-out hover:scale-105 hover:brightness-110"
                     initial={{ x: 200, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   />
-
 
                   {/* Text Content */}
                   <div className="px-4 sm:px-8 lg:px-32 flex flex-col max-w-[700px] text-center lg:text-left">
@@ -226,11 +239,11 @@ const ServicesDetails = () => {
                     <p className="mt-4 text-gray-500 leading-relaxed hover:text-gray-900 text-sm sm:text-base">
                       {expandedIndex === idx
                         ? window.innerWidth >= 1024
-                          ? item.fullDescription
+                          ? item.description
                           : window.innerWidth >= 768
-                          ? item.tabletFullDescription
-                          : item.fullDescription
-                        : item.shortDescription}
+                          ? item.description
+                          : item.desription
+                        : item.metaData.metaDescription}
                     </p>
                     <button
                       onClick={() => toggleReadMore(idx)}

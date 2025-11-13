@@ -1,162 +1,202 @@
-import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { allJobs } from '../constants/jobData';
+import { useNavigate, Link, useParams } from "react-router-dom";
+import JobApplicationForm from "../components/jobs/jobApplication.jsx";
+import { useEffect } from "react";
+import instance from "../lib/instance.js";
+import { useState } from "react";
+
+
+
+const suggestions = [
+  {
+    _id: "68a6062e1381f9b7f1f03926",
+    title: "Backend Developer",
+    jobLocation: "Remote",
+  },
+  {
+    _id: "68a6062e1381f9b7f1f03927",
+    title: "UI/UX Designer",
+    jobLocation: "Ghaziabad",
+  },
+  {
+    _id: "68a6062e1381f9b7f1f03928",
+    title: "Project Manager",
+    jobLocation: "Remote",
+  },
+];
+
+const formatList = (str) => (str ? str.split("\n").filter(Boolean) : []);
 
 const JobDetails = () => {
+  const [job, setJob] = useState({});
   const { id } = useParams();
-  const navigate = useNavigate();
-  const job = allJobs.find(j => j.id === id);
-
-  if (!job) {
-    return (
-      <div className="text-center mt-20">
-        <h2 className="text-2xl font-semibold">Job not found</h2>
-        <button
-          onClick={() => navigate(-1)}
-          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
-        >
-          Go Back
-        </button>
-      </div>
-    );
+  // const navigate = useNavigate();
+  useEffect(() => {
+    async function fetchJobDetails() {
+      // Fetch job details using job ID from URL params
+      const res = await instance.get(`/career/get-jobs/${id}`);
+      const data = await res.data.data;
+      setJob(data);
+    }
+    fetchJobDetails();
+  }, []);
+  // const job = tempdata;
+  if (!job || !job._id) {
+    return <div className="p-8 text-center">Loading job details...</div>;
   }
-
   return (
-    <div className="bg-gray-50 min-h-screen py-10 px-4 md:px-8 lg:px-16 text-gray-800">
-      {/* 🔙 Back to Roles */}
+    <div className="bg-[#F8F6F3] min-h-screen py-10 px-4 md:px-8 lg:px-16 text-gray-800 font-sans">
+      {/* Back to Roles */}
       <div className="max-w-7xl mx-auto mb-6">
         <Link
           to="/career"
-          className="inline-block text-secondary hover:underline text-sm font-medium mb-4"
+          className="inline-block text-[#008080] hover:underline text-sm font-medium mb-4"
         >
           ← Back to Roles
         </Link>
       </div>
 
-      <div className='text-center mb-6'>
-            <h1 className="text-4xl font-bold mb-2 text-secondary">{job.title}</h1>
-            <p className="text-gray-600 text-lg">
-              {job.location} · Collabority
-            </p>
-          </div>
+      {/* Job Title & Meta */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-extrabold mb-2 text-[#002248]">
+          {job.title}
+        </h1>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-[#7b8ca0] text-base">
+          <span>{job.department}</span>
+          <span className="hidden sm:inline">|</span>
+          <span>{job.jobType}</span>
+          <span className="hidden sm:inline">|</span>
+          <span>{job.jobLocation}</span>
+          <span className="hidden sm:inline">|</span>
+          <span>{job.experienceLevel} Level</span>
+        </div>
+        <div className="mt-2 text-[#008080] font-semibold text-lg">
+          ₹{job.minSalary.toLocaleString()} - ₹{job.maxSalary.toLocaleString()}{" "}
+          / {job.jobPeriod}
+        </div>
+      </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-12">
         {/* ==== LEFT: Job Details ==== */}
         <div className="lg:col-span-3 space-y-8">
-          {/* Header */}
-          
-
           {/* About the Role */}
-          <section className='bg-white p-6 rounded-lg'>
-            <h2 className="text-xl font-semibold mb-2">About the Role</h2>
-            <p className="text-gray-700 leading-relaxed">{job.about}</p>
+          <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
+            <h2 className="text-xl font-semibold mb-2 text-[#008080]">
+              About the Role
+            </h2>
+            <p className="text-gray-700 leading-relaxed">{job.description}</p>
           </section>
 
           {/* Responsibilities */}
-          {job.responsibilities && (
-            <section className='bg-white p-6 rounded-lg'>
-              <h2 className="text-xl font-semibold mb-2">Key Responsibilities</h2>
+          {job.keyResponsibities && (
+            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
+              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
+                Key Responsibilities
+              </h2>
               <ul className="list-disc pl-6 space-y-1 text-gray-700">
-                {job.responsibilities.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {formatList(job.keyResponsibities).map((item, idx) => (
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </section>
           )}
 
           {/* Requirements */}
-          {job.requirements && (
-            <section className='bg-white p-6 rounded-lg'>
-              <h2 className="text-xl font-semibold mb-2">Requirements</h2>
+          {job.jobRequirements && (
+            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
+              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
+                Requirements
+              </h2>
               <ul className="list-disc pl-6 space-y-1 text-gray-700">
-                {job.requirements.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {formatList(job.jobRequirements).map((item, idx) => (
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </section>
           )}
 
-          {/* Why Join Us */}
-          {job.whyJoin && (
-            <section className='bg-white p-6 rounded-lg'>
-              <h2 className="text-xl font-semibold mb-2">Why Join Us</h2>
+          {/* Perks */}
+          {job.perks && (
+            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
+              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
+                Perks & Benefits
+              </h2>
               <ul className="list-disc pl-6 space-y-1 text-gray-700">
-                {job.whyJoin.map((item, index) => (
-                  <li key={index}>{item}</li>
+                {formatList(job.perks).map((item, idx) => (
+                  <li key={idx}>{item}</li>
                 ))}
               </ul>
             </section>
           )}
+
+          {/* Instructions */}
+          {job.instructions && (
+            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
+              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
+                How to Apply
+              </h2>
+              <p className="text-gray-700">{job.instructions}</p>
+            </section>
+          )}
+
+          {/* Hiring Manager */}
+          {job.hiringManager && (
+            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow flex flex-col sm:flex-row items-center gap-4">
+              <div className="flex-shrink-0 w-14 h-14 bg-[#008080] text-white flex items-center justify-center rounded-full text-2xl font-bold uppercase">
+                {job.hiringManager.name[0]}
+              </div>
+              <div>
+                <div className="font-semibold text-[#002248]">
+                  {job.hiringManager.name}
+                </div>
+                <div className="text-sm text-[#7b8ca0]">
+                  {job.hiringManager.title}
+                </div>
+                <a
+                  href={`mailto:${job.hiringManager.email}`}
+                  className="text-[#008080] text-sm hover:underline"
+                >
+                  {job.hiringManager.email}
+                </a>
+              </div>
+            </section>
+          )}
+
+          {/* ==== Application Form ==== */}
+          <div className="mt-10">
+            <h2 className="text-2xl font-bold text-center text-[#002248]">
+              Apply for this Role
+            </h2>
+
+            <JobApplicationForm jobId={job._id} />
+          </div>
         </div>
 
         {/* ==== RIGHT: Suggestions ==== */}
         <aside className="space-y-4">
-          <h2 className="text-lg font-semibold text-gray-800 mb-2">More Open Positions</h2>
-          {allJobs
-            .filter(j => j.id !== job.id)
-            .slice(0, 3)
-            .map((suggested) => (
-              <div
-                key={suggested.id}
-                className="border border-gray-200 rounded-lg bg-white p-4 shadow-sm hover:shadow-md transition"
+          <h2 className="text-lg font-semibold text-[#002248] mb-2">
+            More Open Positions
+          </h2>
+          {suggestions.map((suggested) => (
+            <div
+              key={suggested._id}
+              className="border border-[#e0d8c8] rounded-none bg-white p-4 shadow-sm hover:shadow-md transition"
+            >
+              <h4 className="text-md font-medium text-[#008080] mb-1">
+                {suggested.title}
+              </h4>
+              <p className="text-sm text-gray-500 mb-2">
+                {suggested.jobLocation}
+              </p>
+              <Link
+                to={`/job/${suggested._id}`}
+                className="text-sm text-[#002248] hover:underline"
               >
-                <h4 className="text-md font-medium text-gray-900 mb-1">{suggested.title}</h4>
-                <p className="text-sm text-gray-500 mb-2">{suggested.location}</p>
-                <Link
-                  to={`/job/${suggested.id}`}
-                  className="text-sm text-secondary hover:underline"
-                >
-                  View Details →
-                </Link>
-              </div>
-            ))}
+                View Details →
+              </Link>
+            </div>
+          ))}
         </aside>
       </div>
-
-      {/* ==== Application Form ==== */}
-      <section className="max-w-4xl mx-auto mt-16 bg-primary p-6 rounded-xl shadow-md border">
-        <h2 className="text-2xl font-bold mb-6 text-center">Apply for this role</h2>
-        <form className="space-y-4">
-          <div>
-            <label className="block mb-1 font-medium">Full Name</label>
-            <input
-              type="text"
-              placeholder="Your full name"
-              className="w-full border px-4 py-2 rounded-md bg-white"
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-medium">Email</label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="w-full border px-4 py-2 rounded-md bg-white"
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-medium">Resume (PDF)</label>
-            <input
-              type="file"
-              accept=".pdf"
-              className="w-full border px-4 py-2 rounded-md bg-white"
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-medium">Cover Letter</label>
-            <textarea
-              rows="5"
-              className="w-full border px-4 py-2 rounded-md bg-white"
-              placeholder="Why do you want this role?"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="mt-4 bg-[#008080] hover:bg-gray-900 text-white font-semibold py-2 px-6 rounded-md transition"
-          >
-            Submit Application
-          </button>
-        </form>
-      </section>
     </div>
   );
 };

@@ -36,6 +36,8 @@ const Home = () => {
   // trigger animation on mouting..
   useEffect(() => {
     setAnimate(true);
+
+    
   }, []);
 
   // for the image to animate
@@ -453,7 +455,7 @@ const Home = () => {
       <ClientTestimonial
         title1="Client Testimonials"
         title2="What Our Clients Say"
-        data={clients}
+        // data={clients}
       />
 
       {/* Call to action */}
