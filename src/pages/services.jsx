@@ -246,7 +246,7 @@ const Services = () => {
           <p className="text-gray-700 text-lg mb-4">
             Whether you're a startup building from scratch or a growing brand scaling up — we’ve got you covered.
           </p>
-          <button className="inline-flex items-center gap-2 bg-[#008080] text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-[#008080] border border-[#008080] transition">
+          <button className="inline-flex items-center gap-2 bg-secondary text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-secondary border border-secondary transition">
             Request a Free Quote
             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

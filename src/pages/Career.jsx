@@ -199,7 +199,10 @@ const Career = () => {
       </section>
 
       {/* Open Roles Section */}
-      <section ref={openRolesRef} className="min-h-screen bg-gray-50">
+      <section
+        ref={openRolesRef}
+        className="min-h-screen bg-gray-50"
+      >
         <style>
           {`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -226,7 +229,10 @@ const Career = () => {
             </h1>
             {/* Consolidated Roles Filter Dropdown */}
             <div className="relative w-full sm:w-auto">
-              <label htmlFor="domain-filter" className="sr-only">
+              <label
+                htmlFor="domain-filter"
+                className="sr-only"
+              >
                 Filter roles by domain
               </label>
               <select
@@ -238,7 +244,10 @@ const Career = () => {
                 aria-label="Filter roles by category"
               >
                 {allDomains.map((domain) => (
-                  <option key={domain.id} value={domain.id}>
+                  <option
+                    key={domain.id}
+                    value={domain.id}
+                  >
                     {domain.name}
                   </option>
                 ))}
@@ -353,7 +362,10 @@ const Career = () => {
                       max-[640px]:text-sm md:text-[0.95rem]"
             >
               We encourage candidates to spend time reading{" "}
-              <Link to="/blog-details" className="text-[#008080] underline">
+              <Link
+                to="/blog-details"
+                className="text-[#008080] underline"
+              >
                 our blog
               </Link>{" "}
               to get to know our company, values and products.
