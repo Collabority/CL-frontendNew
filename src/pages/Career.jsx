@@ -9,16 +9,17 @@ import { Link } from "react-router-dom";
 import ClientTestimonial from "../components/ClientTestimonial";
 import { motion } from "framer-motion";
 import ScrollToTop from "../components/ScrollToTop";
-import instance from "../lib/instance";
+import instance from "../lib/axios";
+
 
 const allDomains = [
   { id: "all", name: "All Domains" },
-  { id: "cloud", name: "Cloud & DevOps" },
-  { id: "dev", name: "Software Development" },
-  { id: "data", name: "Data & Analytics" },
-  { id: "cyber", name: "Cybersecurity" },
-  { id: "consult", name: "Consulting & Strategy" },
-  { id: "infra", name: "Infrastructure & Ops" },
+  { id: "Cloud & DevOps", name: "Cloud & DevOps" },
+  { id: "Software Development", name: "Software Development" },
+  { id: "Data & Analytics", name: "Data & Analytics" },
+  { id: "Cybersecurity", name: "Cybersecurity" },
+  { id: "Consulting & Strategy", name: "Consulting & Strategy" },
+  { id: "Infrastructure & Ops", name: "Infrastructure & Ops" },
 ];
 
 const Career = () => {

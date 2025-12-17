@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import instance from "../lib/instance";
+import instance from "../lib/axios";
 import { useState } from "react";
 
 const ClientTestimonial = ({ title1, title2 }) => {
@@ -9,7 +9,7 @@ const ClientTestimonial = ({ title1, title2 }) => {
   useEffect(() => {
     const getReviewData = async () => {
       try {
-        const response = await instance("/reviews/getAll");
+        const response = await instance.get("/reviews/getAll");
         const data = response.data?.data;
         setMyData(data?.reviews || []);
       } catch (error) {

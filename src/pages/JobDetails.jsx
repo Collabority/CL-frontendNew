@@ -139,7 +139,7 @@ const JobDetails = () => {
           )}
 
           {/* Hiring Manager */}
-          {job.hiringManager && (
+          {job?.hiringManager?.name?(
             <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow flex flex-col sm:flex-row items-center gap-4">
               <div className="flex-shrink-0 w-14 h-14 bg-[#008080] text-white flex items-center justify-center rounded-full text-2xl font-bold uppercase">
                 {job.hiringManager.name[0]}
@@ -159,7 +159,7 @@ const JobDetails = () => {
                 </a>
               </div>
             </section>
-          )}
+          ) : null}
 
           {/* ==== Application Form ==== */}
           <div className="mt-10">

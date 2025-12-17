@@ -1,213 +1,325 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import instance from "../../lib/instance";
+import React, { useState } from 'react';
 
-const jobApplicationSchema = z.object({
-  applicantName: z.string().min(1, "Applicant name is required.").trim(),
-  applicantEmail: z
-    .string()
-    .min(1, "Email is required.")
-    .email("Invalid email address.")
-    .trim()
-    .toLowerCase(),
-  experience: z.coerce
-    .number()
-    .min(0, "Experience must be a non-negative number.")
-    .transform((value) => Number(value)),
-  resume: z
-    .string()
-    .url("Resume upload failed. Please upload a valid file.")
-    .min(1, "Resume is required."),
-  coverLetter: z.string().trim().optional(),
-});
-
-const JobApplicationForm = ({ jobId }) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-    formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: zodResolver(jobApplicationSchema),
+const JobApplicationForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    experience: 0,
+    resume: "",
+    coverLetter: "",
   });
 
+  const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [selectedFileName, setSelectedFileName] = useState("");
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name || formData.name.length < 2) {
+      newErrors.name = "Name must be at least 2 characters";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+
+    if (formData.experience < 0) {
+      newErrors.experience = "Experience must be 0 or greater";
+    }
+
+    if (!formData.resume) {
+      newErrors.resume = "Resume is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear error for this field when user types
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
+  };
 
   const handleResumeUpload = async (file) => {
     if (!file) return;
 
     setUploading(true);
     setMessage("Uploading resume...");
-
-    const formData = new FormData();
-    formData.append("resume", file);
+    setSelectedFileName(file.name);
 
     try {
-      const res = await instance.post("/career/upload-resume", formData);
+      // Replace this with your actual API call
+      const formDataUpload = new FormData();
+      formDataUpload.append("resume", file);
 
-      const data = await res.data.data;
-      console.log(data.url);
-      if (data.url) {
-        setValue("resume", data.url);
-        setMessage("Resume uploaded successfully.");
-      } else {
-        setMessage("Failed to upload resume. Try again.");
+      // Mock API call - replace with your actual endpoint
+      // const res = await fetch("/api/career/upload-resume", {
+      //   method: "POST",
+      //   body: formDataUpload,
+      // });
+      // const data = await res.json();
+      
+      // Simulate upload delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Simulate successful upload with a file URL
+      const mockFileUrl = `https://example.com/resumes/${file.name}`;
+      
+      // CRITICAL: Update the resume field in formData
+      setFormData(prev => ({
+        ...prev,
+        resume: mockFileUrl
+      }));
+
+      // Clear resume error if it exists
+      if (errors.resume) {
+        setErrors(prev => ({
+          ...prev,
+          resume: undefined
+        }));
       }
+
+      setMessage("Resume uploaded successfully!");
+      setStatus("success");
     } catch (error) {
       console.error(error);
       setMessage("Upload error. Please try again.");
+      setStatus("error");
+      setSelectedFileName("");
+      setFormData(prev => ({
+        ...prev,
+        resume: ""
+      }));
     } finally {
       setUploading(false);
     }
   };
 
-  const onSubmit = async (formData) => {
-    setStatus("idle");
-    setMessage("Submitting your application...");
-    try {
-      const res = await instance.post("/career/apply", { ...formData, jobId });
-      const result = res.data;
-      if (!result.success) throw new Error(result.message);
-      setStatus("success");
-      setMessage("Application submitted successfully!");
-      console.log("Application submitted successfully!", result);
-      reset();
-    } catch (error) {
-      setStatus("error");
-      setMessage("An error occurred. Please try again.");
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Check if it's a PDF
+      if (file.type !== 'application/pdf') {
+        setMessage("Please upload a PDF file only.");
+        setStatus("error");
+        e.target.value = "";
+        return;
+      }
+      // Call upload function
+      handleResumeUpload(file);
     }
   };
 
-  const statusColors = {
-    loading: "text-blue-500",
-    success: "text-green-600",
-    error: "text-red-600",
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      setMessage("Please fix the errors before submitting.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
+    console.log("Form Data:", formData);
+    
+    try {
+      // Replace with your actual API call
+      // const response = await fetch("/api/submit-application", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(formData),
+      // });
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setStatus("success");
+      setMessage("Application submitted successfully!");
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          experience: 0,
+          resume: "",
+          coverLetter: "",
+        });
+        setErrors({});
+        setSelectedFileName("");
+        setStatus("idle");
+        setMessage("");
+      }, 3000);
+    } catch (error) {
+      setStatus("error");
+      setMessage("Submission failed. Please try again.");
+    }
   };
 
   return (
-    <div className=" bg-[#F8F6F3] flex items-center justify-center p-4 sm:p-8 font-sans">
-      <div className="bg-white shadow-lg p-6 sm:p-10 w-full max-w-4xl rounded-2xl border border-[#e0d8c8]">
-        <h1 className="text-4xl font-extrabold text-[#002248] mb-2 text-center">
+    <div className="min-h-screen bg-gray-50 py-12 px-4">
+      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-2">
           Job Application
         </h1>
-        <p className="text-[#7b8ca0] mb-8 text-lg text-center">
+        <p className="text-center text-gray-600 mb-8">
           Please fill out the form below to apply for the position.
         </p>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col sm:flex-row sm:flex-wrap gap-6"
-        >
-          <div className="w-full sm:w-[calc(50%-12px)]">
-            <label className="block text-base font-semibold text-[#002248] mb-1">
-              Applicant Name
-            </label>
-            <input
-              type="text"
-              placeholder="John Doe"
-              {...register("applicantName")}
-              className="block w-full px-4 py-3 border border-[#e0d8c8] focus:border-[#008080] text-lg rounded-lg"
-            />
-            {errors.applicantName && (
-              <p className="mt-1 text-sm text-red-600">
-                {errors.applicantName.message}
-              </p>
-            )}
+        <div className="space-y-6">
+          {/* Name and Email Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Applicant Name */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Applicant Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                placeholder="John Doe"
+              />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+              )}
+            </div>
+
+            {/* Email Address */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                placeholder="JohnDoe@example.com"
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
           </div>
 
-          <div className="w-full sm:w-[calc(50%-12px)]">
-            <label className="block text-base font-semibold text-[#002248] mb-1">
-              Email Address
-            </label>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              {...register("applicantEmail")}
-              className="block w-full px-4 py-3 border border-[#e0d8c8] focus:border-[#008080] text-lg rounded-lg"
-            />
-            {errors.applicantEmail && (
-              <p className="mt-1 text-sm text-red-600">
-                {errors.applicantEmail.message}
-              </p>
-            )}
+          {/* Experience and Resume Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Years of Experience */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Years of Experience
+              </label>
+              <input
+                type="number"
+                name="experience"
+                value={formData.experience}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                placeholder="2"
+                min="0"
+              />
+              {errors.experience && (
+                <p className="text-red-500 text-sm mt-1">{errors.experience}</p>
+              )}
+            </div>
+
+            {/* Upload Resume */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">
+                Upload Resume (PDF only)
+              </label>
+              <div className="relative">
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handleFileChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                  disabled={uploading}
+                />
+              </div>
+              
+              {selectedFileName && (
+                <p className="text-sm text-gray-600 mt-1">
+                  Selected: {selectedFileName}
+                </p>
+              )}
+              
+              {uploading && (
+                <p className="text-sm text-blue-600 mt-1">Uploading...</p>
+              )}
+              
+              {errors.resume && (
+                <p className="text-red-500 text-sm mt-1 font-semibold">
+                  {errors.resume}
+                </p>
+              )}
+              
+              {message && !errors.resume && status !== 'submitting' && (
+                <p className={`text-sm mt-1 ${status === 'error' ? 'text-red-500' : 'text-green-600'}`}>
+                  {message}
+                </p>
+              )}
+            </div>
           </div>
 
-          <div className="w-full sm:w-[calc(50%-12px)]">
-            <label className="block text-base font-semibold text-[#002248] mb-1">
-              Years of Experience
-            </label>
-            <input
-              type="number"
-              placeholder="0"
-              {...register("experience", { valueAsNumber: true })}
-              className="block w-full px-4 py-3 border border-[#e0d8c8] focus:border-[#008080] text-lg rounded-lg"
-            />
-            {errors.experience && (
-              <p className="mt-1 text-sm text-red-600">
-                {errors.experience.message}
-              </p>
-            )}
-          </div>
-
-          <div className="w-full sm:w-[calc(50%-12px)]">
-            <label className="block text-base font-semibold text-[#002248] mb-1">
-              Upload Resume (PDF only)
-            </label>
-            <input
-              type="file"
-              accept="application/pdf"
-              onChange={(e) => handleResumeUpload(e.target.files[0])}
-              className="block w-full text-lg border border-[#e0d8c8] p-2 rounded-lg"
-            />
-            {uploading && (
-              <p className="mt-1 text-sm text-blue-600">Uploading resume...</p>
-            )}
-            {errors.resume && (
-              <p className="mt-1 text-sm text-red-600">
-                {errors.resume.message}
-              </p>
-            )}
-          </div>
-
-          <div className="w-full">
-            <label className="block text-base font-semibold text-[#002248] mb-1">
+          {/* Cover Letter */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
               Cover Letter (Optional)
             </label>
             <textarea
-              rows="4"
+              name="coverLetter"
+              value={formData.coverLetter}
+              onChange={handleInputChange}
+              rows="6"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 focus:border-transparent resize-none"
               placeholder="Tell us why you're a good fit..."
-              {...register("coverLetter")}
-              className="block w-full px-4 py-3 border border-[#e0d8c8] focus:border-[#008080] text-lg resize-none rounded-lg"
             />
           </div>
 
-          {(status !== "idle" || isSubmitting) && (
-            <div
-              className={`w-full text-center py-2 ${
-                statusColors[status] || "text-blue-500"
-              }`}
-            >
-              <p className="font-medium">
-                {isSubmitting ? "Submitting your application..." : message}
-              </p>
-            </div>
-          )}
-
-          <div className="w-full flex justify-center">
+          {/* Submit Button */}
+          <div className="flex justify-center pt-4">
             <button
-              type="submit"
-              disabled={isSubmitting || uploading}
-              className="w-full sm:w-auto px-12 py-4 bg-[#008080] rounded-xl text-white text-lg font-semibold hover:bg-[#006666] transition-colors disabled:bg-[#7b8ca0] disabled:cursor-not-allowed"
+              type="button"
+              onClick={handleSubmit}
+              disabled={status === 'submitting' || uploading || !formData.resume}
+              className="px-12 py-3 bg-teal-600 text-white font-semibold rounded-md hover:bg-teal-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200"
             >
-              {isSubmitting ? "Submitting..." : "Submit Application"}
+              {status === 'submitting' ? "Submitting..." : "Submit Application"}
             </button>
           </div>
-        </form>
+
+          {/* Global Status Message */}
+          {status === "success" && message.includes("submitted") && (
+            <div className="text-center text-green-600 font-semibold">
+              {message}
+            </div>
+          )}
+          {status === "error" && !uploading && message.includes("fix") && (
+            <div className="text-center text-red-500 font-semibold">
+              {message}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
