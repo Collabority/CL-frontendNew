@@ -1,100 +1,99 @@
-import { useNavigate, Link, useParams } from "react-router-dom";
-import JobApplicationForm from "../components/jobs/jobApplication.jsx";
-import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import instance from "../lib/instance.js";
-import { useState } from "react";
-
-
-
-const suggestions = [
-  {
-    _id: "68a6062e1381f9b7f1f03926",
-    title: "Backend Developer",
-    jobLocation: "Remote",
-  },
-  {
-    _id: "68a6062e1381f9b7f1f03927",
-    title: "UI/UX Designer",
-    jobLocation: "Ghaziabad",
-  },
-  {
-    _id: "68a6062e1381f9b7f1f03928",
-    title: "Project Manager",
-    jobLocation: "Remote",
-  },
-];
-
-const formatList = (str) => (str ? str.split("\n").filter(Boolean) : []);
+import JobApplicationForm from "../components/jobs/jobApplication.jsx"; 
 
 const JobDetails = () => {
-  const [job, setJob] = useState({});
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { id } = useParams();
-  // const navigate = useNavigate();
+
+  const formatList = (str) => (str ? str.split("\n").filter(Boolean) : []);
+
   useEffect(() => {
     async function fetchJobDetails() {
-      // Fetch job details using job ID from URL params
-      const res = await instance.get(`/career/get-jobs/${id}`);
-      const data = await res.data.data;
-      setJob(data);
+      try {
+        setLoading(true);
+        const res = await instance.get(`/career/jobs/${id}`);
+        if (res.data.success) {
+          setJob(res.data.data);
+        }
+      } catch (err) {
+        console.error("Error fetching job:", err);
+        setError("Job not found or has been removed.");
+      } finally {
+        setLoading(false);
+      }
     }
     fetchJobDetails();
-  }, []);
-  // const job = tempdata;
-  if (!job || !job._id) {
-    return <div className="p-8 text-center">Loading job details...</div>;
+  }, [id]);
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center text-gray-500 text-lg bg-[#F8F6F3]">Loading job details...</div>;
+  
+  if (error || !job) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F6F3] p-4">
+        <h2 className="text-xl text-red-600 font-bold">{error || "Job not found"}</h2>
+        <Link to="/career" className="text-[#008080] hover:underline mt-4 block font-medium">← Back to Roles</Link>
+      </div>
+    );
   }
+
   return (
-    <div className="bg-[#F8F6F3] min-h-screen py-10 px-4 md:px-8 lg:px-16 text-gray-800 font-sans">
-      {/* Back to Roles */}
-      <div className="max-w-7xl mx-auto mb-6">
-        <Link
-          to="/career"
-          className="inline-block text-[#008080] hover:underline text-sm font-medium mb-4"
-        >
-          ← Back to Roles
-        </Link>
-      </div>
+    // Outer Wrapper
+    <div className="bg-[#F8F6F3] min-h-screen py-10 px-4 md:px-8 font-sans">
+      
+      {/* ✅ CENTERED MAIN CONTAINER (max-w-4xl makes it look like a document) */}
+      <div className="w-full max-w-4xl mx-auto bg-white border border-[#e0d8c8] shadow-sm rounded-xl overflow-hidden">
+        
+        {/* Header Section with Background */}
+        <div className="bg-white p-8 sm:p-10 border-b border-[#e0d8c8]">
+          <div className="mb-6">
+            <Link
+              to="/career"
+              className="inline-flex items-center text-[#008080] hover:underline text-sm font-medium transition-colors"
+            >
+              ← Back to Roles
+            </Link>
+          </div>
 
-      {/* Job Title & Meta */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-extrabold mb-2 text-[#002248]">
-          {job.title}
-        </h1>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 text-[#7b8ca0] text-base">
-          <span>{job.department}</span>
-          <span className="hidden sm:inline">|</span>
-          <span>{job.jobType}</span>
-          <span className="hidden sm:inline">|</span>
-          <span>{job.jobLocation}</span>
-          <span className="hidden sm:inline">|</span>
-          <span>{job.experienceLevel} Level</span>
-        </div>
-        <div className="mt-2 text-[#008080] font-semibold text-lg">
-          ₹{job.minSalary.toLocaleString()} - ₹{job.maxSalary.toLocaleString()}{" "}
-          / {job.jobPeriod}
-        </div>
-      </div>
+          <div className="text-center">
+            <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text-[#002248]">
+              {job.title}
+            </h1>
+            
+            {/* Meta Tags */}
+            <div className="flex flex-wrap justify-center items-center gap-3 text-[#7b8ca0] text-sm md:text-base mb-6">
+              <span className="bg-gray-100 px-3 py-1 rounded-full">{job.department}</span>
+              <span className="bg-gray-100 px-3 py-1 rounded-full">{job.jobType}</span>
+              <span className="bg-gray-100 px-3 py-1 rounded-full">{job.jobLocation}</span>
+              <span className="bg-gray-100 px-3 py-1 rounded-full">{job.experienceLevel} Level</span>
+            </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-12">
-        {/* ==== LEFT: Job Details ==== */}
-        <div className="lg:col-span-3 space-y-8">
-          {/* About the Role */}
-          <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
-            <h2 className="text-xl font-semibold mb-2 text-[#008080]">
-              About the Role
-            </h2>
-            <p className="text-gray-700 leading-relaxed">{job.description}</p>
+            <div className="text-[#008080] font-bold text-xl bg-teal-50 inline-block px-6 py-2 rounded-lg border border-teal-100">
+              ₹{(job.minSalary || 0).toLocaleString()} - ₹{(job.maxSalary || 0).toLocaleString()} 
+              <span className="text-sm font-normal text-gray-500 ml-1">/ {job.jobPeriod}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="p-8 sm:p-10 space-y-10">
+          
+          {/* About */}
+          <section>
+            <h2 className="text-xl font-bold mb-4 text-[#002248] border-b pb-2 border-gray-100">About the Role</h2>
+            <p className="text-gray-700 leading-relaxed whitespace-pre-line text-lg">{job.description}</p>
           </section>
 
           {/* Responsibilities */}
           {job.keyResponsibities && (
-            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
-              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
-                Key Responsibilities
-              </h2>
-              <ul className="list-disc pl-6 space-y-1 text-gray-700">
+            <section>
+              <h2 className="text-xl font-bold mb-4 text-[#002248] border-b pb-2 border-gray-100">Key Responsibilities</h2>
+              <ul className="list-disc pl-5 space-y-3 text-gray-700 leading-relaxed">
                 {formatList(job.keyResponsibities).map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={idx} className="pl-2">{item}</li>
                 ))}
               </ul>
             </section>
@@ -102,13 +101,11 @@ const JobDetails = () => {
 
           {/* Requirements */}
           {job.jobRequirements && (
-            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
-              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
-                Requirements
-              </h2>
-              <ul className="list-disc pl-6 space-y-1 text-gray-700">
+            <section>
+              <h2 className="text-xl font-bold mb-4 text-[#002248] border-b pb-2 border-gray-100">Requirements</h2>
+              <ul className="list-disc pl-5 space-y-3 text-gray-700 leading-relaxed">
                 {formatList(job.jobRequirements).map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={idx} className="pl-2">{item}</li>
                 ))}
               </ul>
             </section>
@@ -116,86 +113,43 @@ const JobDetails = () => {
 
           {/* Perks */}
           {job.perks && (
-            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
-              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
-                Perks & Benefits
-              </h2>
-              <ul className="list-disc pl-6 space-y-1 text-gray-700">
+            <section>
+              <h2 className="text-xl font-bold mb-4 text-[#002248] border-b pb-2 border-gray-100">Perks & Benefits</h2>
+              <ul className="list-disc pl-5 space-y-3 text-gray-700 leading-relaxed">
                 {formatList(job.perks).map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={idx} className="pl-2">{item}</li>
                 ))}
               </ul>
             </section>
           )}
 
-          {/* Instructions */}
-          {job.instructions && (
-            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow">
-              <h2 className="text-xl font-semibold mb-2 text-[#008080]">
-                How to Apply
-              </h2>
-              <p className="text-gray-700">{job.instructions}</p>
-            </section>
-          )}
-
-          {/* Hiring Manager */}
+          {/* Hiring Manager Info (Centered Card) */}
           {job.hiringManager && (
-            <section className="bg-white p-6 sm:p-8 rounded-none border border-[#e0d8c8] shadow flex flex-col sm:flex-row items-center gap-4">
-              <div className="flex-shrink-0 w-14 h-14 bg-[#008080] text-white flex items-center justify-center rounded-full text-2xl font-bold uppercase">
-                {job.hiringManager.name[0]}
-              </div>
-              <div>
-                <div className="font-semibold text-[#002248]">
-                  {job.hiringManager.name}
-                </div>
-                <div className="text-sm text-[#7b8ca0]">
-                  {job.hiringManager.title}
-                </div>
-                <a
-                  href={`mailto:${job.hiringManager.email}`}
-                  className="text-[#008080] text-sm hover:underline"
-                >
-                  {job.hiringManager.email}
-                </a>
-              </div>
-            </section>
+            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 flex flex-col sm:flex-row items-center justify-center gap-6 text-center sm:text-left">
+               <div className="w-16 h-16 bg-[#008080] text-white rounded-full flex items-center justify-center font-bold text-2xl shadow-sm shrink-0">
+                  {job.hiringManager.name?.charAt(0) || "H"}
+               </div>
+               <div>
+                 <p className="text-sm text-gray-500 uppercase tracking-wide font-semibold mb-1">Hiring Manager</p>
+                 <p className="font-bold text-xl text-[#002248]">{job.hiringManager.name}</p>
+                 <p className="text-[#008080]">{job.hiringManager.title}</p>
+               </div>
+            </div>
           )}
 
-          {/* ==== Application Form ==== */}
-          <div className="mt-10">
-            <h2 className="text-2xl font-bold text-center text-[#002248]">
-              Apply for this Role
-            </h2>
+          {/* Divider */}
+          <div className="border-t border-gray-200 my-8"></div>
 
+          {/* Application Form */}
+          <div id="apply-form">
+            <h2 className="text-3xl font-extrabold text-center text-[#002248] mb-8">
+              Ready to Apply?
+            </h2>
+            {/* The form itself */}
             <JobApplicationForm jobId={job._id} />
           </div>
-        </div>
 
-        {/* ==== RIGHT: Suggestions ==== */}
-        <aside className="space-y-4">
-          <h2 className="text-lg font-semibold text-[#002248] mb-2">
-            More Open Positions
-          </h2>
-          {suggestions.map((suggested) => (
-            <div
-              key={suggested._id}
-              className="border border-[#e0d8c8] rounded-none bg-white p-4 shadow-sm hover:shadow-md transition"
-            >
-              <h4 className="text-md font-medium text-[#008080] mb-1">
-                {suggested.title}
-              </h4>
-              <p className="text-sm text-gray-500 mb-2">
-                {suggested.jobLocation}
-              </p>
-              <Link
-                to={`/job/${suggested._id}`}
-                className="text-sm text-[#002248] hover:underline"
-              >
-                View Details →
-              </Link>
-            </div>
-          ))}
-        </aside>
+        </div>
       </div>
     </div>
   );

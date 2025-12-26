@@ -1,8 +1,8 @@
 import "./App.css";
 import {  Route, Routes } from "react-router-dom";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import Career from "./pages/Career";
-import Services from "./pages/Services";
+import Services from "./pages/services";
 import Portfolio from "./pages/Portfolio";
 import ServicesDetails from "./pages/ServicesDetails";
 import JobDetails from "./pages/JobDetails";
@@ -27,7 +27,7 @@ function App() {
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/blog" element={<BlogGrid />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/blog-details" element={<BlogDetails />} />
+            <Route path="/blog-details/:id" element={<BlogDetails />} />
             <Route path="/services-details" element={<ServicesDetails />} />
             <Route path="/blog-details/:key" element={<RelatedBlogDetails />} />
             <Route path="/job/:id" element={<JobDetails />} />
