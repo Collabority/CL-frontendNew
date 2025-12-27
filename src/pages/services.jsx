@@ -11,6 +11,8 @@ import {
   useAnimateElementById,
   useAnimateElementsByClass,
 } from "../utils/useScrollAnimation";
+import { useEffect } from "react";
+import instance from "../lib/instance";
 
 import { motion } from "framer-motion";
 import ScrollToTop from "../components/ScrollToTop";
@@ -23,6 +25,29 @@ const Services = () => {
   useAnimateElementsByClass("animate-on-scroll");
 
   const [showVideo, setShowVideo] = useState(false);
+  
+  // 3. State for Services
+  const [dbServices, setDbServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 4. Fetch Services from Admin Panel
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await instance.get("/services/all");
+        // Accessing data structure based on your ServicesDetails.jsx logic
+        const data = response.data?.data?.services || []; 
+        setDbServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
   return (
     <main className="bg-white min-h-screen flex flex-col font-poppins overflow-x-hidden">
       <Navbar />
@@ -174,14 +199,24 @@ const Services = () => {
 
         <div className="container mx-auto transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll">
           <div className="flex flex-wrap justify-center -m-4 md:-m-5">
-            {servicesCards.map((service, i) => (
-              <div
-                key={i}
-                className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4 md:p-5"
-              >
-                <ServiceCard service={service} />
-              </div>
-            ))}
+            
+            {/* 5. Render Loading State or Data */}
+            {loading ? (
+              <div className="w-full text-center py-20 text-gray-500">Loading Services...</div>
+            ) : dbServices.length > 0 ? (
+              dbServices.map((service, i) => (
+                <div
+                  key={service._id || i}
+                  className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4 md:p-5 h-[400px]" // Fixed height for uniformity
+                >
+                  {/* Pass the dynamic service object */}
+                  <ServiceCard service={service} />
+                </div>
+              ))
+            ) : (
+              <div className="w-full text-center py-20">No services found.</div>
+            )}
+
           </div>
         </div>
       </section>

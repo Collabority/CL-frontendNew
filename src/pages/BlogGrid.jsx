@@ -17,7 +17,7 @@ const BlogGrid = () => {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const response = await instance.get("/blogs/recent-blogs");
+        const response = await instance.get("/blogs/recent");
         const data = response.data.data;
         setBlogItems(data || []);
       } catch (error) {
@@ -62,7 +62,7 @@ const BlogGrid = () => {
           <div className="flex gap-2">
             <Link to="/">Home</Link>
             <p>|</p>
-            <Link to="/blog-details">BlogDetails</Link>
+            <span>Blogs</span>
           </div>
         }
       />
