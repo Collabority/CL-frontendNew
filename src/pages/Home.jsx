@@ -13,7 +13,7 @@ import {
   portfolioImages,
   serviceCarousel,
   services,
-} from "../constants/data";
+} from "../constants/Data";
 import dottedImage from "../assets/dotted_image.webp";
 import {
   useAnimateElementById,
