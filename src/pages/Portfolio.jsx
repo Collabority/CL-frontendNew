@@ -3,7 +3,7 @@ import Navbar from "../layouts/Navbar";
 import PageHeader from "../components/PageHeader";
 import { Link } from "react-router-dom";
 import Footer from "../layouts/Footer";
-import { portfolioPage } from "../constants/data";
+import { portfolioPage } from "../constants/Data";
 import { FaComment } from "react-icons/fa6";
 import {
   useAnimateElementById,

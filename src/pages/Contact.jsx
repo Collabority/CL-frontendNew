@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import { COLORS, TEXTS } from "../constants/data";
+import { COLORS, TEXTS } from "../constants/Data";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";

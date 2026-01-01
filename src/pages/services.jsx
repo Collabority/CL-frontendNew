@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PageHeader from "../components/PageHeader";
-import { newsfeed, servicesCards } from "../constants/data";
+import { newsfeed, servicesCards } from "../constants/Data";
 import ServiceCard from "../components/ServiceCard";
 import { Link } from "react-router-dom";
 import { FaPlay } from "react-icons/fa6";

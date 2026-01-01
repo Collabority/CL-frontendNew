@@ -8,7 +8,7 @@ import {
   hoverTextColors,
   services,
   servicesCardsData,
-} from "../constants/data";
+} from "../constants/Data";
 import PageHeader from "../components/PageHeader";
 import dottedImage from "../assets/dotted_image.webp";
 import {

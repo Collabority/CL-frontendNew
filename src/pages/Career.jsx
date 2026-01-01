@@ -1,7 +1,7 @@
 import MainIllustration from "../assets/main.png";
 import LeftLaurelPng from "../assets/image1.png";
 import RightLaurelPng from "../assets/image2.png";
-import { awards, roles } from "../constants/data";
+import { awards, roles } from "../constants/Data";
 import Navbar from "../layouts/Navbar";
 import { useState, useEffect, useRef } from "react";
 import Footer from "../layouts/Footer";
