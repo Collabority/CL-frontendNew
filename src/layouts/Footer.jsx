@@ -7,6 +7,7 @@ import {
   FaYoutube,
   FaInstagram,
   FaEnvelope,
+  FaPhone,
 } from "react-icons/fa6";
 
 const Footer = () => {
@@ -28,10 +29,6 @@ const Footer = () => {
               professional video production to help businesses thrive in the
               digital era. Our expertise spans multiple domains, ensuring
               seamless digital transformation and brand growth.
-            </p>
-            <p className="text-sm text-gray-400 mt-4">
-              <span className="font-semibold text-white">Address:</span>{" "}
-              Ghaziabad, Uttar Pradesh, India, 201001
             </p>
           </div>
 
@@ -106,9 +103,8 @@ const Footer = () => {
           <div className="col-span-1">
             <h4 className="text-lg font-semibold mb-4">Working Hours</h4>
             <p className="text-sm text-gray-400 mb-2">
-              Monday - Friday: 7:00 - 17:00
+              Monday - Friday: 9:00 - 17:00
             </p>
-            <p className="text-sm text-gray-400 mb-2">Saturday: 7:00 - 12:00</p>
 
             {/* Social Media Section */}
             <h4 className="text-lg font-semibold mb-3 mt-6">Social Media</h4>
@@ -167,18 +163,22 @@ const Footer = () => {
                 <FaEnvelope className="text-base" /> hello@collabority.in
               </a>
               <a
-                href="mailto:Info@collabority.in"
+                href="tel:+918320154665"
                 className="flex items-center gap-2 hover:text-blue-300"
               >
-                <FaEnvelope className="text-base" /> Info@collabority.in
+                <FaPhone className="text-base" /> +91 832 015 4665
               </a>
+              <p className="text-sm text-gray-400 mt-4">
+              <span className="font-semibold text-white">Address:</span>{" "}
+              Ghaziabad, Uttar Pradesh, India, 201001
+            </p>
             </div>
           </div>
         </div>
 
         {/* copyright */}
         <div className="text-center text-sm text-gray-300">
-          Copyright By@ Collabority - 2025
+          Copyright By @ Collabority - 2025
         </div>
       </div>
     </footer>

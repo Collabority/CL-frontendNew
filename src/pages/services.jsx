@@ -57,8 +57,7 @@ const Services = () => {
         breadcrumb={
           <>
             <div className="flex gap-2">
-              <Link to="/">Home</Link>
-              <p>|</p>
+              <Link to="/">Home  |</Link>
               <Link to="/about">About</Link>
             </div>
           </>
@@ -192,34 +191,48 @@ const Services = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 px-4 sm:px-8 md:px-16 lg:px-40 flex-grow bg-[#F8F6F3]">
-        <h1 className="text-3xl sm:text-5xl font-bold text-blue-950 text-center mb-10">
-          Latest Services
-        </h1>
+<section className="py-12 px-4 sm:px-8 md:px-16 lg:px-40 bg-[#F8F6F3]">
+  <h1 className="text-2xl sm:text-4xl font-bold text-blue-950 text-center mb-8">
+    Latest Services
+  </h1>
 
-        <div className="container mx-auto transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll">
-          <div className="flex flex-wrap justify-center -m-4 md:-m-5">
-            
-            {/* 5. Render Loading State or Data */}
-            {loading ? (
-              <div className="w-full text-center py-20 text-gray-500">Loading Services...</div>
-            ) : dbServices.length > 0 ? (
-              dbServices.map((service, i) => (
-                <div
-                  key={service._id || i}
-                  className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4 md:p-5 h-[400px]" // Fixed height for uniformity
-                >
-                  {/* Pass the dynamic service object */}
-                  <ServiceCard service={service} />
-                </div>
-              ))
-            ) : (
-              <div className="w-full text-center py-20">No services found.</div>
-            )}
-
+  <div className="container mx-auto transition-all duration-700 opacity-0 translate-y-10 animate-on-scroll">
+    {loading ? (
+      <div className="w-full text-center py-16 text-gray-500">
+        Loading Services...
+      </div>
+    ) : dbServices.length > 0 ? (
+      <div
+        className="
+          grid
+          grid-cols-2          /* MOBILE: 2 columns */
+          gap-4
+          sm:grid-cols-2       /* SMALL SCREENS: still 2 */
+          md:grid-cols-3       /* TABLET */
+          lg:grid-cols-4       /* DESKTOP */
+        "
+      >
+        {dbServices.map((service, i) => (
+          <div
+            key={service._id || i}
+            className="
+              h-[220px]         /* MOBILE COMPACT SIZE */
+              sm:h-[260px]
+              md:h-[300px]
+            "
+          >
+            <ServiceCard service={service} />
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    ) : (
+      <div className="w-full text-center py-16 text-gray-500">
+        No services found.
+      </div>
+    )}
+  </div>
+</section>
+
 
       {/* Product-Based Services */}
       <section className="relative py-20 px-6 sm:px-10 bg-gradient-to-b from-white via-gray-50 to-white">
