@@ -17,11 +17,12 @@ import {
   FaShareNodes
 } from 'react-icons/fa6';
 
-import { FaCalendarDays } from 'react-icons/fa6';
-
 import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
 import Seo from '../components/Seo';
+
+// ⚠️ Make sure relatedBlogsData is properly imported
+// import { relatedBlogsData } from '../data/relatedBlogsData';
 
 const RelatedBlogDetails = () => {
   const { key } = useParams();
@@ -35,7 +36,7 @@ const RelatedBlogDetails = () => {
     restDelta: 0.001
   });
 
-  const blog = relatedBlogsData.find(b => b.key === key);
+  const blog = relatedBlogsData?.find(b => b.key === key);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -44,8 +45,12 @@ const RelatedBlogDetails = () => {
   if (!blog) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F6F3] p-8 text-center">
-        <div className="w-24 h-24 bg-gray-100 rounded-[2rem] flex items-center justify-center text-3xl mb-8">?</div>
-        <h2 className="text-4xl font-black text-[#002248] mb-6 tracking-tighter">Insight Lost in Space</h2>
+        <div className="w-24 h-24 bg-gray-100 rounded-[2rem] flex items-center justify-center text-3xl mb-8">
+          ?
+        </div>
+        <h2 className="text-4xl font-black text-[#002248] mb-6 tracking-tighter">
+          Insight Lost in Space
+        </h2>
         <button
           onClick={() => navigate('/blog')}
           className="bg-[#008080] text-white font-black px-10 py-4 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-[#002248] transition-all"
@@ -60,7 +65,7 @@ const RelatedBlogDetails = () => {
     <div className="min-h-screen bg-white font-poppins selection:bg-[#008080] selection:text-white">
       <Seo
         title={`${blog.title} | Collabority Insights`}
-        description={blog.content[0].text.substring(0, 160)}
+        description={blog.content?.[0]?.text?.substring(0, 160) || ''}
         path={`/blog/${key}`}
       />
 
@@ -78,7 +83,7 @@ const RelatedBlogDetails = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             onClick={() => navigate(-1)}
-            className="group flex items-center gap-3 text-[#008080] text-[10px] font-black tracking-[0.3em] mb-12 uppercase"
+            className="group flex items-center justify-center gap-3 text-[#008080] text-[10px] font-black tracking-[0.3em] mb-12 uppercase"
           >
             <FaArrowLeft className="group-hover:-translate-x-2 transition-transform" />
             Back to Insights
@@ -110,7 +115,7 @@ const RelatedBlogDetails = () => {
 
       <main className="max-w-4xl mx-auto px-6 py-16 md:py-32">
         <article className="max-w-3xl mx-auto">
-          {blog.content.map((section, idx) => (
+          {blog.content?.map((section, idx) => (
             <div key={idx} className="mb-20">
 
               {section.heading && (
