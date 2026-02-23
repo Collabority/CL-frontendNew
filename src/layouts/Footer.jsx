@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import {
   FaXTwitter,
@@ -8,181 +8,116 @@ import {
   FaInstagram,
   FaEnvelope,
   FaPhone,
+  FaLocationDot
 } from "react-icons/fa6";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-32 border-b border-gray-700 pb-4 mb-8">
-          {/* logo and text */}
-          <div className="col-span-1 md:mb-0 mb-8">
-            <div className="text-white text-2xl font-bold mb-4">
-              Collabority
-            </div>
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">
-              Collabority – Innovate, Elevate, Dominate
+    <footer className="relative bg-[#001529] text-gray-300 pt-16 pb-8 overflow-hidden font-poppins border-t border-gray-800">
+      {/* Decorative Top Accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#008080] to-transparent opacity-40" />
+
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 border-b border-gray-800 pb-12 mb-8">
+          
+          {/* Brand & Socials */}
+          <div className="lg:col-span-4 space-y-6">
+            <Link to="/" className="text-white text-3xl font-black tracking-tighter inline-block">
+              COLLABORITY<span className="text-[#008080]">.</span>
+            </Link>
+            <p className="text-sm text-gray-400 leading-relaxed max-w-sm">
+              Innovate, Elevate, Dominate. We bridge the gap between technology and brand growth through high-end IT and creative marketing solutions.
             </p>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              At Collabority, we specialize in cutting-edge IT solutions,
-              result-driven marketing strategies, creative design services, and
-              professional video production to help businesses thrive in the
-              digital era. Our expertise spans multiple domains, ensuring
-              seamless digital transformation and brand growth.
-            </p>
+            <nav className="flex gap-4" aria-label="Social media links">
+              {[
+                { icon: <FaXTwitter />, link: "https://x.com/Collabority", label: "Twitter", hover: "hover:text-white" },
+                { icon: <FaFacebookF />, link: "#", label: "Facebook", hover: "hover:text-[#1877F2]" },
+                { icon: <FaLinkedinIn />, link: "#", label: "LinkedIn", hover: "hover:text-[#0A66C2]" },
+                { icon: <FaInstagram />, link: "#", label: "Instagram", hover: "hover:text-[#E4405F]" },
+                { icon: <FaYoutube />, link: "#", label: "YouTube", hover: "hover:text-[#FF0000]" },
+              ].map((social, i) => (
+                <a
+                  key={i}
+                  href={social.link}
+                  aria-label={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 rounded-full bg-gray-800/30 flex items-center justify-center transition-all duration-300 ${social.hover} hover:-translate-y-1 hover:bg-gray-800`}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </nav>
           </div>
 
-          {/* pages links */}
-          <div className="col-span-1 md:ml-6 md:mb-0 mb-8">
-            <h4 className="text-lg font-semibold mb-4">Pages</h4>
-            <div className="flex flex-wrap text-sm text-gray-400">
-              <ul className="w-1/2 space-y-2">
-                <li>
-                  <Link
-                    to="/"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/services"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/about"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/career"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>Career
-                  </Link>
-                </li>
-              </ul>
-              <ul className="w-1/2 space-y-2">
-                <li>
-                  <Link
-                    to="/blog"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/portfolio"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>Portfolio
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/contact"
-                    className="hover:text-blue-300 flex items-center"
-                  >
-                    <span className="mr-2 text-blue-400">›</span>Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          {/* Sitelink Columns */}
+          <div className="lg:col-span-4 grid grid-cols-2 md:px-8">
+            {[
+              { title: "Company", items: ["Home", "Services", "About", "Portfolio"] },
+              { title: "Resources", items: ["Blog", "Career", "Contact", "Privacy"] }
+            ].map((col) => (
+              <nav key={col.title} className="space-y-4">
+                <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.2em]">{col.title}</h4>
+                <ul className="space-y-3 text-sm">
+                  {col.items.map((item) => (
+                    <li key={item}>
+                      <Link 
+                        to={`/${item.toLowerCase()}`} 
+                        className="hover:text-[#008080] transition-colors flex items-center group w-fit"
+                      >
+                        <span className="h-[1px] w-0 group-hover:w-3 bg-[#008080] transition-all duration-300 mr-0 group-hover:mr-2" />
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
           </div>
 
-          {/* working hours */}
-          <div className="col-span-1">
-            <h4 className="text-lg font-semibold mb-4">Working Hours</h4>
-            <p className="text-sm text-gray-400 mb-2">
-              Monday - Friday: 9:00 - 17:00
-            </p>
-
-            {/* Social Media Section */}
-            <h4 className="text-lg font-semibold mb-3 mt-6">Social Media</h4>
-            <div className="flex flex-wrap items-center text-gray-400 gap-4 mb-2">
-              <a
-                href="https://x.com/Collabority"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-                className="hover:text-[#008080] text-xl"
-              >
-                <FaXTwitter />
+          {/* Local SEO Contact Column */}
+          <div className="lg:col-span-4 space-y-6">
+            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.2em]">Connect</h4>
+            <address className="not-italic space-y-4 text-sm">
+              <a href="mailto:hello@collabority.in" className="flex items-center gap-4 group w-fit">
+                <div className="w-10 h-10 rounded-xl bg-gray-800/30 flex items-center justify-center group-hover:bg-[#008080]/20 transition-all duration-300">
+                  <FaEnvelope className="text-[#008080]" />
+                </div>
+                <span className="group-hover:text-white transition-colors">hello@collabority.in</span>
               </a>
-              <a
-                href="https://facebook.com/collaborityofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="hover:text-[#1877F3] text-xl"
-              >
-                <FaFacebookF />
+              <a href="tel:+918320154665" className="flex items-center gap-4 group w-fit">
+                <div className="w-10 h-10 rounded-xl bg-gray-800/30 flex items-center justify-center group-hover:bg-[#008080]/20 transition-all duration-300">
+                  <FaPhone className="text-[#008080]" />
+                </div>
+                <span className="group-hover:text-white transition-colors">+91 832 015 4665</span>
               </a>
-              <a
-                href="https://www.linkedin.com/company/collaborityofficial/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="hover:text-[#0A66C2] text-xl"
-              >
-                <FaLinkedinIn />
-              </a>
-              <a
-                href="https://youtube.com/@collaborityofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="hover:text-[#FF0000] text-xl"
-              >
-                <FaYoutube />
-              </a>
-              <a
-                href="https://www.instagram.com/collaborityofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="hover:text-[#E4405F] text-xl"
-              >
-                <FaInstagram />
-              </a>
-            </div>
-            <div className="flex flex-col gap-1 text-gray-400 text-sm mt-2">
-              <a
-                href="mailto:hello@collabority.in"
-                className="flex items-center gap-2 hover:text-blue-300"
-              >
-                <FaEnvelope className="text-base" /> hello@collabority.in
-              </a>
-              <a
-                href="tel:+918320154665"
-                className="flex items-center gap-2 hover:text-blue-300"
-              >
-                <FaPhone className="text-base" /> +91 832 015 4665
-              </a>
-              <p className="text-sm text-gray-400 mt-4">
-              <span className="font-semibold text-white">Address:</span>{" "}
-              Ghaziabad, Uttar Pradesh, India, 201001
-            </p>
-            </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 mt-1 rounded-xl bg-gray-800/30 flex items-center justify-center">
+                  <FaLocationDot className="text-[#008080]" />
+                </div>
+                <span className="leading-relaxed text-gray-400">
+                  Ghaziabad, Uttar Pradesh,<br />
+                  <span className="text-gray-500">India, 201001</span>
+                </span>
+              </div>
+            </address>
           </div>
         </div>
 
-        {/* copyright */}
-        <div className="text-center text-sm text-gray-300">
-          Copyright By @ Collabority - 2025
+        {/* Footer Bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-gray-800/50 pt-8">
+          <p className="text-[10px] text-gray-500 uppercase tracking-widest font-medium">
+            Shift: <span className="text-gray-400">Mon - Fri (09:00 - 17:00 IST)</span>
+          </p>
+          <div className="text-[11px] text-gray-500">
+            &copy; {currentYear} <span className="text-white font-semibold">Collabority</span>. All rights reserved.
+          </div>
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
+export default memo(Footer);

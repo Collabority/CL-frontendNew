@@ -1,94 +1,120 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import faqData from "../../constants/faqData";
 
 const FaqSection = () => {
   const [openIdx, setOpenIdx] = useState(null);
-  const [visibleIdx, setVisibleIdx] = useState(null);
-  const isAnyOpen = openIdx !== null;
-
-  const handleToggle = (idx) => {
-    if (openIdx === idx) {
-      setOpenIdx(null);
-      setTimeout(() => {
-        setVisibleIdx(null);
-      }, 700);
-    } else {
-      setOpenIdx(idx);
-      setVisibleIdx(idx);
-    }
-  };
 
   return (
-    <section className="relative py-24 bg-[#F5FAFE] transition-all duration-700 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
-      {/* Background image wrapper that expands with content */}
-      <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        <img
-          src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1500&q=80"
-          alt="FAQ background"
-          className="w-full h-full object-cover"
+    <section className="relative py-12 md:py-24 overflow-hidden transition-all duration-500">
+      {/* 1. OPTIMIZED BACKGROUND IMAGE AND USE WEBP VIA -- NODE CONVERTER.CJS */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          //Pointing to your new optimized webp folder
+          src="/webp/faq-bg.webp" 
+          className="w-full h-full object-cover" 
+          alt="" //Empty alt because it is purely decorative background
+          aria-hidden="true" 
+          loading="lazy" //Lazy load as this is usually further down the page
         />
-        <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-white/60 backdrop-blur-md" />
       </div>
+
       <div className="max-w-5xl mx-auto px-4 relative z-10">
-        {/* FAQ label and heading */}
-        <div className="mb-2 flex items-center gap-2">
-          <span className="text-[#2563eb] font-semibold text-base">FAQ</span>
-          <span className="w-8 h-1 bg-blue-200 rounded-full inline-block" />
+        
+        {/* Header Section */}
+        <div className="mb-10 md:mb-16">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-[#2563eb] font-bold text-sm md:text-base tracking-widest uppercase">
+              FAQ
+            </span>
+            <span className="w-8 h-1 bg-blue-200 rounded-full inline-block" />
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-[#0a2256] leading-tight">
+            Get Every Answer<br />From Here.
+          </h2>
         </div>
-        <h2 className="text-5xl md:text-6xl font-extrabold text-[#0a2256] mb-12 leading-tight max-w-xl">
-          Get Every answer<br />from here.
-        </h2>
-        <div className="space-y-8">
+
+        {/* FAQ List */}
+        <div className="space-y-4 md:space-y-6">
           {faqData.map((faq, idx) => {
             const isOpen = openIdx === idx;
+            const contentId = `faq-content-${idx}`;
+            const buttonId = `faq-button-${idx}`;
+            
             return (
-              <div key={idx} className="w-full flex justify-start">
-                <div className={`w-full max-w-xl ml-0 mr-auto bg-[#fdf6f0] shadow-lg overflow-hidden transition-[border-radius] duration-100 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] rounded-full`}
-                  style={{
-                    borderRadius: '2rem',
-                  }}
+              <div 
+                key={idx} 
+                className={`
+                  w-full shadow-lg overflow-hidden transition-all duration-300
+                  ${isOpen ? 'bg-white ring-2 ring-blue-100' : 'bg-[#fdf6f0]'}
+                  rounded-2xl md:rounded-[2rem]
+                `}
+              >
+                <button
+                  id={buttonId}
+                  onClick={() => setOpenIdx(isOpen ? null : idx)}
+                  // FIX: ARIA labels for accessibility
+                  aria-expanded={isOpen}
+                  aria-controls={contentId}
+                  className="w-full flex items-center justify-between px-5 py-5 md:px-8 md:py-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
-                  <button
-                    onClick={() => handleToggle(idx)}
-                    className={`flex items-center w-full px-6 py-6 focus:outline-none bg-transparent`}
-                  >
-                    <span className="flex items-center mr-4 text-[#3b82f6]">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <div className="flex items-center gap-4 md:gap-6">
+                    {/* Icon */}
+                    <span className="flex-shrink-0 text-[#3b82f6]">
+                      <svg 
+                        width="24" height="24" 
+                        aria-hidden="true"
+                        className="w-5 h-5 md:w-7 md:h-7" 
+                        viewBox="0 0 24 24" fill="none" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                      >
                         <rect x="14" y="2" width="8" height="2" rx="1" transform="rotate(45 14 2)" />
                         <path d="M15 7l-1.5-1.5M9 17l-1.5 1.5M7 9l-1.5-1.5M17 15l1.5 1.5M8 8l8 8M21 21l-6-6" />
                       </svg>
                     </span>
-                    <span
-                      className={`font-semibold text-[#4a5b7d] transition-all duration-200 ${isOpen ? 'text-sm' : 'text-base'}`}
+
+                    <span 
+                      className={`font-bold transition-colors duration-200
+                      ${isOpen ? 'text-[#2563eb]' : 'text-[#4a5b7d]'}
+                      text-sm sm:text-base md:text-xl lg:text-xl`}
                     >
                       {faq.question}
                     </span>
-                    <span className="ml-auto flex items-center text-[#3b82f6]">
+                  </div>
+
+                  {/* Plus/Minus Toggle Icon */}
+                  <span className="flex-shrink-0 ml-4 text-[#3b82f6]">
+                    <motion.div 
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       {isOpen ? (
-                        <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M20 12H4"/></svg>
+                        <svg width="24" height="24" className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M20 12H4"/></svg>
                       ) : (
-                        <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+                        <svg width="24" height="24" className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
                       )}
-                    </span>
-                  </button>
-                  {/* Collapsible answer */}
-                  <div
-                    className="transition-all duration-700 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
-                    style={{
-                      maxHeight: isOpen ? 200 : 0,
-                      opacity: isOpen ? 1 : 0,
-                      padding: isOpen ? "0 2rem 1.25rem 4.5rem" : "0 2rem 0 4.5rem",
-                    }}
-                  >
-                    {visibleIdx === idx && (
-                      <div
-                        className="text-[#7b8bb2] pt-2 font-medium transition-all duration-200"
-                      >
+                    </motion.div>
+                  </span>
+                </button>
+
+                {/* Animated Answer Section */}
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      id={contentId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="px-5 pb-6 md:px-8 md:pb-8 pl-12 md:pl-20 text-[#7b8bb2] text-sm md:text-lg leading-relaxed">
                         {faq.answer}
                       </div>
-                    )}
-                  </div>
-                </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
@@ -98,4 +124,4 @@ const FaqSection = () => {
   );
 };
 
-export default FaqSection; 
+export default FaqSection;

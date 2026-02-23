@@ -1,508 +1,285 @@
-import React, { useEffect, useState } from "react";
-import banner from "../assets/banner.webp";
-import banner_img from "../assets/banner-img.webp";
-import { ArrowLeft, ArrowRight, Video } from "../components/Icons";
+import React, { useState, lazy, Suspense, memo } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaPlay, FaArrowRight, FaArrowLeft, FaQuoteRight } from "react-icons/fa";
+import banner_img from "../assets/banner-img.webp";
+import Navbar from "../layouts/Navbar";
+import ScrollToTop from "../components/ScrollToTop";
+import Seo from "../components/Seo";
 import {
   bgColorMap,
-  clients,
-  colorMap,
-  hoverTextColors,
   infoData,
   newsSection,
   portfolioImages,
-  serviceCarousel,
   services,
+  colorMap,
 } from "../constants/Data";
-import dottedImage from "../assets/dotted_image.webp";
-import {
-  useAnimateElementById,
-  useAnimateElementsByClass,
-} from "../utils/useScrollAnimation";
-import tileGallery01 from "../assets/tileGallery01.webp";
-import tileGallery02 from "../assets/tileGallery02.webp";
-import { FaCommentDots } from "react-icons/fa";
-import Footer from "../layouts/Footer";
-import Navbar from "../layouts/Navbar";
-import ScrollToTop from "../components/ScrollToTop";
-import { motion } from "framer-motion";
-import ClientTestimonial from "../components/ClientTestimonial";
-import ContactSection from "../components/ContactSection";
 
-const Home = () => {
-  const [animate, setAnimate] = useState(false);
+// Lazy‑loaded components
+const ClientTestimonial = lazy(() => import("../components/ClientTestimonial"));
+const ContactSection = lazy(() => import("../components/ContactSection"));
+const Footer = lazy(() => import("../layouts/Footer"));
+const StatisticsSection = lazy(() => import("../components/StatisticsSection"));
+const BlogSection = lazy(() => import("../components/BlogSection"));
 
-  useEffect(() => {
-    setAnimate(true);
+const SectionSkeleton = ({ height = "400px" }) => (
+  <div style={{ height, width: "100%", backgroundColor: "#f8f6f3" }} />
+);
+
+const LazySection = ({ children, height }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = React.useRef();
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
   }, []);
 
-  useAnimateElementById("slideUpImage");
-  useAnimateElementsByClass("animate-on-scroll");
+  return (
+    <div ref={ref}>
+      {isVisible ? (
+        <Suspense fallback={<SectionSkeleton height={height} />}>
+          {children}
+        </Suspense>
+      ) : (
+        <SectionSkeleton height={height} />
+      )}
+    </div>
+  );
+};
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const Home = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [showVideo, setShowVideo] = useState(false);
 
   const handleNext = () => {
-    if (startIndex + 3 < portfolioImages.length) {
-      setStartIndex(startIndex + 1);
-    }
+    if (startIndex + 3 < portfolioImages.length) setStartIndex(startIndex + 1);
   };
 
   const handlePrev = () => {
-    if (startIndex > 0) {
-      setStartIndex(startIndex - 1);
-    }
+    if (startIndex > 0) setStartIndex(startIndex - 1);
   };
 
   return (
-    <main className="min-h-screen bg-white font-poppins overflow-x-hidden">
-      <Navbar />
-
-      {/* Hero-Section */}
-      <div
-        className="h-screen bg-cover bg-center"
-        style={{ backgroundImage: `url(${banner})` }}
-      >
-        <div className="h-full w-full flex items-center">
-          <section className="pt-16 sm:pt-24 pb-12 sm:pb-16 bg-white">
-
-            <div className="flex flex-col-reverse lg:flex-row justify-between items-center md:gap-8 lg:gap-16">
-              <div
-                className={`transition-all duration-1000 w-full lg:w-1/2 ${
-                  animate
-                    ? "translate-x-0 opacity-100"
-                    : "-translate-x-full opacity-0"
-                }`}
-              >
-                <span className="text-xl sm:text-2xl font-semibold text-[#008080] tracking-widest block mb-4">
-                  Digital Transformation & Creative Services Agency
-                </span>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-blue-950">
-                  Best IT Solutions <br className="hidden sm:inline" /> Provider
-                  Agency
-                </h1>
-                <p className="pt-4 sm:pt-6 text-base sm:text-lg font-semibold text-blue-950">
-                  At Collabority, we provide innovative IT solutions, impactful
-                  marketing, creative design, and high-quality video production...
-                </p>
-                <Link to="/services-details">
-                  <button className="group inline-flex items-center mt-4 px-6 py-3 bg-[#008080] hover:bg-gray-900 text-white text-base rounded font-medium transition duration-300">
-                    Our Services <ArrowRight className="ml-2" />
-                  </button>
-                </Link>
-              </div>
-              <div
-                className={`transition-all duration-1000 w-full lg:w-1/2 mb-10 lg:mb-0 ${
-                  animate
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-full opacity-0"
-                }`}
-              >
-                <img
-                  src={banner_img}
-                  alt="Work"
-                  className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto"
-                />
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      {/* What we do (SERVICES) */}
-      <section className="py-12 sm:py-16 bg-white">
-        <div className="text-center mb-8 sm:mb-12 px-4 max-w-3xl mx-auto">
-          <h6 className="text-base font-semibold text-[#008080] tracking-wider">
-            SERVICES
-          </h6>
-          <h1 className="text-4xl sm:text-4xl lg:text-6xl font-bold text-blue-950">
-            What We Do
-          </h1>
-        </div>
-
-        {/* 🔧 FIXED HERE — NOTHING ELSE */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 py-6 sm:py-12 px-4 sm:px-8 max-w-7xl mx-auto">
-          {services.map((service, idx) => {
-            const Icon = service.icon;
-            const bgColor = bgColorMap[service.color] || "bg-gray-200";
-            const iconColor = colorMap[service.color] || "text-gray-600";
-            const iconHoverText =
-              hoverTextColors[service.color] || "group-hover:text-gray-800";
-
-            return (
-              <div
-                key={idx}
-                className="relative overflow-hidden flex flex-col items-center text-center
-                p-4 sm:p-6 rounded-lg shadow-lg cursor-pointer group
-                bg-white text-black transition-all duration-500 ease-in-out
-                hover:bg-gray-800 hover:text-white hover:shadow-xl
-                sm:hover:scale-105
-                opacity-0 translate-y-20 animate-on-scroll"
-                id="slideUpImage"
-              >
-                <div
-                  className="absolute inset-0 bg-repeat opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
-                  style={{ backgroundImage: `url(${dottedImage})` }}
-                />
-
-                <div
-                  className={`${bgColor} w-16 h-16 sm:w-28 sm:h-28 rounded-full flex items-center justify-center transition-colors duration-300 group-hover:bg-white z-20`}
-                >
-                  <Icon
-                    className={`text-xl sm:text-4xl ${iconColor} transition-colors duration-300 ${iconHoverText}`}
-                  />
-                </div>
-
-                <h2 className="text-sm sm:text-xl font-semibold mb-2 mt-2 sm:mt-6 z-20">
-                  {service.title}
-                </h2>
-
-                <p className="text-gray-500 group-hover:text-white mb-3 sm:mb-10 text-xs sm:text-base leading-relaxed z-20">
-                  {service.des}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-            {/* core-features */}
-      <section className="bg-[#F8F6F3] py-12 sm:py-20 px-4 sm:px-8 lg:px-20 flex flex-col lg:flex-row gap-5 lg:gap-5">
-        {/* Left Images */}
-        <div className="flex flex-col md:flex-row lg:flex-col items-center md:justify-center md:gap-6 w-full lg:w-1/2">
-          {/* First Image */}
-          <div className="flex-shrink-0 relative z-10 mt-0 lg:mt-10">
-            <img
-              className="border-10 border-white w-full max-w-xs sm:max-w-sm md:max-w-[280px] lg:max-w-md object-cover mx-auto"
-              src={tileGallery01}
-              alt="Gallery 1"
-            />
-          </div>
-
-          {/* Second Image */}
-          <div
-            className="relative z-20 transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll -mt-10 md:mt-0 lg:-mt-24"
-            id="slideUpImage"
-          >
-            <img
-              className="border-10 border-white w-full max-w-xs sm:max-w-sm md:max-w-[280px] lg:max-w-md object-cover mx-auto"
-              src={tileGallery02}
-              alt="Gallery 2"
-            />
-          </div>
-        </div>
-
-        {/* Right Text */}
-        <div className="mt-10 lg:mt-28 flex flex-col text-center lg:text-left w-full lg:w-1/2">
-          <h4 className="text-gray-900 font-semibold text-sm sm:text-base tracking-widest">
-            CORE FEATURES
-          </h4>
-          <h1 className="text-blue-950 font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0 text-center sm:text-left md:text-center lg:text-left break-words">
-            Enhancing Your Digital Journey
-          </h1>
-
-          <ul className="text-gray-600 flex flex-col gap-2 mt-6 sm:mt-10 font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl">
-            <li>Innovative IT Solutions</li>
-            <li>Result-Driven Marketing</li>
-            <li>Creative Design Services</li>
-            <li>Professional Video Production</li>
-          </ul>
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 mt-6 sm:mt-10 font-medium leading-relaxed">
-            At Collabority, we bring together technology, strategy, creativity,
-            and media to empower businesses in the digital space. From building
-            scalable IT systems to running impactful marketing campaigns, we
-            ensure every aspect aligns with your growth goals. Our design
-            services enhance brand identity while our video production brings
-            stories to life with clarity and emotion. With expertise across
-            these domains, we drive seamless digital transformation tailored to
-            your vision.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-10 mt-6 sm:mt-10 justify-center lg:justify-start">
-            <button className="bg-[#008080] rounded text-white py-3 px-6 hover:bg-gray-900 transition-colors w-full sm:w-auto">
-              <Link to="/about">Learn More</Link>
-            </button>
-
-            <button
-              onClick={() => setShowVideo(true)}
-              className="bg-gray-500 text-white px-6 py-3 rounded hover:bg-gray-900 transition-colors flex gap-2 items-center justify-center"
-            >
-              <Video /> Intro Video
-            </button>
-
-            {showVideo && (
-              <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-                <div className="relative bg-[#008080] rounded-lg max-w-4xl w-full p-1 shadow-lg">
-                  <button
-                    onClick={() => setShowVideo(false)}
-                    className="absolute top-2 right-2 text-white hover:text-red-500 text-2xl font-bold"
-                  >
-                    ✕
-                  </button>
-                  <div className="aspect-video w-full">
-                    <iframe
-                      className="w-full h-full rounded"
-                      src="https://www.youtube.com/embed/9xwazD5SyVg"
-                      title="Intro Video"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Latest Services */}
-      <section className="flex flex-col mt-12 sm:mt-20 justify-center items-center px-4 py-4">
-        <div className="flex flex-col mb-12 sm:mb-20 text-center">
-          <h3 className="font-semibold tracking-widest text-[#008080] text-base sm:text-lg">
-            OUR LATEST SERVICES
-          </h3>
-          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
-            Crafting Innovative Solutions for
-          </h1>
-          <h1 className="font-bold text-blue-950 text-4xl sm:text-5xl lg:text-7xl">
-            Your Digital Success
-          </h1>
-        </div>
-
-        <div className="flex flex-col">
-          {serviceCarousel.map((item, idx) =>
-            idx % 2 === 0 ? (
-              <div
-                key={idx}
-                className="flex flex-col sm:flex-row md:items-start md:justify-between gap-6 sm:gap-10 mb-16 md:px-4"
-              >
-                {/* Image on Left */}
-                <motion.img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full sm:w-auto h-auto sm:h-[400px] md:h-[320px] max-w-[90vw] sm:max-w-none object-cover"
-                  initial={{ x: -200, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                />
-
-                {/* Vertical Line */}
-                <div className="hidden sm:block w-[1px] h-[300px] bg-black"></div>
-
-                {/* Text */}
-                <div className="px-4 sm:px-32 md:px-8 flex flex-col text-center sm:text-left md:text-left md:max-w-[50%]">
-                  <h1 className="text-2xl sm:text-4xl font-bold text-black">
-                    {item.title}
-                  </h1>
-                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg md:text-base">
-                    {item.para}
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div
-                key={idx}
-                className="flex flex-col sm:flex-row-reverse md:items-start md:justify-between gap-6 sm:gap-10 mb-16 md:px-4"
-              >
-                {/* Image on Right */}
-                <motion.img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full sm:w-auto h-auto sm:h-[400px] md:h-[320px] max-w-[90vw] sm:max-w-none object-cover"
-                  initial={{ x: 200, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                />
-
-                {/* Vertical Line */}
-                <div className="hidden sm:block w-[px] h-[300px] bg-black"></div>
-
-                {/* Text */}
-                <div className="px-4 sm:px-32 md:px-8 flex flex-col text-center sm:text-left md:text-left md:max-w-[50%]">
-                  <h1 className="text-2xl sm:text-4xl font-bold text-black">
-                    {item.title}
-                  </h1>
-                  <p className="mt-4 sm:mt-8 text-gray-500 text-base sm:text-lg md:text-base">
-                    {item.para}
-                  </p>
-                </div>
-              </div>
-            )
-          )}
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section className="flex flex-col bg-gray-900 mt-12 sm:mt-20">
-        <div className="px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto">
-          <h3 className="text-[#008080] font-medium text-lg sm:text-xl mb-4 text-center lg:text-left">
-            Latest Porfolios
-          </h3>
-
-          <div className="flex flex-col lg:flex-row items-center justify-between w-full gap-6 lg:gap-0">
-            {/* Left Heading */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight text-center lg:text-left">
-              Explore Our Latest Work <br /> and Stunning Portfolios
-            </h1>
-
-            {/* Right Arrow Buttons */}
-            <div className="flex gap-4 shrink-0">
-              <button
-                onClick={handlePrev}
-                className="w-12 h-12 rounded-full bg-[#008080] text-white flex px-4 py-2 rounded items-center justify-center hover:bg-blue-900 transition-colors"
-                disabled={startIndex === 0}
-              >
-                <ArrowLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={handleNext}
-                className="w-12 h-12 rounded-full bg-white text-blue-900 flex px-4 py-2 bg-blue-600 rounded items-center justify-center hover:bg-[#008080] hover:text-white transition-colors"
-                disabled={startIndex + 3 >= portfolioImages.length}
-              >
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          className="flex flex-col transition-transform duration-500 ease-in-out sm:flex-row px-4 sm:px-12 py-8 sm:py-12 mt-6 sm:mt-10 w-full max-w-screen-xl mx-auto gap-6 sm:gap-7 "
-          style={{ transform: `translateX` }}
-        >
-          {portfolioImages.slice(startIndex, startIndex + 3).map((src, idx) => (
-            <div
-              key={idx}
-              className="relative group overflow-hidden rounded-lg shadow-lg flex-1"
-            >
-              <img
-                src={src.image}
-                alt={src.title}
-                className="w-full object-cover rounded-md"
-              />
-
-              {/* Overlay Content */}
-              <div
-                className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-black/70 via-black/40 to-transparent 
-                      opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-4"
-              >
-                <h6 className="text-white text-base sm:text-lg font-semibold">
-                  {src.title}
-                </h6>
-                <h4 className="text-white text-lg sm:text-2xl font-bold">
-                  {src.des}
-                </h4>
-
-                {/* Arrow Button */}
-                <Link to="/portfolio">
-                  <button className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-md hover:bg-[#008080] hover:text-white transition">
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Info */}
-      <section className="bg-gray-800 px-6 py-16 sm:py-20">
-        <div
-          className="max-w-7xl mx-auto flex flex-col sm:flex-row flex-wrap 
-                  md:flex-nowrap md:flex-row md:justify-between 
-                  gap-8 sm:gap-12 md:gap-6"
-        >
-          {infoData.map((item, idx) => (
-            <div
-              key={idx}
-              className={`animate-on-scroll opacity-0 translate-y-20 transition-all duration-700 ease-out
-        flex flex-col items-center justify-center 
-        w-full sm:w-64 md:w-1/4
-        p-6 sm:p-8 gap-4 
-        rounded-2xl border border-gray-600 shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:scale-105 
-        bg-gradient-to-br from-gray-900 to-gray-800 transition-transform duration-300 box-border group`}
-            >
-              {/* Icon Container */}
-              <div
-                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${item.color} flex items-center justify-center shadow-inner group-hover:rotate-6 transition-transform duration-300`}
-              >
-                <FaCommentDots className="text-white w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-
-              {/* Number Text */}
-              <h1 className="text-white text-3xl sm:text-4xl font-extrabold tracking-wide drop-shadow-sm">
-                {item.number}
-              </h1>
-
-              {/* Label Text */}
-              <h6 className="text-sm sm:text-base text-gray-300 font-medium text-center px-2">
-                {item.label}
-              </h6>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Client testimonial */}
-      <ClientTestimonial
-        title1="Client Testimonials"
-        title2="What Our Clients Say"
-        // data={clients}
+    <main className="min-h-screen bg-white font-poppins overflow-x-hidden selection:bg-[#008080] selection:text-white">
+      <Seo
+        title="Innovative IT Solutions & Staffing Agency | Collabority"
+        description="Collabority is a premier digital transformation agency. We offer IT consulting and custom software development."
+        path="/"
       />
 
-      {/* Call to action */}
-      <ContactSection/>
+      <Navbar />
 
-      {/* Latest News */}
-      <section className="flex flex-col">
-        <div className="flex flex-col justify-center items-center pt-12 sm:pt-20 px-4">
-          <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl text-center">
-            Latest News
-          </h4>
-          <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
-            Read Our Latest
-          </h1>
-          <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
-            News & Blog
-          </h1>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-12 sm:pt-16 mb-12 sm:mb-16 px-4 sm:px-6 max-w-7xl mx-auto">
-          {newsSection.map((key, idx) => (
-            <div
-              key={idx}
-              className="bg-[#F8F6F3] flex flex-col justify-start border-2 border-gray-200 rounded-lg overflow-hidden transition-all duration-1000 opacity-0 translate-y-20 animate-on-scroll"
-              id="slideUpImage"
+      {/* HERO SECTION */}
+      <section className="relative min-h-[90vh] flex items-center pt-28 pb-12 overflow-hidden bg-gradient-to-br from-white to-slate-50">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#008080]/5 -skew-x-12 translate-x-20 z-0 hidden lg:block" aria-hidden="true" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-8">
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="w-full lg:w-3/5 text-center lg:text-left">
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 py-2 px-4 rounded-full bg-teal-50 text-[#008080] font-black tracking-widest text-[10px] uppercase mb-8 border border-teal-100">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#008080] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#008080]"></span>
+                </span>
+                Digital Transformation Agency
+              </motion.div>
+              
+              <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl lg:text-8xl font-black text-[#002248] leading-[1] mb-8 tracking-tighter">
+                We Build <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#008080] via-[#008080] to-blue-600">IT Solutions</span> <br />
+                That Matter.
+              </motion.h1>
+              
+              <motion.p variants={fadeInUp} className="text-gray-500 text-lg md:text-xl mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                Collabority fuses innovative technology with creative design to drive growth. We transform your vision into scalable software.
+              </motion.p>
+              
+              <motion.div variants={fadeInUp} className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <Link to="/services-details" className="group px-10 py-5 bg-[#008080] text-white rounded-2xl font-black uppercase tracking-widest text-sm shadow-2xl shadow-teal-900/20 hover:bg-[#002248] transition-all duration-300 flex items-center gap-3 active:scale-95">
+                  Explore Services <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <button onClick={() => setShowVideo(true)} className="px-10 py-5 bg-white text-[#002248] border-2 border-gray-100 rounded-2xl font-black uppercase tracking-widest text-sm hover:border-[#008080] hover:text-[#008080] transition-all duration-300 flex items-center gap-3">
+                  <FaPlay size={12} /> Watch Intro
+                </button>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 0.6 }} 
+              className="w-full lg:w-2/5 relative"
             >
-              <img
-                src={key.img}
-                alt={`news-${idx}`}
-                className="w-full h-48 sm:h-56 object-cover"
-              />
-              <div className="p-4 flex flex-col gap-4">
-                <h6 className="text-[#008080] font-bold text-sm">{key.date}</h6>
-                <h4 className="font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight">
-                  {key.des}
-                </h4>
-                <div className="flex gap-2 items-center">
-                  <Link
-                    to="/blog"
-                    className="flex items-center text-gray-600 gap-2 text-sm sm:text-base"
-                  >
-                    Read More
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-                  </Link>
-                </div>
+              <div className="relative z-10">
+                <img 
+                  src={banner_img} 
+                  alt="Collabority IT Services" 
+                  width="600" 
+                  height="520" 
+                  loading="eager" 
+                  fetchpriority="high"
+                  className="w-full h-auto drop-shadow-[0_35px_35px_rgba(0,128,128,0.15)] animate-float" 
+                />
               </div>
-            </div>
-          ))}
+            </motion.div>
+          </div>
         </div>
       </section>
-      {/* EVERYTHING BELOW IS UNCHANGED */}
-      {/* core-features */}
-      {/* ... rest of your file exactly as you provided ... */}
 
-      <Footer />
+      {/* SERVICES GRID */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6">
+          <header className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 text-center md:text-left">
+            <div className="max-w-2xl">
+              <span className="text-[#008080] font-black uppercase tracking-[0.3em] text-xs">Our Expertise</span>
+              <h2 className="text-4xl lg:text-6xl font-black text-[#002248] tracking-tighter mt-4">Pioneering Digital Solutions</h2>
+            </div>
+            <Link to="/services-details" className="text-[#008080] font-bold border-b-2 border-[#008080]/20 hover:border-[#008080] transition-all pb-1 uppercase tracking-widest text-sm">View All</Link>
+          </header>
+
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, idx) => {
+              const Icon = service.icon;
+              return (
+                <article key={idx} className="group p-10 rounded-[2.5rem] bg-[#F8F6F3] hover:bg-white hover:shadow-2xl hover:shadow-teal-900/5 transition-all duration-500 border border-transparent hover:border-teal-100">
+                  <div className={`w-16 h-16 rounded-2xl ${bgColorMap[service.color]} flex items-center justify-center mb-8 transform group-hover:-rotate-12 transition-transform duration-500`}>
+                     <Icon className={`text-3xl ${colorMap[service.color]}`} />
+                  </div>
+                  <h3 className="text-xl font-black text-[#002248] mb-4 group-hover:text-[#008080] transition-colors">{service.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-8">{service.des}</p>
+                  <div className="w-10 h-1 bg-gray-200 group-hover:w-full group-hover:bg-[#008080] transition-all duration-700 rounded-full" />
+                </article>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PORTFOLIO SECTION */}
+      <section className="py-32 bg-[#002248] text-white overflow-hidden rounded-[4rem] lg:mx-6">
+        <div className="container mx-auto px-10">
+          <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <span className="text-[#008080] font-black tracking-[0.3em] uppercase text-xs">Our Portfolio</span>
+              <h2 className="text-4xl lg:text-6xl font-black tracking-tighter mt-4 leading-[1.1]">Selected Case Studies</h2>
+            </div>
+            <div className="flex gap-4">
+              <button onClick={handlePrev} disabled={startIndex === 0} aria-label="Previous Project" className="w-14 h-14 rounded-full border-2 border-white/10 flex items-center justify-center hover:bg-[#008080] hover:border-[#008080] transition-all disabled:opacity-20 active:scale-90"><FaArrowLeft /></button>
+              <button onClick={handleNext} disabled={startIndex + 3 >= portfolioImages.length} aria-label="Next Project" className="w-14 h-14 rounded-full bg-white text-[#002248] flex items-center justify-center hover:bg-[#008080] hover:text-white transition-all disabled:opacity-20 active:scale-90"><FaArrowRight /></button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <AnimatePresence mode="wait">
+              {portfolioImages.slice(startIndex, startIndex + 3).map((src, idx) => (
+                <motion.div key={src.title + idx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="group relative h-[500px] rounded-[2rem] overflow-hidden cursor-pointer">
+                  <img 
+                    src={src.image} 
+                    alt={src.title} 
+                    width="400" 
+                    height="500" 
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#002248] via-[#002248]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
+                  <div className="absolute inset-0 flex flex-col justify-end p-10">
+                    <span className="text-[#008080] font-black text-xs uppercase tracking-[0.2em] mb-2">{src.title}</span>
+                    <h4 className="text-2xl font-black mb-6 leading-tight">{src.des}</h4>
+                    <Link to="/portfolio" className="inline-flex items-center gap-3 text-sm font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 hover:text-[#008080]">
+                      View Case Study <FaArrowRight />
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* STATISTICS – LAZY LOADED */}
+      <LazySection height="400px">
+        <StatisticsSection data={infoData} />
+      </LazySection>
+
+      {/* LAZY-LOADED CLIENT TESTIMONIALS */}
+      <LazySection height="600px">
+        <ClientTestimonial title1="Feedback" title2="Trust From Clients" />
+      </LazySection>
+
+      {/* LAZY-LOADED CONTACT SECTION */}
+      <LazySection height="500px">
+        <ContactSection />
+      </LazySection>
+
+      {/* BLOG – LAZY LOADED */}
+      <LazySection height="600px">
+        <BlogSection posts={newsSection} />
+      </LazySection>
+
+      {/* MODAL */}
+      <AnimatePresence>
+        {showVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-[#002248]/95 z-[999] flex items-center justify-center p-6 backdrop-blur-xl"
+            onClick={() => setShowVideo(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative w-full max-w-5xl aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowVideo(false)}
+                className="absolute top-6 right-6 text-white hover:text-[#008080] z-10 text-3xl font-bold"
+                aria-label="Close Video"
+              >
+                ✕
+              </button>
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/9xwazD5SyVg?autoplay=1"
+                title="Collabority Intro"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* LAZY-LOADED FOOTER */}
+      <LazySection height="400px">
+        <Footer />
+      </LazySection>
+
       <ScrollToTop />
     </main>
   );
 };
 
-export default Home;
+export default memo(Home); 
