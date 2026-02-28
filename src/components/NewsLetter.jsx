@@ -1,98 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import instance from "../lib/instance"; 
 
+/** @BLOCK: NewsLetter */
 const NewsLetter = () => {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
+  /** @ACTION: Handle Subscription */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     try {
-      // ✅ Uses the 'instance' so it automatically handles the Base URL (http://localhost:5000)
       const response = await instance.post("/newsletter/subscribe", { email });
-      
-      const resData = response.data;
-
-      console.log("Subscription response:", resData);
-
-      if (resData?.success) {
+      if (response.data?.success) {
         setSubscribed(true);
-        // We clear the email only after success to show it in the success message if needed
-        // but here the UI switches to a success banner, so clearing is fine.
-        // alert(resData.message || "Subscription successful!"); // Optional: Alert removal since we show UI feedback
       } else {
-        // Handle case where success is false but no error was thrown
-        alert(resData.message);
+        setError(response.data?.message || "Something went wrong.");
       }
-    } catch (error) {
-      console.error("Error subscribing:", error);
-      // Handle network errors or server errors (400, 500)
-      const errorMsg = error.response?.data?.message || "Something went wrong. Please try again.";
-      alert(errorMsg);
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to connect to the server.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="relative w-full py-16 px-4 md:px-10" id="newsletter">
-      {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full scale-x-[-1] bg-[url('/src/assets/image3.avif')] bg-cover bg-center z-0" />
+    <section className="relative w-full py-16 px-4 md:px-10 overflow-hidden" id="newsletter">
+      
+      <div 
+        className="absolute inset-0 w-full h-full scale-x-[-1] bg-[url('/src/assets/image3.webp')] bg-cover bg-center z-0" 
+        aria-hidden="true"
+      />
 
-      {/* Content Container */}
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center relative z-10 bg-white/10 p-4 md:p-8 rounded-xl backdrop-blur-sm"> 
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      <div className="max-w-3xl mx-auto text-center flex flex-col items-center relative z-10 bg-white/10 p-4 md:p-12 rounded-xl backdrop-blur-md shadow-2xl"> 
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
           Stay Ahead with Collabority
         </h2>
 
-        <p className="text-gray-600 mb-6 text-lg md:text-xl">
-          Get expert insights, product updates, and the latest trends in IT and
-          digital marketing—delivered straight to your inbox.
+        <p className="text-gray-700 mb-8 text-lg md:text-xl leading-relaxed">
+          Get expert insights and the latest trends delivered straight to your inbox.
         </p>
 
         {!subscribed ? (
-          <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-md flex flex-col sm:flex-row gap-4"
-          >
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="p-3 w-full border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-6 py-3 bg-[#008080] text-white font-semibold rounded-xl hover:bg-gray-900 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
-            >
-              {loading ? "Subscribing..." : "Subscribe"}
-            </button>
+          <form onSubmit={handleSubmit} className="w-full max-w-md">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="p-4 w-full border-0 rounded-xl focus:ring-2 focus:ring-[#008080] shadow-inner text-gray-900"
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-8 py-4 bg-[#008080] text-white font-bold rounded-xl hover:bg-gray-900 transition-all duration-300 disabled:bg-gray-400 shadow-lg active:scale-95"
+              >
+                {loading ? "..." : "Subscribe"}
+              </button>
+            </div>
+            {error && <p className="mt-3 text-red-600 font-semibold text-sm bg-red-50 py-1 rounded-lg">{error}</p>}
           </form>
         ) : (
-          <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-xl relative shadow-sm" role="alert">
-            <strong className="font-bold text-lg">Thanks for subscribing!</strong>
-            <span className="block mt-1"> We've added <b>{email}</b> to our list.</span>
+          <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-6 rounded-xl shadow-sm" role="status">
+            <h3 className="font-bold text-xl mb-1">Success!</h3>
+            <p>We've added <b>{email}</b> to our list.</p>
             <button 
-                onClick={() => { setSubscribed(false); setEmail(""); }}
-                className="text-xs underline text-green-800 mt-2 hover:text-green-900"
+              onClick={() => { setSubscribed(false); setEmail(""); }}
+              className="text-xs font-bold uppercase tracking-widest mt-4 hover:text-[#008080]"
             >
-                Subscribe another email
+              Add another email
             </button>
           </div>
         )}
 
-        <div className="mt-4 text-sm md:text-base text-gray-500">
-          Trusted by industry leaders · Expert-curated content anytime.
+        <div className="mt-6 text-sm text-gray-600 font-medium italic">
+          Trusted by industry leaders · Expert-curated content.
         </div>
       </div>
     </section>
   );
 };
 
-export default NewsLetter;
+export default memo(NewsLetter);

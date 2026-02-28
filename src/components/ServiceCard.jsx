@@ -1,51 +1,60 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { FaLaptopCode } from "react-icons/fa"; // Default icon
+import { FaLaptopCode } from "react-icons/fa";
 
-export default function ServiceCard({ service }) {
-  // 1. Handle different image field names (Backend usually sends 'coverImage')
-  const displayImage = service.coverImage || service.image || "https://placehold.co/600x400";
-  
-  // 2. Handle description (Backend might have long descriptions, so we truncate)
-  const description = service.description || service.metaData?.metaDescription || "No description available.";
-  const shortDesc = description.length > 100 ? description.substring(0, 100) + "..." : description;
+/** @BLOCK: ServiceCard */
+function ServiceCard({ service }) {
+  if (!service) return null;
+
+  // Optimized fallbacks
+  const displayImage = service.coverImage || service.image || "/webp/service-placeholder.webp";
+  const description = service.description || service.metaData?.metaDescription || "Expert solutions tailored for your brand.";
 
   return (
-    <div className="relative overflow-hidden shadow-lg group font-poppins h-full rounded-lg bg-white">
-      <div className="h-64 relative">
+    <article className="relative overflow-hidden shadow-lg group font-poppins h-full rounded-lg bg-white isolate">
+      
+      <div className="h-64 sm:h-72 relative overflow-hidden bg-gray-200">
         <img
           src={displayImage}
           alt={service.title}
-          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+          width="400"
+          height="300"
+          loading="lazy"
+          className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
         />
+        
+        <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:opacity-0 transition-opacity duration-300">
+          <h3 className="text-white text-xl font-bold text-center">
+            {service.title}
+          </h3>
+        </div>
       </div>
-      
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-6">
-        <div className="mb-3 text-2xl text-[#008080]">
-            {/* If backend doesn't have icons, show a default one, otherwise show provided icon */}
-            {service.icon ? service.icon : <FaLaptopCode />}
+
+      <div 
+        className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center text-white p-6 z-10"
+        aria-hidden="true"
+      >
+        <div className="mb-4 text-3xl text-[#008080]">
+          {service.icon || <FaLaptopCode aria-hidden="true" />}
         </div>
         
-        <h4 className="text-xl font-semibold mb-2 text-center">
-          <Link to={`/services-details`} className="hover:text-[#008080] transition-colors">
-            {service.title}
-          </Link>
+        <h4 className="text-2xl font-bold mb-3 text-center leading-tight">
+          {service.title}
         </h4>
         
-        <p className="text-sm text-center text-gray-200">
-            {shortDesc}
+        <p className="text-sm text-center text-gray-300 line-clamp-3 mb-6">
+          {description}
         </p>
         
-        <Link to="/services-details" className="mt-4 text-xs font-bold uppercase tracking-widest border-b border-[#008080] pb-1">
-            Read More
+        <Link 
+          to={`/services-details/${service._id || ""}`} 
+          className="px-6 py-2 border-2 border-[#008080] text-[#008080] font-bold uppercase text-xs tracking-widest hover:bg-[#008080] hover:text-white transition-all duration-300"
+        >
+          Read More
         </Link>
       </div>
-      
-      {/* Default View (Visible when not hovering - Optional, keeps card looking good) */}
-      <div className="p-4 group-hover:opacity-0 transition-opacity duration-300 absolute bottom-0 bg-gradient-to-t from-black/80 to-transparent w-full">
-         <h3 className="text-white text-lg font-bold text-center">{service.title}</h3>
-      </div>
-    </div>
+    </article>
   );
 }
+
+export default memo(ServiceCard);

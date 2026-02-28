@@ -1,99 +1,175 @@
-import React, { useEffect, useState } from "react";
-import instance from "../lib/instance";
+import React, { useEffect, useState, memo } from "react";
+
+const API_BASE_URL = "https://cl-adminpanelbackend.onrender.com";
+const CACHE_KEY = "client_testimonials";
+const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
+const fetchReviews = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/reviews/getAll`);
+    if (!response.ok) throw new Error("Network response was not ok");
+    const result = await response.json();
+    const reviews = result?.data?.reviews || [];
+    return reviews.filter(r => r.status === "Published");
+  } catch (error) {
+    console.error("Failed to fetch reviews:", error);
+    return [];
+  }
+};
+
+const TestimonialSkeleton = () => (
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+    {[...Array(3)].map((_, i) => (
+      <div key={i} className="animate-pulse flex flex-col h-full">
+        <div className="bg-white p-8 border-t-4 border-gray-200 shadow-sm flex-grow">
+          <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+          <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+          <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+          <div className="mt-4 flex gap-1">
+            {[...Array(5)].map((_, j) => (
+              <div key={j} className="w-4 h-4 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-4 mt-6 items-center px-2">
+          <div className="w-14 h-14 bg-gray-200 rounded-full"></div>
+          <div className="flex-1">
+            <div className="h-4 bg-gray-200 rounded w-24 mb-2"></div>
+            <div className="h-3 bg-gray-200 rounded w-32"></div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
 const ClientTestimonial = ({ title1, title2 }) => {
-  const [myData, setMyData] = useState(null);
+  const [reviews, setReviews] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const getReviewData = async () => {
+    let isMounted = true;
+    setError(false);
+
+    const loadReviews = async () => {
+      // Check cache first
       try {
-        const response = await instance.get("/reviews/getAll"); // Use .get explicitly
-        const data = response.data?.data;
-        
-        // Optional: Filter only Published reviews if the API returns everything
-        const reviews = data?.reviews || [];
-        const publishedReviews = reviews.filter(r => r.status === "Published");
-        
-        // If you want to show all, just use 'reviews'
-        setMyData(publishedReviews.length > 0 ? publishedReviews : reviews);
-      } catch (error) {
-        console.error("Failed to fetch reviews:", error);
-        setMyData([]);
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          const { data, timestamp } = JSON.parse(cached);
+          if (Date.now() - timestamp < CACHE_TTL) {
+            if (isMounted) setReviews(data);
+            return; // Use cached data, don't fetch
+          }
+        }
+      } catch (e) {
+        // Ignore cache errors
+      }
+
+      // Fetch fresh data
+      const data = await fetchReviews();
+      if (isMounted) {
+        setReviews(data);
+        // Save to cache
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ data, timestamp: Date.now() }));
+        } catch (e) {
+          // Ignore storage errors
+        }
       }
     };
-    getReviewData();
+
+    loadReviews().catch(() => {
+      if (isMounted) setError(true);
+    });
+
+    return () => { isMounted = false; };
   }, []);
+
+  if (reviews === null) {
+    return (
+      <section className="bg-[#F8F6F3]">
+        <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <header className="py-12 sm:py-20 text-center">
+            <h4 className="text-[#008080] font-semibold text-xl md:text-2xl">{title1}</h4>
+            <h2 className="text-blue-950 font-extrabold text-4xl md:text-6xl mt-2">{title2}</h2>
+          </header>
+          <TestimonialSkeleton />
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="bg-[#F8F6F3]">
+        <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20 text-center">
+          <p className="text-red-600">Failed to load testimonials. Please try again later.</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (reviews.length === 0) {
+    return (
+      <section className="bg-[#F8F6F3]">
+        <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20 text-center">
+          <p className="text-gray-500">No testimonials available at the moment.</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-[#F8F6F3]">
-      <div className="flex flex-col">
-        {/* Title Section */}
-        <div className="flex flex-col justify-center items-center py-12 sm:py-16 md:py-20 px-4 md:px-8">
-          <h4 className="text-[#008080] font-semibold text-xl sm:text-2xl md:text-2xl text-center">
-            {title1}
-          </h4>
-          <h1 className="text-blue-950 font-extrabold text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-center mt-2">
-            {title2}
-          </h1>
-        </div>
+      <div className="flex flex-col max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <header className="py-12 sm:py-20 text-center">
+          <h4 className="text-[#008080] font-semibold text-xl md:text-2xl">{title1}</h4>
+          <h2 className="text-blue-950 font-extrabold text-4xl md:text-6xl mt-2">{title2}</h2>
+        </header>
 
-        {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 justify-center items-stretch mb-12 sm:mb-16 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
-          {myData && myData.length > 0 ? (
-            myData.map((items, idx) => (
-              // Wrapper: h-full ensures the card takes full height of the grid row
-              <div key={idx} className="w-full h-full flex flex-col">
-                
-                {/* Testimonial Text Box */}
-                {/* flex-grow pushes the author info down so they align across cards */}
-                <div className="bg-white w-full p-6 md:p-8 border-t-4 border-red-700 text-sm sm:text-base md:text-[15px] shadow-sm flex flex-col flex-grow relative">
-                  
-                  {/* Review Content with overflow protection */}
-                  <p className="text-gray-700 leading-relaxed break-words whitespace-pre-wrap flex-grow">
-                    {items.reviewContent}
-                  </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 items-stretch">
+          {reviews.map((item, idx) => (
+            <article key={item._id || idx} className="flex flex-col h-full">
+              <div className="bg-white p-8 border-t-4 border-red-700 shadow-sm flex flex-col flex-grow relative">
+                <p className="text-gray-700 leading-relaxed break-words flex-grow italic">
+                  "{item.reviewContent}"
+                </p>
 
-                  {/* Rating Stars */}
-                  <div className="mt-4 text-yellow-500 text-lg tracking-wide">
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i} className={i < items.rating ? "text-yellow-500" : "text-gray-300"}>
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Small decorative arrow at the bottom of the white box */}
-                  <div className="absolute -bottom-2 left-8 w-4 h-4 bg-white transform rotate-45 border-b border-r border-gray-100"></div>
+                <div className="mt-4 flex text-yellow-500" aria-label={`Rating: ${item.rating} stars`}>
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <span key={i} aria-hidden="true">{i < item.rating ? "★" : "☆"}</span>
+                  ))}
                 </div>
 
-                {/* Author Info */}
-                <div className="flex gap-4 mt-5 items-center px-2">
-                  <img
-                    src={items.profilePicture || "https://placehold.co/100"}
-                    alt={items.name}
-                    className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover shadow-sm bg-gray-200"
-                  />
-                  <div className="flex flex-col justify-center">
-                    <h4 className="font-bold text-gray-900 text-sm sm:text-base md:text-[16px] leading-tight">
-                      {items.name}
-                    </h4>
-                    <h6 className="text-[#008080] text-xs sm:text-sm md:text-sm font-medium mt-1">
-                      {items.designation}{items.companyName ? `, ${items.companyName}` : ""}
-                    </h6>
-                  </div>
-                </div>
+                <div className="absolute -bottom-2 left-8 w-4 h-4 bg-white rotate-45 border-b border-r border-gray-100"></div>
               </div>
-            ))
-          ) : (
-             // Fallback if no reviews
-             <div className="col-span-full text-center text-gray-500 py-10">
-               No reviews available at the moment.
-             </div>
-          )}
+
+              <footer className="flex gap-4 mt-6 items-center px-2">
+                <picture>
+                  <source srcSet={item.profilePicture?.replace(/\.(png|jpe?g)$/, '.webp')} type="image/webp" />
+                  <img
+                    src={item.profilePicture || "/webp/avatar-placeholder.webp"}
+                    alt={item.name}
+                    width="56"
+                    height="56"
+                    loading="lazy"
+                    className="w-14 h-14 rounded-full object-cover bg-gray-200"
+                  />
+                </picture>
+                <div>
+                  <h4 className="font-bold text-gray-900 text-base leading-tight">{item.name}</h4>
+                  <p className="text-[#008080] text-sm font-medium mt-1">
+                    {item.designation}{item.companyName ? `, ${item.companyName}` : ""}
+                  </p>
+                </div>
+              </footer>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default ClientTestimonial;
+export default memo(ClientTestimonial);

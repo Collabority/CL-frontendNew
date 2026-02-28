@@ -1,112 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Permanent+Marker&display=swap');
 @import "tailwindcss";
 
-body {
-  font-family: 'Poppins', sans-serif;
+@theme {
+  /* Collabority Brand Palette */
+  --color-brand-beige: #F8F6F3;
+  --color-brand-teal: #008080;
+  --color-brand-navy: #002248;
+  
+  /* Adding shadows for consistent depth */
+  --shadow-premium: 0 30px 60px -12px rgba(0, 34, 72, 0.12), 0 18px 36px -18px rgba(0, 0, 0, 0.15);
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    @apply text-brand-navy bg-white;
+  }
+}
+
+@layer utilities {
+  /* 3D Transform Utilities for "floating" cards */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Custom Scrollbar for a premium look */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-brand-beige);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-brand-teal);
+    border-radius: 10px;
+  }
+}
+
+/* Optimized Keyframes 
+   Using will-change: transform; in components is recommended when using these
+*/
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-20px) translateX(10px);
-  }
-  50% {
-    transform: translateY(0) translateX(20px);
-  }
-  75% {
-    transform: translateY(20px) translateX(10px);
-  }
+  0%, 100% { transform: translateY(0) rotate(0); }
+  33% { transform: translateY(-15px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
 }
 
-.animate-float {
-  animation: float 8s ease-in-out infinite;
+@keyframes float-side {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(15px); }
 }
 
-.animation-delay-1000 {
-  animation-delay: 1s;
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-side { animation: float-side 8s ease-in-out infinite; }
+.animate-subtle-pulse { animation: subtle-pulse 4s ease-in-out infinite; }
 
-.animation-delay-3000 {
-  animation-delay: 3s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-html {
-  scroll-behavior: smooth;
-} 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
-body {
-  font-family: 'Poppins', sans-serif;
-}
-
-@theme{ 
-    --color-primary:#F8F6F3;
-    --color-secondary:#008080;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-20px) translateX(10px);
-  }
-  50% {
-    transform: translateY(0) translateX(20px);
-  }
-  75% {
-    transform: translateY(20px) translateX(10px);
-  }
-}
-
-@keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(20px) translateX(-10px);
-  }
-  50% {
-    transform: translateY(0) translateX(-20px);
-  }
-  75% {
-    transform: translateY(-20px) translateX(-10px);
-  }
-}
-
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  33% {
-    transform: translateY(-15px) translateX(15px);
-  }
-  66% {
-    transform: translateY(15px) translateX(-15px);
-  }
-}
-
-.animate-float {
-  animation: float 8s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 10s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 12s ease-in-out infinite;
-}
+/* Delay Utilities */
+.delay-1000 { animation-delay: 1s; }
+.delay-2000 { animation-delay: 2s; }

@@ -1,43 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+
 import Navbar from "../layouts/Navbar";
 import Footer from "../layouts/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-import { COLORS, TEXTS } from "../constants/Data";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
 import NewsLetter from "../components/NewsLetter";
+import Seo from "../components/Seo";
 import instance from "../lib/instance";
+import { COLORS } from "../constants/Data";
 
-const contactTiles = [
+const CONTACT_TILES = [
   {
     title: "Phone Number",
     value: "+91 83193 01961",
+    link: "tel:+918319301961",
     icon: (
-      <svg
-        width="32"
-        height="32"
-        fill="none"
-        stroke={COLORS.PRIMARY}
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
+      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z" />
       </svg>
     ),
   },
   {
     title: "Email Address",
-    value: <a href="mailto:hello@collabority.in">hello@collabority.in</a>,
+    value: "hello@collabority.in",
+    link: "mailto:hello@collabority.in",
     icon: (
-      <svg
-        width="32"
-        height="32"
-        fill="none"
-        stroke={COLORS.PRIMARY}
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
+      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <rect x="2" y="4" width="20" height="16" rx="2" />
         <path d="M22 6 12 13 2 6" />
       </svg>
@@ -45,16 +35,10 @@ const contactTiles = [
   },
   {
     title: "Office Location",
-    value: "Ghaziabad",
+    value: "Ghaziabad, Uttar Pradesh",
+    link: "https://www.google.com/maps", 
     icon: (
-      <svg
-        width="32"
-        height="32"
-        fill="none"
-        stroke={COLORS.PRIMARY}
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
+      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z" />
         <circle cx="12" cy="10" r="3" />
       </svg>
@@ -62,22 +46,13 @@ const contactTiles = [
   },
   {
     title: "Social Network",
-    value: (
-      <Link to="https://www.linkedin.com/company/collaborityofficial/">
-        Linkedin
-      </Link>
-    ),
+    value: "LinkedIn Profile",
+    link: "https://www.linkedin.com/company/collaborityofficial/",
     icon: (
-      <svg
-        width="32"
-        height="32"
-        fill="none"
-        stroke={COLORS.PRIMARY}
-        strokeWidth="2"
-        viewBox="0 0 24 24"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2Z" />
+      <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
       </svg>
     ),
   },
@@ -85,250 +60,177 @@ const contactTiles = [
 
 const Contact = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-    subject: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "", subject: "" });
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
+  const [status, setStatus] = useState({ type: "", message: "" });
 
   const toggleVideoModal = () => setIsVideoModalOpen(!isVideoModalOpen);
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setSuccess(null);
+    setStatus({ type: "", message: "" });
 
     const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("from", form.email);
-    formData.append("message", form.message);
-    formData.append("subject", form.subject);
+    Object.keys(form).forEach(key => formData.append(key === 'email' ? 'from' : key, form[key]));
 
     try {
       const response = await instance.post("contact/submitQuery", formData);
       if (response.status === 200) {
-        setSuccess("Message sent successfully!");
+        setStatus({ type: "success", message: "Message sent! We will get back to you shortly." });
         setForm({ name: "", email: "", message: "", subject: "" });
-      } else {
-        setSuccess("Failed to send message.");
       }
     } catch (error) {
-      setSuccess("Error sending message.");
+      setStatus({ type: "error", message: "Something went wrong. Please try again." });
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white font-poppins selection:bg-[#008080] selection:text-white">
+      <Seo 
+        title="Contact Us | Collabority IT Solutions" 
+        description="Connect with Collabority for custom IT solutions and digital transformation in Ghaziabad."
+        path="/contact"
+      />
       <Navbar />
+      
       <div className="bg-[#F8F6F3]">
-        {/* Hero Section */}
         <PageHeader
           title="Contact Us"
           breadcrumb={
-            <>
-              <div className="flex gap-2">
-                <Link to="/">Home</Link>
-                <p>|</p>
-                <Link to="/career">Career</Link>
-              </div>
-            </>
+            <nav className="flex gap-2 text-sm font-bold uppercase tracking-widest opacity-60" aria-label="Breadcrumb">
+              <Link to="/" className="hover:text-[#008080]">Home</Link>
+              <span>/</span>
+              <span className="text-[#008080]">Contact</span>
+            </nav>
           }
         />
 
-        {/* Contact Info & Map */}
-        <div className="w-full py-12 mb-12">
-          <section className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-start w-full">
-            <div className="grid grid-cols-2 grid-rows-2 gap-0 h-full border border-[#e0d8c8]">
-              {contactTiles.map((tile, idx) => (
-                <div
+        <section className="container mx-auto px-6 py-20 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-[#e0d8c8] border border-[#e0d8c8] rounded-3xl overflow-hidden shadow-2xl shadow-gray-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 bg-[#e0d8c8] gap-px">
+              {CONTACT_TILES.map((tile, idx) => (
+                <motion.a
                   key={idx}
-                  className={`flex flex-col items-center justify-center aspect-square min-h-[180px] h-full rounded-none text-center bg-transparent
-                    ${idx < 2 ? "border-b border-[#e0d8c8]" : ""}
-                    ${idx % 2 === 0 ? "border-r border-[#e0d8c8]" : ""}
-                  `}
+                  href={tile.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ backgroundColor: "#ffffff" }}
+                  className="flex flex-col items-center justify-center p-12 text-center bg-[#F8F6F3] transition-all group"
                 >
-                  <div className="mb-4">{tile.icon}</div>
-                  <div className="text-xl font-bold text-[#002248] mb-2">
-                    {tile.title}
+                  <div className="mb-6 text-[#008080] transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-12">
+                    {tile.icon}
                   </div>
-                  <div className="text-base text-[#7b8ca0]">{tile.value}</div>
-                </div>
+                  <h3 className="text-sm font-black text-[#002248] uppercase tracking-widest mb-2">
+                    {tile.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 font-medium group-hover:text-[#008080] transition-colors break-all">
+                    {tile.value}
+                  </p>
+                </motion.a>
               ))}
             </div>
-            <div className="w-full h-full shadow bg-[#F8F6F3] rounded-none aspect-square flex items-stretch">
-              <iframe
-                title="Collabority Ghaziabad Location"
-                src="https://www.google.com/maps?q=Ghaziabad,+Uttar+Pradesh,+India&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </section>
-        </div>
 
-        {/* Get in Touch Section */}
-        <section className="w-full bg-[#f3ede6] py-16">
-          <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-            {/* Contact Form */}
-            <form
-              className="w-full md:w-1/2 flex flex-col gap-6 bg-[#f3ede6] p-8 rounded-lg relative"
-              onSubmit={handleSubmit}
-            >
-              <span className="text-[#2563eb] font-semibold text-lg mb-2">
-                Get In Touch
-              </span>
-              <h2 className="text-4xl md:text-5xl font-extrabold text-[#002248] mb-8">
-                Estimate For Your Projects.
-              </h2>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none"
-                required
+            <div className="w-full h-full min-h-[400px] bg-gray-100">
+              <iframe
+                title="Collabority Office Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112067.112061!2d77.3391!3d28.6692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf1bb45150d43%3A0x574100c6d32095!2sGhaziabad%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000"
+                className="w-full h-full grayscale contrast-125"
+                style={{ border: 0 }}
+                loading="lazy"
               />
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none"
-                required
-              />
-              <input
-                type="subject"
-                name="subject"
-                value={form.subject}
-                onChange={handleChange}
-                placeholder="Write subject of query"
-                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] rounded-none"
-                required
-              />
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                placeholder="Enter your message"
-                rows={4}
-                className="bg-white px-4 py-3 text-lg focus:outline-none focus:border-[#2563eb] resize-none rounded-none"
-                required
-              />
-              <button
-                type="submit"
-                className="bg-[#008080] text-white text-lg font-semibold px-12 py-4 rounded-none hover:bg-[#006666] transition-colors mt-4 self-start"
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-24 lg:py-40">
+          <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <form className="space-y-8" onSubmit={handleSubmit}>
+              <div className="space-y-4">
+                <span className="text-[#2563eb] font-black uppercase text-sm tracking-[0.3em]">Direct Inquiry</span>
+                <h2 className="text-4xl md:text-6xl font-black text-[#002248] leading-tight tracking-tighter">
+                  Estimate For Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#008080] to-[#2563eb]">Projects.</span>
+                </h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Full Name" className="w-full bg-gray-50 px-6 py-4 rounded-xl border-2 border-transparent focus:border-[#008080] focus:bg-white outline-none transition-all font-medium" required />
+                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email Address" className="w-full bg-gray-50 px-6 py-4 rounded-xl border-2 border-transparent focus:border-[#008080] focus:bg-white outline-none transition-all font-medium" required />
+              </div>
+              <input type="text" name="subject" value={form.subject} onChange={handleChange} placeholder="How can we help?" className="w-full bg-gray-50 px-6 py-4 rounded-xl border-2 border-transparent focus:border-[#008080] focus:bg-white outline-none transition-all font-medium" required />
+              <textarea name="message" value={form.message} onChange={handleChange} placeholder="Tell us about your project details..." rows={5} className="w-full bg-gray-50 px-6 py-4 rounded-xl border-2 border-transparent focus:border-[#008080] focus:bg-white outline-none transition-all font-medium resize-none" required />
+              
+              <button 
+                type="submit" 
+                className="w-full md:w-auto bg-[#008080] text-white font-black uppercase tracking-widest px-12 py-5 rounded-2xl hover:bg-[#002248] transition-all shadow-xl shadow-teal-900/20 disabled:opacity-50 active:scale-95" 
                 disabled={loading}
               >
-                {loading ? "Submitting..." : "Submit"}
+                {loading ? "Transmitting..." : "Send Message →"}
               </button>
-              {success && (
-                <div className="mt-2 text-green-600 font-semibold">
-                  {success}
-                </div>
-              )}
+
+              <AnimatePresence>
+                {status.message && (
+                  <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`font-bold ${status.type === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                    {status.message}
+                  </motion.p>
+                )}
+              </AnimatePresence>
             </form>
-            {/* Video/Image with Play Button */}
-            <div className="relative w-full md:w-1/2 flex justify-center items-center h-full">
-              <div className="relative w-full h-full flex items-center justify-center">
-                <img
-                  src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80"
-                  alt="Get in Touch Video"
-                  className="w-full h-full object-cover rounded border-b-[8px] border-[#008080] aspect-square"
+
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#008080] to-[#2563eb] rounded-3xl blur-2xl opacity-10 group-hover:opacity-20 transition-opacity" />
+              <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" 
+                  alt="Consultation" 
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" 
                 />
-                {/* Play Button with Ripple Animation */}
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                  style={{ pointerEvents: "auto" }}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+                <motion.button 
+                  whileHover={{ scale: 1.1 }} 
+                  whileTap={{ scale: 0.9 }}
+                  className="absolute inset-0 m-auto w-24 h-24 rounded-full bg-white text-[#008080] flex items-center justify-center shadow-2xl border-8 border-white/20" 
                   onClick={toggleVideoModal}
                 >
-                  <motion.span
-                    className="relative z-10 flex items-center justify-center w-24 h-24 rounded-full bg-teal text-white text-4xl shadow-lg"
-                    animate={{
-                      boxShadow: [
-                        "0 0 0 0 rgba(13,89,219,0.7)",
-                        "0 0 0 20px rgba(13,89,219,0.0)",
-                        "0 0 0 0 rgba(13,89,219,0.7)",
-                      ],
-                    }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 1.5,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <svg className="w-10 h-10" fill="white" viewBox="0 0 24 24">
-                      <path
-                        d="M8 5v14l11-7z"
-                        stroke="white"
-                        strokeWidth="0.5"
-                        strokeLinejoin="round"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </motion.span>
+                  <svg className="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                 </motion.button>
               </div>
             </div>
           </div>
-          {/* Video Modal */}
-          {isVideoModalOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-              <div
-                className="relative bg-white shadow-2xl flex flex-col"
-                style={{
-                  width: "70vw",
-                  height: "70vh",
-                  maxWidth: "100vw",
-                  maxHeight: "100vh",
-                  minWidth: "320px",
-                  minHeight: "200px",
-                  overflow: "auto",
-                }}
-              >
-                <button
-                  className="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-800 z-10"
-                  onClick={toggleVideoModal}
-                  aria-label="Close modal"
-                >
-                  &times;
-                </button>
-                <iframe
-                  src="https://www.youtube.com/embed/AExAZLYf65Q"
-                  title="Collabority Get in Touch Video"
-                  className="w-full h-full border-none"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ width: "100%", height: "100%", minHeight: "200px" }}
-                />
-              </div>
-            </div>
-          )}
         </section>
       </div>
 
-      {/* NewsLetter Section */}
-      <NewsLetter />
+      <AnimatePresence>
+        {isVideoModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            exit={{ opacity: 0 }} 
+            className="fixed inset-0 z-[999] flex items-center justify-center bg-[#002248]/95 backdrop-blur-xl p-6" 
+            onClick={toggleVideoModal}
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }} 
+              animate={{ scale: 1, y: 0 }} 
+              exit={{ scale: 0.9, y: 20 }} 
+              className="relative w-full max-w-5xl aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black" 
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all text-2xl font-bold" onClick={toggleVideoModal}>×</button>
+              <iframe src="https://www.youtube.com/embed/AExAZLYf65Q?autoplay=1" title="Collabority Intro" className="w-full h-full border-none" allow="autoplay; encrypted-media" allowFullScreen />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* Footer */}
+      <NewsLetter />
       <Footer />
       <ScrollToTop />
-    </div>
+    </main>
   );
 };
 
-export default Contact;
+export default memo(Contact);

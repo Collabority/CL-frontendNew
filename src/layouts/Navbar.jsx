@@ -1,93 +1,124 @@
-import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import CollaboryLogo from '../assets/collabory-logo.png';
+import React, { useState, useEffect, memo } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import CollaboryLogoPng from "../assets/collabory-logo.png";
+import CollaboryLogoWebp from "../assets/webp/collabory-logo.webp"; 
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
 
-  const desktopLinkClass = ({ isActive }) =>
-    isActive ? 'text-[#008080] font-bold' : 'text-gray-700 hover:text-[#008080]';
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => setIsOpen(false), [pathname]);
+
+  const links = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Blog", path: "/blog" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   return (
-    <nav className="bg-white shadow-md z-50 relative">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-3 flex justify-between items-center">
+    <>
+      <nav className={`fixed top-0 w-full z-[100] transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-2" : "bg-white py-3"
+      }`}>
+        <div className="max-w-7xl mx-auto px-5 flex justify-between items-center">
+          
+          <Link to="/" className="flex-shrink-0">
+            <picture>
+              <source srcSet={CollaboryLogoWebp} type="image/webp" />
+              <img
+                src={CollaboryLogoPng}
+                alt="Collabority Logo"
+                width="160"
+                height="44"
+                fetchpriority="high"
+                className="h-9 md:h-11 w-auto object-contain"
+              />
+            </picture>
+          </Link>
 
-        {/* logo */}
-        <div className="flex items-center">
-          <img src={CollaboryLogo} alt="Collabory Logo" className="h-10 md:h-11 lg:h-12" />
-        </div>
+          <div className="hidden md:flex items-center space-x-6">
+            {links.map((link) => (
+              <NavLink 
+                key={link.name} 
+                to={link.path} 
+                className={({ isActive }) => 
+                  `text-sm font-semibold transition-colors ${isActive ? "text-[#008080]" : "text-gray-600 hover:text-[#008080]"}`
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </div>
 
-        {/* Mobile menu button */}
-        <div className="md:hidden flex items-center">
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-700 focus:outline-none">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 text-gray-800 z-[120]"
+            aria-label={isOpen ? "Close Menu" : "Open Menu"}
+          >
+            <div className="w-5 h-4 relative flex flex-col justify-between">
+              <span className={`h-0.5 w-full bg-black transition-all duration-300 ${isOpen ? "rotate-45 translate-y-1.5" : ""}`} />
+              <span className={`h-0.5 w-full bg-black transition-all duration-300 ${isOpen ? "opacity-0" : ""}`} />
+              <span className={`h-0.5 w-full bg-black transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </div>
           </button>
         </div>
+      </nav>
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex items-center md:space-x-5 lg:space-x-7">
-          <div className="flex md:space-x-6 lg:space-x-9">
-            <NavLink to="/" className={desktopLinkClass}>Home</NavLink>
+      <div 
+        className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-[110] transition-opacity duration-300 md:hidden ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Mobile Sidebar */}
+      <div className={`fixed top-0 right-0 h-full w-[70%] max-w-[280px] bg-white z-[115] shadow-2xl transform transition-transform duration-300 ease-out md:hidden ${
+        isOpen ? "translate-x-0" : "translate-x-full"
+      }`}>
+        <div className="flex flex-col p-6 pt-20 space-y-1">
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Menu</p>
+          {links.map((link) => (
             <NavLink
-              to="/services"
-              className={({ isActive }) =>
-                location.pathname.startsWith('/services')
-                  ? 'text-[#008080] font-bold'
-                  : 'text-gray-700 hover:text-[#008080]'
+              key={link.name}
+              to={link.path}
+              className={({ isActive }) => 
+                `block py-3 px-4 rounded-lg text-base font-medium transition-all ${
+                  isActive ? "bg-[#008080]/10 text-[#008080]" : "text-gray-700 active:bg-gray-50"
+                }`
               }
             >
-              Services
+              {link.name}
             </NavLink>
-            <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                location.pathname.startsWith('/blog')
-                  ? 'text-[#008080] font-bold'
-                  : 'text-gray-700 hover:text-[#008080]'
-              }
+          ))}
+          
+          <div className="pt-6">
+            <Link 
+              to="/contact" 
+              className="block w-full text-center bg-[#008080] text-white py-3 rounded-xl font-bold text-sm shadow-lg shadow-[#008080]/20 active:scale-95 transition-transform"
             >
-              Blog
-            </NavLink>
-            <NavLink to="/about" className={desktopLinkClass}>About</NavLink>
-            <NavLink to="/career" className={desktopLinkClass}>Career</NavLink>
-            <NavLink to="/portfolio" className={desktopLinkClass}>Portfolio</NavLink>
-            <NavLink to="/contact" className={desktopLinkClass}>Contact</NavLink>
+              Get Started
+            </Link>
+          </div>
+
+          <div className="mt-auto pt-10">
+            <div className="p-4 bg-teal-50 rounded-xl border border-teal-100">
+               <p className="text-[10px] font-bold text-[#008080] uppercase">Special Offer</p>
+               <p className="text-xs text-gray-600 mt-1">Get 20% off on your first IT Consultation.</p>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Mobile menu overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-white z-40 overflow-y-auto">
-          <div className="flex justify-between items-center px-4 py-4 border-b border-gray-200">
-            <img src={CollaboryLogo} alt="Collabory Logo" className="h-10" />
-            <button onClick={() => setIsMobileMenuOpen(false)} className="text-gray-700 focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          <div className="px-4 py-8 flex flex-col space-y-4">
-            <NavLink to="/" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Home</NavLink>
-            <NavLink to="/services" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname.startsWith('/services') ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Services</NavLink>
-            <NavLink to="/blog" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname.startsWith('/blog') ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Blog</NavLink>
-            <NavLink to="/about" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/about' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>About</NavLink>
-            <NavLink to="/career" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/career' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Career</NavLink>
-            <NavLink to="/portfolio" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/portfolio' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Portfolio</NavLink>
-            <NavLink to="/contact" className={`block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 ${location.pathname === '/contact' ? 'text-[#008080] font-bold' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>Contact</NavLink>
-          </div>
-        </div>
-      )}
-    </nav>
+    </>
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
